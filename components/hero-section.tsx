@@ -12,7 +12,7 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({
-  images = ["/placeholder.svg?height=1080&width=1920", "/placeholder.svg?height=1080&width=1920"],
+  images = ["/images/hero/s1.jpg", "/images/hero/s2.jpg"],
   height = "large",
 }: HeroSectionProps) {
   const autoplayRef = useRef(

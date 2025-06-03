@@ -39,9 +39,9 @@ export default function HomePage() {
   const featuredAnimals = [
     {
       id: 1,
-      name: "Royal Bengal Tiger",
+      name: "INDIAN HIPPOPOTAMUS",
       species: "Panthera tigris tigris",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/images/meet-animals/a1.jpg",
       category: "Mammals",
       slug: "royal-bengal-tiger",
     },
@@ -49,7 +49,7 @@ export default function HomePage() {
       id: 2,
       name: "Indian Elephant",
       species: "Elephas maximus indicus",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/images/meet-animals/a2.jpg",
       category: "Mammals",
       slug: "indian-elephant",
     },
@@ -57,7 +57,7 @@ export default function HomePage() {
       id: 3,
       name: "Spotted Deer",
       species: "Axis axis",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/images/meet-animals/a3.jpg",
       category: "Mammals",
       slug: "spotted-deer",
     },
@@ -65,7 +65,7 @@ export default function HomePage() {
       id: 4,
       name: "Himalayan Black Bear",
       species: "Ursus thibetanus laniger",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/images/meet-animals/a4.jpg",
       category: "Mammals",
       slug: "himalayan-black-bear",
     },
@@ -77,7 +77,7 @@ export default function HomePage() {
       title: "Zoo Awareness Week",
       description:
         "Join us for a week of fun and learning as we celebrate the amazing animals at Patna Zoo and the importance of conservation.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/7e879b3e250e020505554420ddb55411.jpg",
       href: "/events/zoo-awareness-week",
       buttonText: "Learn more",
     },
@@ -86,7 +86,7 @@ export default function HomePage() {
       title: "Animal Feeding Time",
       description:
         "Watch our zookeepers feed some of the zoo's most popular animals and learn about their diets and habits.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/d2.jpg",
       href: "/events/animal-feeding",
       buttonText: "See schedule",
     },
@@ -95,7 +95,7 @@ export default function HomePage() {
       title: "Conservation Talk Series",
       description:
         "Join our experts for an in-depth discussion about wildlife conservation efforts in Bihar and how you can make a difference.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/d3.jpg",
       href: "/events/conservation-talks",
       buttonText: "Learn more",
     },
@@ -104,56 +104,63 @@ export default function HomePage() {
   const carouselImages = [
     {
       id: 1,
-      src: "/placeholder.svg?height=227&width=180",
+      src: "/images/slider/c2.png",
       alt: "Tiger habitat",
       title: "Tiger Territory",
       subtitle: "Home to our Royal Bengal Tigers",
     },
     {
       id: 2,
-      src: "/placeholder.svg?height=227&width=180",
+      src: "/images/slider/c1.png",
       alt: "Elephant sanctuary",
       title: "Elephant Sanctuary",
       subtitle: "Watch our gentle giants",
     },
     {
       id: 3,
-      src: "/placeholder.svg?height=227&width=180",
+      src: "/images/slider/c3.png",
       alt: "Bird aviary",
       title: "Tropical Aviary",
       subtitle: "Colorful birds from around the world",
     },
     {
       id: 4,
-      src: "/placeholder.svg?height=227&width=180",
+      src: "/images/slider/c4.png",
       alt: "Reptile house",
       title: "Reptile House",
       subtitle: "Fascinating cold-blooded creatures",
     },
     {
       id: 5,
-      src: "/placeholder.svg?height=227&width=180",
+      src: "/images/slider/c5.png",
       alt: "Primate section",
       title: "Primate Paradise",
       subtitle: "Our closest animal relatives",
     },
     {
       id: 6,
-      src: "/placeholder.svg?height=227&width=180",
+      src: "/images/slider/c6.png",
+      alt: "Aquatic animals",
+      title: "Aquatic Zone",
+      subtitle: "Underwater wonders",
+    },
+    {
+      id: 7,
+      src: "/images/slider/c9.png",
       alt: "Aquatic animals",
       title: "Aquatic Zone",
       subtitle: "Underwater wonders",
     },
     {
       id: 8,
-      src: "/placeholder.svg?height=227&width=180",
+      src: "/images/slider/c7.png",
       alt: "Aquatic animals",
       title: "Aquatic Zone",
       subtitle: "Underwater wonders",
     },
     {
       id: 9,
-      src: "/placeholder.svg?height=227&width=180",
+      src: "/images/slider/c8.png",
       alt: "Aquatic animals",
       title: "Aquatic Zone",
       subtitle: "Underwater wonders",
@@ -167,7 +174,7 @@ export default function HomePage() {
 
       <main>
         <HeroSection
-          backgroundImage="/placeholder.svg?height=1080&width=1920"
+          backgroundImage="/images/hero/s1.jpg"
           height="large"
           title="Welcome to Patna Zoo"
           subtitle="Discover the Wonders of Wildlife in Bihar"
@@ -182,7 +189,7 @@ export default function HomePage() {
             title="Explore the Wildlife of Bihar"
             subtitle="Discover local species"
             description="Discover the diverse wildlife of Bihar, including native species and conservation efforts specific to the region. Learn about the unique ecosystems and the animals that call them home."
-            image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%20from%202025-06-01%2017-38-27-o54b02Fr4u65yorsI1hy8sPUU2pln0.png"
+            image="/images/bg2.png"
             href="/exhibits/bihar-wildlife"
             buttonText="FIND OUT MORE"
             useBackgroundImage={true}
@@ -553,7 +560,7 @@ export default function HomePage() {
         {/* Events Carousel */}
         <EventsCarousel
           events={carouselEvents}
-          backgroundImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%20from%202025-06-01%2017-38-52-97vTi3cqaXVqbTV5tyJgleKiKUIm0W.png"
+          backgroundImage="/images/bg.png"
         />
 
         {/* Conservation Section */}
@@ -578,7 +585,7 @@ export default function HomePage() {
 
               <div className="relative h-96 rounded-lg overflow-hidden animate-on-scroll stagger-2">
                 <Image
-                  src="/placeholder.svg?height=600&width=800"
+                  src="/images/s1111.png"
                   alt="Conservation work"
                   fill
                   className="object-cover"
