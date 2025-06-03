@@ -144,6 +144,21 @@ export default function HomePage() {
       title: "Aquatic Zone",
       subtitle: "Underwater wonders",
     },
+    {
+      id: 8,
+      src: "/placeholder.svg?height=227&width=180",
+      alt: "Aquatic animals",
+      title: "Aquatic Zone",
+      subtitle: "Underwater wonders",
+    },
+    {
+      id: 9,
+      src: "/placeholder.svg?height=227&width=180",
+      alt: "Aquatic animals",
+      title: "Aquatic Zone",
+      subtitle: "Underwater wonders",
+    },
+
   ]
 
   return (
