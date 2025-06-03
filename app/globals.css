@@ -152,7 +152,7 @@
   }
 
   .zoo-card-overlay {
-    @apply absolute inset-0 bg-gradient-to-t from-zoo-teal-900/90 to-transparent flex flex-col justify-end;
+    @apply absolute inset-0 bg-gradient-to-t to-50% from-zoo-teal-900/50 to-transparent flex flex-col justify-end;
     padding: clamp(1rem, 3vw, 1.5rem);
   }
 

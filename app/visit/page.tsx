@@ -98,7 +98,7 @@ export default function VisitPage() {
         <HeroSection
           title="PLAN YOUR VISIT"
           subtitle="Everything you need to know for the perfect zoo experience"
-          backgroundImage="/placeholder.svg?height=800&width=1920"
+          backgroundImage="/images/header/animal-bg.png"
           primaryCta={{ text: "BUY TICKETS", href: "/tickets" }}
           height="medium"
         />

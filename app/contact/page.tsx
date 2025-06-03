@@ -89,7 +89,7 @@ export default function ContactPage() {
         <HeroSection
           title="CONTACT US"
           subtitle="Get in touch with our team for any questions or assistance"
-          backgroundImage="/placeholder.svg?height=800&width=1920"
+          backgroundImage="/images/header/animal-bg.png"
           height="medium"
         />
 

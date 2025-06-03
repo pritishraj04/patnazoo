@@ -80,7 +80,7 @@ export function EventsCarousel({ events, backgroundImage }: EventsCarouselProps)
             {/* Background Image - only for carousel container */}
             <div className="absolute inset-0">
               <Image src={backgroundImage || "/placeholder.svg"} alt="Zoo background" fill className="object-cover" />
-              <div className="absolute inset-0 bg-zoo-teal-700/80"></div>
+              {/* <div className="absolute inset-0 bg-zoo-teal-700/80"></div> */}
             </div>
 
             {/* Navigation Buttons - positioned outside the card area */}

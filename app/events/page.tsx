@@ -177,7 +177,7 @@ export default function EventsPage() {
         <HeroSection
           title="EVENTS & EXPERIENCES"
           subtitle="Discover exciting programs and special events throughout the year"
-          backgroundImage="/placeholder.svg?height=800&width=1920"
+          backgroundImage="/images/header/animal-bg.png"
           primaryCta={{ text: "VIEW CALENDAR", href: "#events" }}
           height="medium"
         />

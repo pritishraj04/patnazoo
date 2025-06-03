@@ -60,7 +60,7 @@ export function FeaturedContentCard({
           <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-zoo-teal-900/90 via-zoo-teal-900/50 to-transparent"></div>
+          <div className="absolute inset-0"></div>
 
           {/* Content positioned at bottom */}
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-12">

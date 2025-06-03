@@ -89,7 +89,7 @@ export default function TicketsPage() {
         <HeroSection
           title="TICKETS & EXPERIENCES"
           subtitle="Book your visit and explore incredible animal experiences"
-          backgroundImage="/placeholder.svg?height=800&width=1920"
+          backgroundImage="/images/header/animal-bg.png"
           height="medium"
         />
 

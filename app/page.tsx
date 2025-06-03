@@ -174,10 +174,8 @@ export default function HomePage() {
 
       <main>
         <HeroSection
-          backgroundImage="/images/hero/s1.jpg"
+          images={["/images/hero/s1.jpg", "/images/hero/s2.jpg"]} // Use carousel on home page
           height="large"
-          title="Welcome to Patna Zoo"
-          subtitle="Discover the Wonders of Wildlife in Bihar"
         />
 
         {/* Image Carousel */}

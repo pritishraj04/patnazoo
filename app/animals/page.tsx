@@ -162,7 +162,7 @@ export default function AnimalsPage() {
         <HeroSection
           title="ANIMALS"
           subtitle="Discover the amazing animals that call Patna Zoo home"
-          backgroundImage="/placeholder.svg?height=600&width=1920"
+          backgroundImage="/images/header/animal-bg.png"
           height="medium"
         />
 

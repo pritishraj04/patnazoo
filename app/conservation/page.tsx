@@ -118,7 +118,7 @@ export default function ConservationPage() {
         <HeroSection
           title="CONSERVATION IN ACTION"
           subtitle="Protecting wildlife and preserving nature for future generations"
-          backgroundImage="/placeholder.svg?height=800&width=1920"
+          backgroundImage="/images/header/animal-bg.png"
           primaryCta={{ text: "SUPPORT OUR WORK", href: "/support" }}
           secondaryCta={{ text: "LEARN MORE", href: "#projects" }}
           height="large"
