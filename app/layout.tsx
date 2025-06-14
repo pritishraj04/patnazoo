@@ -55,11 +55,6 @@ export const metadata: Metadata = {
     images: ["/twitter-image.jpg"],
     creator: "@PatnaZoo",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
   category: "tourism",
     generator: 'v0.dev'
 }

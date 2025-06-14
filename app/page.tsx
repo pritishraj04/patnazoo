@@ -12,6 +12,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup"
 import { FeaturedContentCard } from "@/components/featured-content-card"
 import { EventsCarousel } from "@/components/events-carousel"
 import { ImageCarousel } from "@/components/image-carousel"
+import { PriorityPopup } from "@/components/priority-popup"
 
 export default function HomePage() {
   // Animation observer for scroll animations
@@ -165,12 +166,14 @@ export default function HomePage() {
       title: "Aquatic Zone",
       subtitle: "Underwater wonders",
     },
-
   ]
 
   return (
     <>
       <Navbar />
+
+      {/* Full-screen Priority Popup */}
+      <PriorityPopup />
 
       <main>
         <HeroSection
@@ -180,6 +183,9 @@ export default function HomePage() {
 
         {/* Image Carousel */}
         <ImageCarousel images={carouselImages} />
+
+        {/* Priority Section - appears above "Explore the Wildlife of Bihar" */}
+        <PriorityPopup asSection={true} />
 
         {/* Featured Content Card - Heart of India with background image */}
         <section className="py-16 bg-zoo-teal-700">
@@ -556,10 +562,7 @@ export default function HomePage() {
         </section>
 
         {/* Events Carousel */}
-        <EventsCarousel
-          events={carouselEvents}
-          backgroundImage="/images/bg.png"
-        />
+        <EventsCarousel events={carouselEvents} backgroundImage="/images/bg.png" />
 
         {/* Conservation Section */}
         <section className="py-16 bg-zoo-teal-800">
@@ -582,12 +585,7 @@ export default function HomePage() {
               </div>
 
               <div className="relative h-96 rounded-lg overflow-hidden animate-on-scroll stagger-2">
-                <Image
-                  src="/images/s1111.png"
-                  alt="Conservation work"
-                  fill
-                  className="object-cover"
-                />
+                <Image src="/images/s1111.png" alt="Conservation work" fill className="object-cover" />
               </div>
             </div>
           </div>

@@ -119,19 +119,6 @@ export default function AnimalDetailPage() {
       <Navbar />
 
       <main>
-        {/* Back Button */}
-        <section className="py-4 bg-zoo-teal-800">
-          <div className="zoo-container">
-            <Link
-              href="/animals"
-              className="inline-flex items-center gap-2 text-white hover:text-zoo-yellow-600 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to all animals</span>
-            </Link>
-          </div>
-        </section>
-
         <HeroSection
           title={animal.name}
           subtitle={animal.species}

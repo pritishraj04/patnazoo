@@ -2,15 +2,27 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { X, ChevronDown } from "lucide-react"
+import { X, ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+
+interface MenuGroup {
+  title: string
+  items: { title: string; href: string }[]
+}
+
+interface MenuItem {
+  title: string
+  href: string
+  groups?: MenuGroup[]
+}
 
 interface MobileNavProps {
   isOpen: boolean
   onClose: () => void
+  menuItems: MenuItem[]
 }
 
-export function MobileNav({ isOpen, onClose }: MobileNavProps) {
+export function MobileNav({ isOpen, onClose, menuItems }: MobileNavProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>(null)
 
   const toggleSection = (section: string) => {
@@ -29,7 +41,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
       )}
     >
       <div className="flex justify-between items-center p-4 border-b border-zoo-teal-200">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2" onClick={onClose}>
           <div className="w-12 h-12 bg-zoo-teal-700 rounded-full flex items-center justify-center">
             <span className="text-white font-bold text-xl">P</span>
           </div>
@@ -55,43 +67,51 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
         </div>
 
         <nav className="space-y-1">
-          {[
-            { name: "Visit", href: "/visit" },
-            { name: "What's here", href: "/animals" },
-            { name: "Support us", href: "/support" },
-            { name: "Conservation, science & education", href: "/conservation" },
-            { name: "Accommodation", href: "/accommodation" },
-          ].map((item) => (
-            <div key={item.name} className="border-b border-zoo-teal-200">
+          {menuItems.map((item) => (
+            <div key={item.title} className="border-b border-zoo-teal-200">
               <button
                 className="flex items-center justify-between w-full py-4 text-zoo-teal-700 font-medium"
-                onClick={() => toggleSection(item.name)}
+                onClick={() => toggleSection(item.title)}
               >
-                <span>{item.name}</span>
-                <ChevronDown
-                  className={cn("w-5 h-5 transition-transform", expandedSection === item.name ? "rotate-180" : "")}
-                />
+                <span>{item.title}</span>
+                {item.groups && (
+                  <ChevronDown
+                    className={cn("w-5 h-5 transition-transform", expandedSection === item.title ? "rotate-180" : "")}
+                  />
+                )}
               </button>
 
-              {expandedSection === item.name && (
-                <div className="pb-4 pl-4 space-y-2">
-                  <Link href={item.href} className="block text-zoo-teal-600 hover:text-zoo-teal-500" onClick={onClose}>
-                    Overview
-                  </Link>
+              {expandedSection === item.title && item.groups && (
+                <div className="pb-4 space-y-4">
                   <Link
-                    href={`${item.href}/sub-page-1`}
-                    className="block text-zoo-teal-600 hover:text-zoo-teal-500"
+                    href={item.href}
+                    className="flex items-center px-4 py-2 text-zoo-teal-600 hover:text-zoo-teal-500 hover:bg-zoo-teal-50 rounded-lg"
                     onClick={onClose}
                   >
-                    Sub Page 1
+                    <span>Overview</span>
+                    <ChevronRight className="w-4 h-4 ml-auto" />
                   </Link>
-                  <Link
-                    href={`${item.href}/sub-page-2`}
-                    className="block text-zoo-teal-600 hover:text-zoo-teal-500"
-                    onClick={onClose}
-                  >
-                    Sub Page 2
-                  </Link>
+
+                  {item.groups.map((group) => (
+                    <div key={group.title} className="px-4">
+                      <h4 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wide mb-2 border-b border-zoo-teal-200 pb-1">
+                        {group.title}
+                      </h4>
+                      <div className="space-y-1">
+                        {group.items.map((subItem) => (
+                          <Link
+                            key={subItem.title}
+                            href={subItem.href}
+                            className="flex items-center px-3 py-2 text-zoo-teal-600 hover:text-zoo-teal-500 hover:bg-zoo-teal-50 rounded-lg"
+                            onClick={onClose}
+                          >
+                            <span>{subItem.title}</span>
+                            <ChevronRight className="w-4 h-4 ml-auto" />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

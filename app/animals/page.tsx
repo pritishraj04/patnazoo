@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/hero-section"
@@ -11,8 +12,23 @@ import { Button } from "@/components/ui/button"
 import { Search, Filter } from "lucide-react"
 
 export default function AnimalsPage() {
+  const searchParams = useSearchParams()
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
+
+  // Apply filter from URL params on page load
+  useEffect(() => {
+    const categoryParam = searchParams.get("category")
+    if (categoryParam && ["mammals", "birds", "reptiles"].includes(categoryParam.toLowerCase())) {
+      setSelectedCategory(
+        categoryParam.toLowerCase() === "mammals"
+          ? "Mammals"
+          : categoryParam.toLowerCase() === "birds"
+            ? "Birds"
+            : "Reptiles",
+      )
+    }
+  }, [searchParams])
 
   const animals = [
     {
@@ -65,16 +81,15 @@ export default function AnimalsPage() {
     },
     {
       id: 7,
-      name: "Cheeta",
-      species: "Ursus thibetanus",
+      name: "Cheetah",
+      species: "Acinonyx jubatus",
       category: "Mammals",
       image: "/images/meet-animals/cheetah.jpg",
-      slug: "himalayan-black-bear",
+      slug: "cheetah",
     },
-    
     {
       id: 8,
-      name: "Crocodile",
+      name: "Gharial",
       species: "Gavialis gangeticus",
       category: "Reptiles",
       image: "/images/meet-animals/croc.jpg",
@@ -120,6 +135,30 @@ export default function AnimalsPage() {
       image: "/placeholder.svg?height=400&width=400",
       slug: "lesser-adjutant-stork",
     },
+    {
+      id: 14,
+      name: "Painted Stork",
+      species: "Mycteria leucocephala",
+      category: "Birds",
+      image: "/placeholder.svg?height=400&width=400",
+      slug: "painted-stork",
+    },
+    {
+      id: 15,
+      name: "Indian Python",
+      species: "Python molurus",
+      category: "Reptiles",
+      image: "/placeholder.svg?height=400&width=400",
+      slug: "indian-python",
+    },
+    {
+      id: 16,
+      name: "Monitor Lizard",
+      species: "Varanus bengalensis",
+      category: "Reptiles",
+      image: "/placeholder.svg?height=400&width=400",
+      slug: "monitor-lizard",
+    },
   ]
 
   const categories = ["all", "Mammals", "Birds", "Reptiles"]
@@ -154,14 +193,29 @@ export default function AnimalsPage() {
     }
   }, [])
 
+  // Get page title based on filter
+  const getPageTitle = () => {
+    if (selectedCategory === "Birds") return "BIRDS"
+    if (selectedCategory === "Reptiles") return "REPTILES"
+    if (selectedCategory === "Mammals") return "MAMMALS"
+    return "ANIMALS"
+  }
+
+  const getPageSubtitle = () => {
+    if (selectedCategory === "Birds") return "Discover the beautiful birds that call Patna Zoo home"
+    if (selectedCategory === "Reptiles") return "Meet the fascinating reptiles at Patna Zoo"
+    if (selectedCategory === "Mammals") return "Explore the amazing mammals at Patna Zoo"
+    return "Discover the amazing animals that call Patna Zoo home"
+  }
+
   return (
     <>
       <Navbar />
 
       <main>
         <HeroSection
-          title="ANIMALS"
-          subtitle="Discover the amazing animals that call Patna Zoo home"
+          title={getPageTitle()}
+          subtitle={getPageSubtitle()}
           backgroundImage="/images/header/animal-bg.png"
           height="medium"
         />

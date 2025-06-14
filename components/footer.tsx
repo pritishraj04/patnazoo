@@ -28,25 +28,25 @@ export function Footer() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-16">
               <div>
-                <h4 className="font-bold mb-4">Visit</h4>
+                <h4 className="font-bold mb-4">Quick Links</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <Link href="/visit/opening-times" className="hover:underline">
-                      Opening times
+                    <Link href="/about/history" className="hover:underline">
+                      History & Legacy
                     </Link>
                   </li>
                   <li>
-                    <Link href="/visit/prices" className="hover:underline">
-                      Prices
+                    <Link href="/visit/tickets" className="hover:underline">
+                      Tickets & Timings
                     </Link>
                   </li>
                   <li>
-                    <Link href="/visit/getting-here" className="hover:underline">
-                      Find us
+                    <Link href="/visit/location" className="hover:underline">
+                      Location & How to Reach
                     </Link>
                   </li>
                   <li>
-                    <Link href="/visit/rules-regulations" className="hover:underline">
+                    <Link href="/visit/rules" className="hover:underline">
                       Rules & Regulations
                     </Link>
                   </li>
@@ -64,7 +64,7 @@ export function Footer() {
               </div>
 
               <div>
-                <h4 className="font-bold mb-4">What's here</h4>
+                <h4 className="font-bold mb-4">What's Here</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Link href="/animals" className="hover:underline">
@@ -72,49 +72,54 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/exhibits" className="hover:underline">
-                      Exhibits
+                    <Link href="/animals/birds" className="hover:underline">
+                      Birds
                     </Link>
                   </li>
                   <li>
-                    <Link href="/events" className="hover:underline">
-                      Events
+                    <Link href="/animals/reptiles" className="hover:underline">
+                      Reptiles
                     </Link>
                   </li>
                   <li>
-                    <Link href="/food-drink" className="hover:underline">
-                      Food & drink
+                    <Link href="/animals/plants" className="hover:underline">
+                      Plants
                     </Link>
                   </li>
                   <li>
-                    <Link href="/shops" className="hover:underline">
-                      Shops
+                    <Link href="/experience/mayur-canteen" className="hover:underline">
+                      Mayur Canteen
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/experience/souvenir-shop" className="hover:underline">
+                      Souvenir Shop
                     </Link>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-bold mb-4">Support us</h4>
+                <h4 className="font-bold mb-4">Programs & Updates</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <Link href="/support/sponsorship" className="hover:underline">
-                      Sponsorship
+                    <Link href="/programs/adopt" className="hover:underline">
+                      Adopt an Animal
                     </Link>
                   </li>
                   <li>
-                    <Link href="/support/donate" className="hover:underline">
-                      Donate
+                    <Link href="/programs/breeding" className="hover:underline">
+                      Breeding Programs
                     </Link>
                   </li>
                   <li>
-                    <Link href="/support/volunteer" className="hover:underline">
-                      Volunteer
+                    <Link href="/programs/tenders" className="hover:underline">
+                      Live Tenders
                     </Link>
                   </li>
                   <li>
-                    <Link href="/support/education" className="hover:underline">
-                      Education
+                    <Link href="/programs/news" className="hover:underline">
+                      News Update
                     </Link>
                   </li>
                 </ul>
@@ -124,28 +129,13 @@ export function Footer() {
                 <h4 className="font-bold mb-4">Conservation</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
+                    <Link href="/about/directors-message" className="hover:underline">
+                      Director's Message
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/conservation/our-work" className="hover:underline">
-                      Our work
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/conservation/projects" className="hover:underline">
-                      Projects
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/conservation/breeding-program" className="hover:underline">
-                      Breeding Program
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/conservation/research" className="hover:underline">
-                      Research
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/conservation/awareness" className="hover:underline">
-                      Awareness
+                      Our Work
                     </Link>
                   </li>
                 </ul>
