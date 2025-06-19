@@ -83,7 +83,7 @@ const menuItems = [
           { title: "Jal Udyan", href: "/experience/jal-udyan" },
           { title: "Shishu Udyan", href: "/experience/shishu-udyan" },
           { title: "Toy Train", href: "/experience/toy-train" },
-          { title: "Boating / Lake", href: "/experience/boating" },
+          { title: "Boating / Lake", href: "/experience/boating-lake" },
           { title: "3D Theater", href: "/experience/3d-theater" },
         ],
       },
@@ -106,7 +106,7 @@ const menuItems = [
       {
         title: "Get Involved",
         items: [
-          { title: "Adopt an Animal", href: "/programs/adopt" },
+          { title: "Adopt an Animal", href: "/programs/adopt-an-animal" },
           { title: "Breeding Programs", href: "/programs/breeding" },
         ],
       },

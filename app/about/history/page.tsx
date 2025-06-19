@@ -209,7 +209,7 @@ export default function HistoryPage() {
                     </div>
 
                     {/* Empty space for alternating layout on desktop */}
-                    <div className="hidden md:block md:w-1/2 md:order-${index % 2 === 0 ? '2' : '1'}"></div>
+                    <div className={`hidden md:block md:w-1/2 md:order-${index % 2 === 0 ? '2' : '1'}`}></div>
                   </div>
                 ))}
               </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
@@ -15,6 +15,65 @@ import { ImageCarousel } from "@/components/image-carousel"
 import { PriorityPopup } from "@/components/priority-popup"
 
 export default function HomePage() {
+  const [currentFactIndex, setCurrentFactIndex] = useState(0)
+
+  // Daily fun facts with dynamic links
+  const funFacts = [
+    {
+      fact: "Tigers have a unique set of stripes, just like human fingerprints! No two tigers have the same stripe pattern, making each one completely unique in the wild.",
+      subject: "Royal Bengal Tiger",
+      link: "/animals/royal-bengal-tiger",
+      type: "animal",
+    },
+    {
+      fact: "Elephants can hear sounds from up to 6 miles away through vibrations in the ground detected by their feet and trunk.",
+      subject: "Indian Elephant",
+      link: "/animals/indian-elephant",
+      type: "animal",
+    },
+    {
+      fact: "Peacocks don't actually have blue feathers! Their brilliant blue color comes from microscopic structures that reflect light, creating an optical illusion.",
+      subject: "Peacock",
+      link: "/animals/peacock",
+      type: "animal",
+    },
+    {
+      fact: "The Banyan tree can live for over 1,000 years and a single tree can spread across several acres, creating its own forest ecosystem.",
+      subject: "Banyan Tree",
+      link: "/plants/banyan-tree",
+      type: "plant",
+    },
+    {
+      fact: "Lotus flowers can regulate their temperature, staying warm even in cold weather to attract pollinators.",
+      subject: "Lotus",
+      link: "/plants/lotus",
+      type: "plant",
+    },
+    {
+      fact: "Gharials are one of the most critically endangered crocodilians in the world, with fewer than 200 breeding adults left in the wild.",
+      subject: "Gharial",
+      link: "/animals/gharial",
+      type: "animal",
+    },
+    {
+      fact: "Neem trees are known as 'nature's pharmacy' because every part of the tree has medicinal properties and can treat over 40 different ailments.",
+      subject: "Neem Tree",
+      link: "/plants/neem-tree",
+      type: "plant",
+    },
+  ]
+
+  // Get current day of year to determine which fact to show
+  useEffect(() => {
+    const now = new Date()
+    const start = new Date(now.getFullYear(), 0, 0)
+    const diff = now - start
+    const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24))
+    setCurrentFactIndex(dayOfYear % funFacts.length)
+  }, [])
+
+  const currentFact = funFacts[currentFactIndex]
+
   // Animation observer for scroll animations
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -198,6 +257,54 @@ export default function HomePage() {
             buttonText="FIND OUT MORE"
             useBackgroundImage={true}
           />
+        </section>
+
+        {/* Fun Fact of the Day - Positioned after Explore Wildlife section */}
+        <section className="py-16 bg-zoo-teal-600">
+          <div className="zoo-container">
+            <div className="max-w-5xl mx-auto animate-on-scroll">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-2 bg-zoo-yellow-500 text-zoo-teal-800 px-4 py-2 rounded-full font-heading font-bold text-sm uppercase tracking-wide mb-6">
+                  <span>🌟</span>
+                  Fun Fact of the Day
+                </div>
+                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-2">DID YOU KNOW?</h2>
+              </div>
+
+              <div className="relative">
+                {/* Large decorative quotation mark */}
+                <div className="absolute -top-4 -left-4 md:-top-8 md:-left-8 text-zoo-yellow-400/30 text-8xl md:text-9xl lg:text-[12rem] font-serif leading-none pointer-events-none select-none">
+                  "
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 relative">
+                  <div className="relative z-10">
+                    <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light">
+                      {currentFact.fact}
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                      <div className="text-zoo-yellow-400">
+                        <span className="font-heading text-lg md:text-xl">— {currentFact.subject}</span>
+                      </div>
+
+                      <Link href={currentFact.link} className="zoo-button-primary inline-flex items-center gap-2 group">
+                        KNOW MORE
+                        <svg
+                          className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Featured Animals */}
@@ -589,6 +696,19 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Adopt an Animal CTA */}
+        <section className="py-16 bg-zoo-teal-700">
+          <FeaturedContentCard
+            title="Make a Difference Today"
+            subtitle="Adopt an Animal"
+            description="Support our conservation efforts by adopting one of our amazing animals. Your contribution helps provide food, medical care, and habitat improvements while supporting wildlife conservation programs across Bihar."
+            image="/images/meet-animals/a1.jpg"
+            href="/programs/adopt-an-animal"
+            buttonText="ADOPT AN ANIMAL"
+            useBackgroundImage={false}
+          />
         </section>
 
         {/* Visit CTA */}
