@@ -16,7 +16,7 @@ interface AnimalCardProps {
 }
 
 export function AnimalCard({ name, species, category, image, slug, className }: AnimalCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
