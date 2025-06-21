@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useApiData } from "@/hooks/index";
+import { useApiData, useConvertStringToArray } from "@/hooks/index";
 import { PlantInfo } from "@/types/index";
 
 export default function PlantDetailPage() {
@@ -31,13 +31,7 @@ export default function PlantDetailPage() {
   const { data: plantDetails, loading } = useApiData<PlantInfo>(
     `/botanical/${slug}`
   );
-
-  const didYouKnowRaw = plantDetails?.DYK || "";
-
-  const didYouKnowArray = didYouKnowRaw
-    .split("•")
-    .map((item) => item.trim())
-    .filter((item) => item.length > 0);
+  const didYouKnowArray = useConvertStringToArray(plantDetails?.DYK);
 
   if (!plantDetails || loading) {
     return (
