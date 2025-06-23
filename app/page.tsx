@@ -13,66 +13,25 @@ import { FeaturedContentCard } from "@/components/featured-content-card";
 import { EventsCarousel } from "@/components/events-carousel";
 import { ImageCarousel } from "@/components/image-carousel";
 import { PriorityPopup } from "@/components/priority-popup";
+import { useApiData } from "@/hooks/index";
+import { FunFactsInfo } from "@/types/index";
 
 export default function HomePage() {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
 
-  // Daily fun facts with dynamic links
-  const funFacts = [
-    {
-      fact: "Tigers have a unique set of stripes, just like human fingerprints! No two tigers have the same stripe pattern, making each one completely unique in the wild.",
-      subject: "Royal Bengal Tiger",
-      link: "/animals/royal-bengal-tiger",
-      type: "animal",
-    },
-    {
-      fact: "Elephants can hear sounds from up to 6 miles away through vibrations in the ground detected by their feet and trunk.",
-      subject: "Indian Elephant",
-      link: "/animals/indian-elephant",
-      type: "animal",
-    },
-    {
-      fact: "Peacocks don't actually have blue feathers! Their brilliant blue color comes from microscopic structures that reflect light, creating an optical illusion.",
-      subject: "Peacock",
-      link: "/animals/peacock",
-      type: "animal",
-    },
-    {
-      fact: "The Banyan tree can live for over 1,000 years and a single tree can spread across several acres, creating its own forest ecosystem.",
-      subject: "Banyan Tree",
-      link: "/plants/banyan-tree",
-      type: "plant",
-    },
-    {
-      fact: "Lotus flowers can regulate their temperature, staying warm even in cold weather to attract pollinators.",
-      subject: "Lotus",
-      link: "/plants/lotus",
-      type: "plant",
-    },
-    {
-      fact: "Gharials are one of the most critically endangered crocodilians in the world, with fewer than 200 breeding adults left in the wild.",
-      subject: "Gharial",
-      link: "/animals/gharial",
-      type: "animal",
-    },
-    {
-      fact: "Neem trees are known as 'nature's pharmacy' because every part of the tree has medicinal properties and can treat over 40 different ailments.",
-      subject: "Neem Tree",
-      link: "/plants/neem-tree",
-      type: "plant",
-    },
-  ];
+  const { data: funFactsData } = useApiData<FunFactsInfo[]>("/funfacts");
 
   // Get current day of year to determine which fact to show
   useEffect(() => {
+    if (!funFactsData || funFactsData.length === 0) return;
     const now = new Date();
     const start = new Date(now.getFullYear(), 0, 0);
     const diff = now.getTime() - start.getTime();
     const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
-    setCurrentFactIndex(dayOfYear % funFacts.length);
+    setCurrentFactIndex(dayOfYear % funFactsData?.length);
   }, []);
 
-  const currentFact = funFacts[currentFactIndex];
+  const currentFact = funFactsData?.[currentFactIndex];
 
   // Animation observer for scroll animations
   useEffect(() => {
@@ -281,19 +240,33 @@ export default function HomePage() {
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 relative">
                   <div className="relative z-10">
-                    <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light">
-                      {currentFact.fact}
-                    </p>
+                    {currentFact?.fact ? (
+                      <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light">
+                        {currentFact?.fact}
+                      </p>
+                    ) : (
+                      <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light animate-pulse">
+                        Tigers have a unique set of stripes, just like human
+                        fingerprints! No two tigers have the same stripe
+                        pattern, making each one completely unique in the wild.
+                      </p>
+                    )}
 
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                       <div className="text-zoo-yellow-400">
-                        <span className="font-heading text-lg md:text-xl">
-                          — {currentFact.subject}
-                        </span>
+                        {currentFact?.subject ? (
+                          <span className="font-heading text-lg md:text-xl">
+                            — {currentFact?.subject}
+                          </span>
+                        ) : (
+                          <span className="font-heading text-lg md:text-xl">
+                            — Royal Bengal Tiger
+                          </span>
+                        )}
                       </div>
 
                       <Link
-                        href={currentFact.link}
+                        href={currentFact?.link ?? "#"}
                         className="zoo-button-primary inline-flex items-center gap-2 group"
                       >
                         KNOW MORE
@@ -692,7 +665,7 @@ export default function HomePage() {
                     className="w-3 h-3 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-200 pagination-dot"
                     onClick={(e) => {
                       e.preventDefault();
-                      const target = e.target as HTMLElement; 
+                      const target = e.target as HTMLElement;
                       const container = target
                         .closest(".relative")
                         ?.querySelector(".flex.overflow-x-auto") as HTMLElement;

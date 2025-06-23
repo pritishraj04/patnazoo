@@ -1,10 +1,12 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef, useCallback } from "react"
-import Link from "next/link"
-import { Menu, ChevronDown } from "lucide-react"
-import { MobileNav } from "@/components/mobile-nav"
-import { cn } from "@/lib/utils"
+import { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import { Menu, ChevronDown } from "lucide-react";
+import { MobileNav } from "@/components/mobile-nav";
+import { cn } from "@/lib/utils";
+import { useApiData } from "@/hooks/index";
+import { LandingInfo } from "@/types/index";
 
 // Grouped menu structure definition
 const menuItems = [
@@ -91,7 +93,10 @@ const menuItems = [
         title: "Zoo Features",
         items: [
           { title: "Nature Library", href: "/experience/nature-library" },
-          { title: "Rhino Breeding Center", href: "/experience/rhino-breeding-center" },
+          {
+            title: "Rhino Breeding Center",
+            href: "/experience/rhino-breeding-center",
+          },
           { title: "Photo Services", href: "/experience/photo-services" },
           { title: "Rose Garden", href: "/experience/rose-garden" },
           { title: "Golf Carts", href: "/experience/golf-carts" },
@@ -119,180 +124,192 @@ const menuItems = [
       },
     ],
   },
-]
+];
 
 export function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [activeMenu, setActiveMenu] = useState<string | null>(null)
-  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
-  const [isHoveringDropdown, setIsHoveringDropdown] = useState(false)
-  const [isHoveringMenuItem, setIsHoveringMenuItem] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [isHoveringDropdown, setIsHoveringDropdown] = useState(false);
+  const [isHoveringMenuItem, setIsHoveringMenuItem] = useState(false);
 
-  const navRef = useRef<HTMLElement>(null)
-  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
-  const menuItemRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
+  const navRef = useRef<HTMLElement>(null);
+  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const menuItemRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  const { data: landingPageData, loading } = useApiData<LandingInfo>(
+    "/landingpagedetails"
+  );
 
   // Handle scroll effect for sticky header
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true })
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // Clear timeout helper
   const clearHoverTimeout = useCallback(() => {
     if (hoverTimeout) {
-      clearTimeout(hoverTimeout)
-      setHoverTimeout(null)
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
     }
-  }, [hoverTimeout])
+  }, [hoverTimeout]);
 
   // Close dropdown with delay
   const scheduleClose = useCallback(() => {
-    clearHoverTimeout()
+    clearHoverTimeout();
     const timeout = setTimeout(() => {
       if (!isHoveringDropdown && !isHoveringMenuItem) {
-        setActiveMenu(null)
+        setActiveMenu(null);
       }
-    }, 300) // Increased delay for better UX
-    setHoverTimeout(timeout)
-  }, [clearHoverTimeout, isHoveringDropdown, isHoveringMenuItem])
+    }, 300); // Increased delay for better UX
+    setHoverTimeout(timeout);
+  }, [clearHoverTimeout, isHoveringDropdown, isHoveringMenuItem]);
 
   // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (activeMenu && navRef.current && !navRef.current.contains(event.target as Node)) {
-        setActiveMenu(null)
-        setIsHoveringDropdown(false)
-        setIsHoveringMenuItem(false)
+      if (
+        activeMenu &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setActiveMenu(null);
+        setIsHoveringDropdown(false);
+        setIsHoveringMenuItem(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [activeMenu])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [activeMenu]);
 
   // Global mouse move handler for better hover detection
   useEffect(() => {
     const handleGlobalMouseMove = (event: MouseEvent) => {
-      if (!activeMenu) return
+      if (!activeMenu) return;
 
-      const navElement = navRef.current
-      const activeDropdown = dropdownRefs.current[activeMenu]
-      const activeMenuItem = menuItemRefs.current[activeMenu]
+      const navElement = navRef.current;
+      const activeDropdown = dropdownRefs.current[activeMenu];
+      const activeMenuItem = menuItemRefs.current[activeMenu];
 
-      if (!navElement || !activeDropdown || !activeMenuItem) return
+      if (!navElement || !activeDropdown || !activeMenuItem) return;
 
       // Get bounding rectangles
-      const navRect = navElement.getBoundingClientRect()
-      const dropdownRect = activeDropdown.getBoundingClientRect()
-      const menuItemRect = activeMenuItem.getBoundingClientRect()
+      const navRect = navElement.getBoundingClientRect();
+      const dropdownRect = activeDropdown.getBoundingClientRect();
+      const menuItemRect = activeMenuItem.getBoundingClientRect();
 
       // Create buffer zones
-      const bufferZone = 20 // pixels
+      const bufferZone = 20; // pixels
       const expandedNavRect = {
         left: navRect.left - bufferZone,
         right: navRect.right + bufferZone,
         top: navRect.top - bufferZone,
         bottom: Math.max(navRect.bottom, dropdownRect.bottom) + bufferZone,
-      }
+      };
 
       // Check if mouse is within the expanded navigation area
       const isInNavArea =
         event.clientX >= expandedNavRect.left &&
         event.clientX <= expandedNavRect.right &&
         event.clientY >= expandedNavRect.top &&
-        event.clientY <= expandedNavRect.bottom
+        event.clientY <= expandedNavRect.bottom;
 
       // Create a triangular safe zone for diagonal movement
       const isInTriangleZone = isPointInTriangle(
         { x: event.clientX, y: event.clientY },
         { x: menuItemRect.left, y: menuItemRect.bottom },
         { x: menuItemRect.right, y: menuItemRect.bottom },
-        { x: dropdownRect.left, y: dropdownRect.top },
-      )
+        { x: dropdownRect.left, y: dropdownRect.top }
+      );
 
       if (!isInNavArea && !isInTriangleZone) {
-        scheduleClose()
+        scheduleClose();
       } else {
-        clearHoverTimeout()
+        clearHoverTimeout();
       }
-    }
+    };
 
     if (activeMenu) {
-      document.addEventListener("mousemove", handleGlobalMouseMove, { passive: true })
+      document.addEventListener("mousemove", handleGlobalMouseMove, {
+        passive: true,
+      });
     }
 
     return () => {
-      document.removeEventListener("mousemove", handleGlobalMouseMove)
-    }
-  }, [activeMenu, scheduleClose, clearHoverTimeout])
+      document.removeEventListener("mousemove", handleGlobalMouseMove);
+    };
+  }, [activeMenu, scheduleClose, clearHoverTimeout]);
 
   // Helper function to check if point is in triangle (for diagonal movement)
   const isPointInTriangle = (
     point: { x: number; y: number },
     a: { x: number; y: number },
     b: { x: number; y: number },
-    c: { x: number; y: number },
+    c: { x: number; y: number }
   ) => {
-    const denom = (b.y - c.y) * (a.x - c.x) + (c.x - b.x) * (a.y - c.y)
-    if (Math.abs(denom) < 0.001) return false
+    const denom = (b.y - c.y) * (a.x - c.x) + (c.x - b.x) * (a.y - c.y);
+    if (Math.abs(denom) < 0.001) return false;
 
-    const alpha = ((b.y - c.y) * (point.x - c.x) + (c.x - b.x) * (point.y - c.y)) / denom
-    const beta = ((c.y - a.y) * (point.x - c.x) + (a.x - c.x) * (point.y - c.y)) / denom
-    const gamma = 1 - alpha - beta
+    const alpha =
+      ((b.y - c.y) * (point.x - c.x) + (c.x - b.x) * (point.y - c.y)) / denom;
+    const beta =
+      ((c.y - a.y) * (point.x - c.x) + (a.x - c.x) * (point.y - c.y)) / denom;
+    const gamma = 1 - alpha - beta;
 
-    return alpha >= 0 && beta >= 0 && gamma >= 0
-  }
+    return alpha >= 0 && beta >= 0 && gamma >= 0;
+  };
 
   // Menu item hover handlers
   const handleMenuItemEnter = useCallback(
     (title: string) => {
-      clearHoverTimeout()
-      setIsHoveringMenuItem(true)
-      setActiveMenu(title)
+      clearHoverTimeout();
+      setIsHoveringMenuItem(true);
+      setActiveMenu(title);
     },
-    [clearHoverTimeout],
-  )
+    [clearHoverTimeout]
+  );
 
   const handleMenuItemLeave = useCallback(() => {
-    setIsHoveringMenuItem(false)
-    scheduleClose()
-  }, [scheduleClose])
+    setIsHoveringMenuItem(false);
+    scheduleClose();
+  }, [scheduleClose]);
 
   // Dropdown hover handlers
   const handleDropdownEnter = useCallback(() => {
-    clearHoverTimeout()
-    setIsHoveringDropdown(true)
-  }, [clearHoverTimeout])
+    clearHoverTimeout();
+    setIsHoveringDropdown(true);
+  }, [clearHoverTimeout]);
 
   const handleDropdownLeave = useCallback(() => {
-    setIsHoveringDropdown(false)
-    scheduleClose()
-  }, [scheduleClose])
+    setIsHoveringDropdown(false);
+    scheduleClose();
+  }, [scheduleClose]);
 
   // Keyboard navigation support
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (event.key === "Escape") {
-      setActiveMenu(null)
-      setIsHoveringDropdown(false)
-      setIsHoveringMenuItem(false)
+      setActiveMenu(null);
+      setIsHoveringDropdown(false);
+      setIsHoveringMenuItem(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown)
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [handleKeyDown])
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   return (
     <>
@@ -301,15 +318,23 @@ export function Navbar() {
         <div className="flex-grow text-center flex flex-col md:flex-row justify-center items-center gap-1 max-w-3xl mx-auto">
           <div className="font-medium">Sanjay Gandhi Biological Park</div>
           <div className="hidden md:block mx-1">•</div>
-          <div>Opening times today: 10am - 6pm (Last entry at 5pm)</div>
+          <div>
+            {landingPageData?.opening_time ? (
+              landingPageData.opening_time
+            ) : (
+              <span className="text-gray-400 animate-pulse">
+                Loading opening time...
+              </span>
+            )}
+          </div>
         </div>
         <div className="flex-1 flex justify-end">
           <button
             className="text-white/70 hover:text-white transition-colors"
             aria-label="Close notification"
             onClick={() => {
-              const banner = document.querySelector(".bg-zoo-teal-900/90")
-              if (banner) banner.classList.add("hidden")
+              const banner = document.querySelector(".bg-zoo-teal-900/90");
+              if (banner) banner.classList.add("hidden");
             }}
           >
             <svg
@@ -330,7 +355,12 @@ export function Navbar() {
         </div>
       </div>
 
-      <header className={cn("fixed left-0 right-0 z-50 transition-all duration-300", isScrolled ? "top-0" : "top-8")}>
+      <header
+        className={cn(
+          "fixed left-0 right-0 z-50 transition-all duration-300",
+          isScrolled ? "top-0" : "top-8"
+        )}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav
             ref={navRef}
@@ -341,8 +371,12 @@ export function Navbar() {
                 <span className="text-white font-bold text-xl">P</span>
               </div>
               <div>
-                <div className="font-heading text-2xl leading-none text-zoo-teal-700">Patna</div>
-                <div className="font-heading text-2xl leading-none text-zoo-teal-700">Zoo</div>
+                <div className="font-heading text-2xl leading-none text-zoo-teal-700">
+                  Patna
+                </div>
+                <div className="font-heading text-2xl leading-none text-zoo-teal-700">
+                  Zoo
+                </div>
               </div>
             </Link>
 
@@ -352,7 +386,10 @@ export function Navbar() {
                 <div
                   key={item.title}
                   className="relative"
-                  ref={(el) => (menuItemRefs.current[item.title] = el)}
+                  // ref={(el) => (menuItemRefs.current[item.title] = el)}
+                  ref={(el) => {
+                    menuItemRefs.current[item.title] = el;
+                  }}
                   onMouseEnter={() => handleMenuItemEnter(item.title)}
                   onMouseLeave={handleMenuItemLeave}
                 >
@@ -360,7 +397,8 @@ export function Navbar() {
                     href={item.href}
                     className={cn(
                       "px-4 py-2 rounded-full flex items-center gap-1 transition-all duration-200 text-zoo-teal-700 hover:text-zoo-teal-500 hover:bg-zoo-teal-50/80",
-                      activeMenu === item.title && "bg-zoo-teal-50/80 text-zoo-teal-500",
+                      activeMenu === item.title &&
+                        "bg-zoo-teal-50/80 text-zoo-teal-500"
                     )}
                     onFocus={() => handleMenuItemEnter(item.title)}
                   >
@@ -369,7 +407,7 @@ export function Navbar() {
                       <ChevronDown
                         className={cn(
                           "w-4 h-4 transition-transform duration-200",
-                          activeMenu === item.title && "rotate-180",
+                          activeMenu === item.title && "rotate-180"
                         )}
                       />
                     )}
@@ -378,13 +416,16 @@ export function Navbar() {
                   {/* Grouped Dropdown Menu */}
                   {item.groups && (
                     <div
-                      ref={(el) => (dropdownRefs.current[item.title] = el)}
+                      // ref={(el) => (dropdownRefs.current[item.title] = el)}
+                      ref={(el) => {
+                        dropdownRefs.current[item.title] = el;
+                      }}
                       className={cn(
                         "absolute top-full left-1/2 transform -translate-x-1/2 mt-1 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100/50 overflow-hidden transition-all duration-300 ease-out",
                         activeMenu === item.title
                           ? "opacity-100 scale-100 translate-y-0 pointer-events-auto visible"
                           : "opacity-0 scale-95 -translate-y-2 pointer-events-none invisible",
-                        item.groups.length <= 2 ? "w-96" : "w-[600px]",
+                        item.groups.length <= 2 ? "w-96" : "w-[600px]"
                       )}
                       onMouseEnter={handleDropdownEnter}
                       onMouseLeave={handleDropdownLeave}
@@ -397,7 +438,14 @@ export function Navbar() {
                       {/* Invisible bridge to prevent hover gaps */}
                       <div className="absolute -top-1 left-0 right-0 h-2 bg-transparent" />
 
-                      <div className={cn("p-6 grid gap-8", item.groups.length <= 2 ? "grid-cols-2" : "grid-cols-3")}>
+                      <div
+                        className={cn(
+                          "p-6 grid gap-8",
+                          item.groups.length <= 2
+                            ? "grid-cols-2"
+                            : "grid-cols-3"
+                        )}
+                      >
                         {item.groups.map((group) => (
                           <div key={group.title} className="space-y-3">
                             <h3 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wide border-b border-gray-100 pb-2">
@@ -410,9 +458,9 @@ export function Navbar() {
                                   href={subItem.href}
                                   className="block px-3 py-2 text-zoo-teal-600 hover:text-zoo-teal-800 hover:bg-zoo-teal-50/60 rounded-md transition-all duration-200 text-sm font-medium group"
                                   onClick={() => {
-                                    setActiveMenu(null)
-                                    setIsHoveringDropdown(false)
-                                    setIsHoveringMenuItem(false)
+                                    setActiveMenu(null);
+                                    setIsHoveringDropdown(false);
+                                    setIsHoveringMenuItem(false);
                                   }}
                                 >
                                   <span className="group-hover:translate-x-1 transition-transform duration-200 inline-block">
@@ -457,7 +505,11 @@ export function Navbar() {
         </div>
       </header>
 
-      <MobileNav isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} menuItems={menuItems} />
+      <MobileNav
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        menuItems={menuItems}
+      />
     </>
-  )
+  );
 }
