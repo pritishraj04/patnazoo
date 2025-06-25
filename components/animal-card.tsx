@@ -16,7 +16,7 @@ interface AnimalCardProps {
 }
 
 export function AnimalCard({ name, species, category, image, slug, className }: AnimalCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,7 +46,8 @@ export function AnimalCard({ name, species, category, image, slug, className }: 
     <Link href={`/animals/${slug}`} className={cn("block zoo-card group animate-on-scroll", className)} ref={cardRef}>
       <div className="relative aspect-square overflow-hidden">
         <Image
-          src={image || "/placeholder.svg"}
+          // src={image || "/placeholder.svg"}
+          src={"/placeholder.svg"}
           alt={name}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"

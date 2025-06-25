@@ -1,78 +1,37 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/hero-section"
-import { AnimalCard } from "@/components/animal-card"
-import { SectionHeading } from "@/components/section-heading"
-import { NewsletterSignup } from "@/components/newsletter-signup"
-import { FeaturedContentCard } from "@/components/featured-content-card"
-import { EventsCarousel } from "@/components/events-carousel"
-import { ImageCarousel } from "@/components/image-carousel"
-import { PriorityPopup } from "@/components/priority-popup"
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { HeroSection } from "@/components/hero-section";
+import { AnimalCard } from "@/components/animal-card";
+import { SectionHeading } from "@/components/section-heading";
+import { NewsletterSignup } from "@/components/newsletter-signup";
+import { FeaturedContentCard } from "@/components/featured-content-card";
+import { EventsCarousel } from "@/components/events-carousel";
+import { ImageCarousel } from "@/components/image-carousel";
+import { PriorityPopup } from "@/components/priority-popup";
+import { useApiData } from "@/hooks/index";
+import { FunFactsInfo } from "@/types/index";
 
 export default function HomePage() {
-  const [currentFactIndex, setCurrentFactIndex] = useState(0)
+  const [currentFactIndex, setCurrentFactIndex] = useState(0);
 
-  // Daily fun facts with dynamic links
-  const funFacts = [
-    {
-      fact: "Tigers have a unique set of stripes, just like human fingerprints! No two tigers have the same stripe pattern, making each one completely unique in the wild.",
-      subject: "Royal Bengal Tiger",
-      link: "/animals/royal-bengal-tiger",
-      type: "animal",
-    },
-    {
-      fact: "Elephants can hear sounds from up to 6 miles away through vibrations in the ground detected by their feet and trunk.",
-      subject: "Indian Elephant",
-      link: "/animals/indian-elephant",
-      type: "animal",
-    },
-    {
-      fact: "Peacocks don't actually have blue feathers! Their brilliant blue color comes from microscopic structures that reflect light, creating an optical illusion.",
-      subject: "Peacock",
-      link: "/animals/peacock",
-      type: "animal",
-    },
-    {
-      fact: "The Banyan tree can live for over 1,000 years and a single tree can spread across several acres, creating its own forest ecosystem.",
-      subject: "Banyan Tree",
-      link: "/plants/banyan-tree",
-      type: "plant",
-    },
-    {
-      fact: "Lotus flowers can regulate their temperature, staying warm even in cold weather to attract pollinators.",
-      subject: "Lotus",
-      link: "/plants/lotus",
-      type: "plant",
-    },
-    {
-      fact: "Gharials are one of the most critically endangered crocodilians in the world, with fewer than 200 breeding adults left in the wild.",
-      subject: "Gharial",
-      link: "/animals/gharial",
-      type: "animal",
-    },
-    {
-      fact: "Neem trees are known as 'nature's pharmacy' because every part of the tree has medicinal properties and can treat over 40 different ailments.",
-      subject: "Neem Tree",
-      link: "/plants/neem-tree",
-      type: "plant",
-    },
-  ]
+  const { data: funFactsData } = useApiData<FunFactsInfo[]>("/funfacts");
 
   // Get current day of year to determine which fact to show
   useEffect(() => {
-    const now = new Date()
-    const start = new Date(now.getFullYear(), 0, 0)
-    const diff = now - start
-    const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24))
-    setCurrentFactIndex(dayOfYear % funFacts.length)
-  }, [])
+    if (!funFactsData || funFactsData.length === 0) return;
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = now.getTime() - start.getTime();
+    const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+    setCurrentFactIndex(dayOfYear % funFactsData?.length);
+  }, []);
 
-  const currentFact = funFacts[currentFactIndex]
+  const currentFact = funFactsData?.[currentFactIndex];
 
   // Animation observer for scroll animations
   useEffect(() => {
@@ -80,21 +39,21 @@ export default function HomePage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible")
-            observer.unobserve(entry.target)
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
           }
-        })
+        });
       },
-      { threshold: 0.2 },
-    )
+      { threshold: 0.2 }
+    );
 
-    const animatedElements = document.querySelectorAll(".animate-on-scroll")
-    animatedElements.forEach((el) => observer.observe(el))
+    const animatedElements = document.querySelectorAll(".animate-on-scroll");
+    animatedElements.forEach((el) => observer.observe(el));
 
     return () => {
-      animatedElements.forEach((el) => observer.unobserve(el))
-    }
-  }, [])
+      animatedElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
 
   const featuredAnimals = [
     {
@@ -129,7 +88,7 @@ export default function HomePage() {
       category: "Mammals",
       slug: "himalayan-black-bear",
     },
-  ]
+  ];
 
   const carouselEvents = [
     {
@@ -159,7 +118,7 @@ export default function HomePage() {
       href: "/events/conservation-talks",
       buttonText: "Learn more",
     },
-  ]
+  ];
 
   const carouselImages = [
     {
@@ -225,7 +184,7 @@ export default function HomePage() {
       title: "Aquatic Zone",
       subtitle: "Underwater wonders",
     },
-  ]
+  ];
 
   return (
     <>
@@ -268,7 +227,9 @@ export default function HomePage() {
                   <span>🌟</span>
                   Fun Fact of the Day
                 </div>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-2">DID YOU KNOW?</h2>
+                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-2">
+                  DID YOU KNOW?
+                </h2>
               </div>
 
               <div className="relative">
@@ -279,16 +240,35 @@ export default function HomePage() {
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 relative">
                   <div className="relative z-10">
-                    <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light">
-                      {currentFact.fact}
-                    </p>
+                    {currentFact?.fact ? (
+                      <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light">
+                        {currentFact?.fact}
+                      </p>
+                    ) : (
+                      <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light animate-pulse">
+                        Tigers have a unique set of stripes, just like human
+                        fingerprints! No two tigers have the same stripe
+                        pattern, making each one completely unique in the wild.
+                      </p>
+                    )}
 
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                       <div className="text-zoo-yellow-400">
-                        <span className="font-heading text-lg md:text-xl">— {currentFact.subject}</span>
+                        {currentFact?.subject ? (
+                          <span className="font-heading text-lg md:text-xl">
+                            — {currentFact?.subject}
+                          </span>
+                        ) : (
+                          <span className="font-heading text-lg md:text-xl">
+                            — Royal Bengal Tiger
+                          </span>
+                        )}
                       </div>
 
-                      <Link href={currentFact.link} className="zoo-button-primary inline-flex items-center gap-2 group">
+                      <Link
+                        href={currentFact?.link ?? "#"}
+                        className="zoo-button-primary inline-flex items-center gap-2 group"
+                      >
                         KNOW MORE
                         <svg
                           className="w-4 h-4 transition-transform group-hover:translate-x-1"
@@ -296,7 +276,12 @@ export default function HomePage() {
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
                         </svg>
                       </Link>
                     </div>
@@ -319,292 +304,333 @@ export default function HomePage() {
               <div
                 ref={(el) => {
                   if (el) {
-                    let isDragging = false
-                    let startX = 0
-                    let startY = 0
-                    let scrollLeft = 0
-                    let velocity = 0
-                    let lastX = 0
-                    let lastTime = 0
-                    let animationId = null
-                    const dragThreshold = 10
-                    let hasMoved = false
-                    let clickPrevented = false
+                    let isDragging = false;
+                    let startX = 0;
+                    let startY = 0;
+                    let scrollLeft = 0;
+                    let velocity = 0;
+                    let lastX = 0;
+                    let lastTime = 0;
+                    let animationId: number | null = null;
+                    const dragThreshold = 10;
+                    let hasMoved = false;
+                    let clickPrevented = false;
 
                     // Function to update active dot based on scroll position
                     const updateActiveDot = () => {
-                      if (window.innerWidth >= 640) return // Only on mobile
+                      if (window.innerWidth >= 640) return; // Only on mobile
 
-                      const scrollPosition = el.scrollLeft
-                      const cardWidth = el.querySelector(".animal-card")?.offsetWidth || 0
-                      const gap = 24 // 6 * 4px (gap-6)
-                      const itemWidth = cardWidth + gap
-                      const activeIndex = Math.round(scrollPosition / itemWidth)
+                      const scrollPosition = el.scrollLeft;
+                      const cardWidth =
+                        (el.querySelector(".animal-card") as HTMLElement)
+                          ?.offsetWidth || 0;
 
-                      const dots = document.querySelectorAll(".pagination-dot")
+                      const gap = 24; // 6 * 4px (gap-6)
+                      const itemWidth = cardWidth + gap;
+                      const activeIndex = Math.round(
+                        scrollPosition / itemWidth
+                      );
+
+                      const dots = document.querySelectorAll(".pagination-dot");
                       dots.forEach((dot, index) => {
                         if (index === activeIndex) {
-                          dot.classList.remove("bg-white/40")
-                          dot.classList.add("bg-white", "scale-125")
+                          dot.classList.remove("bg-white/40");
+                          dot.classList.add("bg-white", "scale-125");
                         } else {
-                          dot.classList.remove("bg-white", "scale-125")
-                          dot.classList.add("bg-white/40")
+                          dot.classList.remove("bg-white", "scale-125");
+                          dot.classList.add("bg-white/40");
                         }
-                      })
-                    }
+                      });
+                    };
 
                     // Scroll to specific slide
-                    const scrollToSlide = (index) => {
-                      const cardWidth = el.querySelector(".animal-card")?.offsetWidth || 0
-                      const gap = 24
-                      const itemWidth = cardWidth + gap
-                      const targetScroll = index * itemWidth
+                    const scrollToSlide = (index: number) => {
+                      const cardWidth =
+                        (el.querySelector(".animal-card") as HTMLElement)
+                          ?.offsetWidth || 0;
 
-                      el.style.scrollBehavior = "smooth"
-                      el.scrollLeft = targetScroll
+                      const gap = 24;
+                      const itemWidth = cardWidth + gap;
+                      const targetScroll = index * itemWidth;
+
+                      el.style.scrollBehavior = "smooth";
+                      el.scrollLeft = targetScroll;
 
                       setTimeout(() => {
-                        el.style.scrollBehavior = "auto"
-                      }, 500)
-                    }
+                        el.style.scrollBehavior = "auto";
+                      }, 500);
+                    };
 
                     // Momentum scrolling function
                     const momentumScroll = () => {
                       if (Math.abs(velocity) > 0.5) {
-                        el.scrollLeft += velocity
-                        velocity *= 0.95
+                        el.scrollLeft += velocity;
+                        velocity *= 0.95;
 
                         if (el.scrollLeft <= 0) {
-                          el.scrollLeft = 0
-                          velocity = 0
-                        } else if (el.scrollLeft >= el.scrollWidth - el.clientWidth) {
-                          el.scrollLeft = el.scrollWidth - el.clientWidth
-                          velocity = 0
+                          el.scrollLeft = 0;
+                          velocity = 0;
+                        } else if (
+                          el.scrollLeft >=
+                          el.scrollWidth - el.clientWidth
+                        ) {
+                          el.scrollLeft = el.scrollWidth - el.clientWidth;
+                          velocity = 0;
                         }
 
-                        animationId = requestAnimationFrame(momentumScroll)
+                        animationId = requestAnimationFrame(momentumScroll);
                       } else {
-                        updateActiveDot()
+                        updateActiveDot();
                       }
-                    }
+                    };
 
                     // Mouse events
-                    const handleMouseDown = (e) => {
-                      if (window.innerWidth >= 640) return
+                    const handleMouseDown = (e: MouseEvent) => {
+                      if (window.innerWidth >= 640) return;
 
-                      isDragging = true
-                      hasMoved = false
-                      clickPrevented = false
-                      startX = e.pageX
-                      startY = e.pageY
-                      scrollLeft = el.scrollLeft
-                      lastX = e.pageX
-                      lastTime = Date.now()
-                      velocity = 0
+                      isDragging = true;
+                      hasMoved = false;
+                      clickPrevented = false;
+                      startX = e.pageX;
+                      startY = e.pageY;
+                      scrollLeft = el.scrollLeft;
+                      lastX = e.pageX;
+                      lastTime = Date.now();
+                      velocity = 0;
 
                       if (animationId) {
-                        cancelAnimationFrame(animationId)
-                        animationId = null
+                        cancelAnimationFrame(animationId);
+                        animationId = null;
                       }
 
-                      el.style.cursor = "grabbing"
-                      el.style.scrollBehavior = "auto"
-                    }
+                      el.style.cursor = "grabbing";
+                      el.style.scrollBehavior = "auto";
+                    };
 
-                    const handleMouseMove = (e) => {
-                      if (!isDragging || window.innerWidth >= 640) return
+                    const handleMouseMove = (e: MouseEvent) => {
+                      if (!isDragging || window.innerWidth >= 640) return;
 
-                      const currentX = e.pageX
-                      const currentTime = Date.now()
-                      const deltaX = currentX - startX
-                      const deltaY = e.pageY - startY
+                      const currentX = e.pageX;
+                      const currentTime = Date.now();
+                      const deltaX = currentX - startX;
+                      const deltaY = e.pageY - startY;
 
-                      if (!hasMoved && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
-                        hasMoved = true
+                      if (
+                        !hasMoved &&
+                        (Math.abs(deltaX) > dragThreshold ||
+                          Math.abs(deltaY) > dragThreshold)
+                      ) {
+                        hasMoved = true;
                         if (Math.abs(deltaY) > Math.abs(deltaX)) {
-                          isDragging = false
-                          el.style.cursor = "grab"
-                          return
+                          isDragging = false;
+                          el.style.cursor = "grab";
+                          return;
                         }
                       }
 
                       if (hasMoved) {
-                        clickPrevented = true
-                        e.preventDefault()
+                        clickPrevented = true;
+                        e.preventDefault();
 
-                        const timeDelta = currentTime - lastTime
+                        const timeDelta = currentTime - lastTime;
                         if (timeDelta > 0) {
-                          velocity = ((currentX - lastX) / timeDelta) * -16
+                          velocity = ((currentX - lastX) / timeDelta) * -16;
                         }
 
-                        let newScrollLeft = scrollLeft - deltaX
+                        let newScrollLeft = scrollLeft - deltaX;
 
                         if (newScrollLeft < 0) {
-                          newScrollLeft = newScrollLeft * 0.3
-                        } else if (newScrollLeft > el.scrollWidth - el.clientWidth) {
-                          const overflow = newScrollLeft - (el.scrollWidth - el.clientWidth)
-                          newScrollLeft = el.scrollWidth - el.clientWidth + overflow * 0.3
+                          newScrollLeft = newScrollLeft * 0.3;
+                        } else if (
+                          newScrollLeft >
+                          el.scrollWidth - el.clientWidth
+                        ) {
+                          const overflow =
+                            newScrollLeft - (el.scrollWidth - el.clientWidth);
+                          newScrollLeft =
+                            el.scrollWidth - el.clientWidth + overflow * 0.3;
                         }
 
-                        el.scrollLeft = newScrollLeft
-                        lastX = currentX
-                        lastTime = currentTime
+                        el.scrollLeft = newScrollLeft;
+                        lastX = currentX;
+                        lastTime = currentTime;
                       }
-                    }
+                    };
 
-                    const handleMouseUp = (e) => {
-                      if (!isDragging) return
+                    const handleMouseUp = (e: MouseEvent) => {
+                      if (!isDragging) return;
 
-                      isDragging = false
-                      el.style.cursor = "grab"
-                      el.style.scrollBehavior = "smooth"
+                      isDragging = false;
+                      el.style.cursor = "grab";
+                      el.style.scrollBehavior = "smooth";
 
                       if (hasMoved && Math.abs(velocity) > 1) {
-                        momentumScroll()
+                        momentumScroll();
                       } else {
-                        updateActiveDot()
+                        updateActiveDot();
                       }
 
                       // Prevent click only if we actually dragged
                       if (clickPrevented) {
                         setTimeout(() => {
-                          clickPrevented = false
-                        }, 10)
+                          clickPrevented = false;
+                        }, 10);
                       }
-                    }
+                    };
 
                     // Touch events
-                    const handleTouchStart = (e) => {
-                      if (window.innerWidth >= 640) return
+                    const handleTouchStart = (e: TouchEvent) => {
+                      if (window.innerWidth >= 640) return;
 
-                      const touch = e.touches[0]
-                      isDragging = true
-                      hasMoved = false
-                      clickPrevented = false
-                      startX = touch.pageX
-                      startY = touch.pageY
-                      scrollLeft = el.scrollLeft
-                      lastX = touch.pageX
-                      lastTime = Date.now()
-                      velocity = 0
+                      const touch = e.touches[0];
+                      isDragging = true;
+                      hasMoved = false;
+                      clickPrevented = false;
+                      startX = touch.pageX;
+                      startY = touch.pageY;
+                      scrollLeft = el.scrollLeft;
+                      lastX = touch.pageX;
+                      lastTime = Date.now();
+                      velocity = 0;
 
                       if (animationId) {
-                        cancelAnimationFrame(animationId)
-                        animationId = null
+                        cancelAnimationFrame(animationId);
+                        animationId = null;
                       }
 
-                      el.style.scrollBehavior = "auto"
-                    }
+                      el.style.scrollBehavior = "auto";
+                    };
 
-                    const handleTouchMove = (e) => {
-                      if (!isDragging || window.innerWidth >= 640) return
+                    const handleTouchMove = (e: TouchEvent) => {
+                      if (!isDragging || window.innerWidth >= 640) return;
 
-                      const touch = e.touches[0]
-                      const currentX = touch.pageX
-                      const currentTime = Date.now()
-                      const deltaX = currentX - startX
-                      const deltaY = touch.pageY - startY
+                      const touch = e.touches[0];
+                      const currentX = touch.pageX;
+                      const currentTime = Date.now();
+                      const deltaX = currentX - startX;
+                      const deltaY = touch.pageY - startY;
 
-                      if (!hasMoved && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
-                        hasMoved = true
+                      if (
+                        !hasMoved &&
+                        (Math.abs(deltaX) > dragThreshold ||
+                          Math.abs(deltaY) > dragThreshold)
+                      ) {
+                        hasMoved = true;
                         if (Math.abs(deltaY) > Math.abs(deltaX)) {
-                          isDragging = false
-                          return
+                          isDragging = false;
+                          return;
                         }
                       }
 
                       if (hasMoved) {
-                        clickPrevented = true
-                        e.preventDefault()
+                        clickPrevented = true;
+                        e.preventDefault();
 
-                        const timeDelta = currentTime - lastTime
+                        const timeDelta = currentTime - lastTime;
                         if (timeDelta > 0) {
-                          velocity = ((currentX - lastX) / timeDelta) * -16
+                          velocity = ((currentX - lastX) / timeDelta) * -16;
                         }
 
-                        let newScrollLeft = scrollLeft - deltaX
+                        let newScrollLeft = scrollLeft - deltaX;
 
                         if (newScrollLeft < 0) {
-                          newScrollLeft = newScrollLeft * 0.3
-                        } else if (newScrollLeft > el.scrollWidth - el.clientWidth) {
-                          const overflow = newScrollLeft - (el.scrollWidth - el.clientWidth)
-                          newScrollLeft = el.scrollWidth - el.clientWidth + overflow * 0.3
+                          newScrollLeft = newScrollLeft * 0.3;
+                        } else if (
+                          newScrollLeft >
+                          el.scrollWidth - el.clientWidth
+                        ) {
+                          const overflow =
+                            newScrollLeft - (el.scrollWidth - el.clientWidth);
+                          newScrollLeft =
+                            el.scrollWidth - el.clientWidth + overflow * 0.3;
                         }
 
-                        el.scrollLeft = newScrollLeft
-                        lastX = currentX
-                        lastTime = currentTime
+                        el.scrollLeft = newScrollLeft;
+                        lastX = currentX;
+                        lastTime = currentTime;
                       }
-                    }
+                    };
 
-                    const handleTouchEnd = (e) => {
-                      if (!isDragging) return
+                    const handleTouchEnd = (e: TouchEvent) => {
+                      if (!isDragging) return;
 
-                      isDragging = false
-                      el.style.scrollBehavior = "smooth"
+                      isDragging = false;
+                      el.style.scrollBehavior = "smooth";
 
                       if (hasMoved && Math.abs(velocity) > 1) {
-                        momentumScroll()
+                        momentumScroll();
                       } else {
-                        updateActiveDot()
+                        updateActiveDot();
                       }
 
                       if (clickPrevented) {
                         setTimeout(() => {
-                          clickPrevented = false
-                        }, 10)
+                          clickPrevented = false;
+                        }, 10);
                       }
-                    }
+                    };
 
                     // Handle clicks on animal cards
-                    const handleClick = (e) => {
+                    const handleClick = (e: MouseEvent) => {
                       if (clickPrevented) {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        return false
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
                       }
-                    }
+                    };
 
                     // Scroll event to update dots
                     const handleScroll = () => {
                       if (!isDragging) {
-                        updateActiveDot()
+                        updateActiveDot();
                       }
-                    }
+                    };
 
                     // Add event listeners
-                    el.addEventListener("mousedown", handleMouseDown)
-                    el.addEventListener("mousemove", handleMouseMove)
-                    el.addEventListener("mouseup", handleMouseUp)
-                    el.addEventListener("mouseleave", handleMouseUp)
-                    el.addEventListener("touchstart", handleTouchStart, { passive: false })
-                    el.addEventListener("touchmove", handleTouchMove, { passive: false })
-                    el.addEventListener("touchend", handleTouchEnd, { passive: false })
-                    el.addEventListener("click", handleClick, { capture: true })
-                    el.addEventListener("scroll", handleScroll, { passive: true })
+                    el.addEventListener("mousedown", handleMouseDown);
+                    el.addEventListener("mousemove", handleMouseMove);
+                    el.addEventListener("mouseup", handleMouseUp);
+                    el.addEventListener("mouseleave", handleMouseUp);
+                    el.addEventListener("touchstart", handleTouchStart, {
+                      passive: false,
+                    });
+                    el.addEventListener("touchmove", handleTouchMove, {
+                      passive: false,
+                    });
+                    el.addEventListener("touchend", handleTouchEnd, {
+                      passive: false,
+                    });
+                    el.addEventListener("click", handleClick, {
+                      capture: true,
+                    });
+                    el.addEventListener("scroll", handleScroll, {
+                      passive: true,
+                    });
 
                     if (window.innerWidth < 640) {
-                      el.style.cursor = "grab"
+                      el.style.cursor = "grab";
                     }
 
                     // Initial dot update
-                    setTimeout(updateActiveDot, 100)
+                    setTimeout(updateActiveDot, 100);
 
                     // Cleanup function
                     return () => {
                       if (animationId) {
-                        cancelAnimationFrame(animationId)
+                        cancelAnimationFrame(animationId);
                       }
-                      el.removeEventListener("mousedown", handleMouseDown)
-                      el.removeEventListener("mousemove", handleMouseMove)
-                      el.removeEventListener("mouseup", handleMouseUp)
-                      el.removeEventListener("mouseleave", handleMouseUp)
-                      el.removeEventListener("touchstart", handleTouchStart)
-                      el.removeEventListener("touchmove", handleTouchMove)
-                      el.removeEventListener("touchend", handleTouchEnd)
-                      el.removeEventListener("click", handleClick, { capture: true })
-                      el.removeEventListener("scroll", handleScroll)
-                    }
+                      el.removeEventListener("mousedown", handleMouseDown);
+                      el.removeEventListener("mousemove", handleMouseMove);
+                      el.removeEventListener("mouseup", handleMouseUp);
+                      el.removeEventListener("mouseleave", handleMouseUp);
+                      el.removeEventListener("touchstart", handleTouchStart);
+                      el.removeEventListener("touchmove", handleTouchMove);
+                      el.removeEventListener("touchend", handleTouchEnd);
+                      el.removeEventListener("click", handleClick, {
+                        capture: true,
+                      });
+                      el.removeEventListener("scroll", handleScroll);
+                    };
                   }
                 }}
                 className="flex overflow-x-auto pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 scrollbar-hide pl-4 pr-4 sm:pl-0 sm:pr-0"
@@ -624,7 +650,9 @@ export default function HomePage() {
                     category={animal.category}
                     image={animal.image}
                     slug={animal.slug}
-                    className={`flex-shrink-0 w-[75%] sm:w-auto snap-start animal-card ${`stagger-${index + 1}`}`}
+                    className={`flex-shrink-0 w-[75%] sm:w-auto snap-start animal-card ${`stagger-${
+                      index + 1
+                    }`}`}
                   />
                 ))}
               </div>
@@ -636,19 +664,25 @@ export default function HomePage() {
                     key={index}
                     className="w-3 h-3 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-200 pagination-dot"
                     onClick={(e) => {
-                      e.preventDefault()
-                      const container = e.target.closest(".relative").querySelector(".flex.overflow-x-auto")
-                      const cardWidth = container.querySelector(".animal-card")?.offsetWidth || 0
-                      const gap = 24
-                      const itemWidth = cardWidth + gap
-                      const targetScroll = index * itemWidth
+                      e.preventDefault();
+                      const target = e.target as HTMLElement;
+                      const container = target
+                        .closest(".relative")
+                        ?.querySelector(".flex.overflow-x-auto") as HTMLElement;
+                      const cardWidth =
+                        (container.querySelector(".animal-card") as HTMLElement)
+                          ?.offsetWidth || 0;
 
-                      container.style.scrollBehavior = "smooth"
-                      container.scrollLeft = targetScroll
+                      const gap = 24;
+                      const itemWidth = cardWidth + gap;
+                      const targetScroll = index * itemWidth;
+
+                      container.style.scrollBehavior = "smooth";
+                      container.scrollLeft = targetScroll;
 
                       setTimeout(() => {
-                        container.style.scrollBehavior = "auto"
-                      }, 500)
+                        container.style.scrollBehavior = "auto";
+                      }, 500);
                     }}
                     aria-label={`Go to slide ${index + 1}`}
                   />
@@ -669,22 +703,29 @@ export default function HomePage() {
         </section>
 
         {/* Events Carousel */}
-        <EventsCarousel events={carouselEvents} backgroundImage="/images/bg.png" />
+        <EventsCarousel
+          events={carouselEvents}
+          backgroundImage="/images/bg.png"
+        />
 
         {/* Conservation Section */}
         <section className="py-16 bg-zoo-teal-800">
           <div className="zoo-container">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="animate-on-scroll">
-                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">SAVING BIHAR'S WILDLIFE</h2>
+                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
+                  SAVING BIHAR'S WILDLIFE
+                </h2>
                 <p className="text-white/80 text-lg mb-6">
-                  Our conservation efforts are focused on protecting the unique wildlife of Bihar and Eastern India.
-                  From the Gangetic River Dolphin to the endangered vultures, we're working to ensure these species
-                  thrive.
+                  Our conservation efforts are focused on protecting the unique
+                  wildlife of Bihar and Eastern India. From the Gangetic River
+                  Dolphin to the endangered vultures, we're working to ensure
+                  these species thrive.
                 </p>
                 <p className="text-white/80 text-lg mb-8">
-                  Through community-based conservation programs and partnerships with local organizations, we're making
-                  a real difference in preserving Bihar's natural heritage.
+                  Through community-based conservation programs and partnerships
+                  with local organizations, we're making a real difference in
+                  preserving Bihar's natural heritage.
                 </p>
                 <Link href="/conservation" className="zoo-button-primary">
                   DISCOVER OUR WORK
@@ -692,7 +733,12 @@ export default function HomePage() {
               </div>
 
               <div className="relative h-96 rounded-lg overflow-hidden animate-on-scroll stagger-2">
-                <Image src="/images/s1111.png" alt="Conservation work" fill className="object-cover" />
+                <Image
+                  src="/images/s1111.png"
+                  alt="Conservation work"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -715,10 +761,12 @@ export default function HomePage() {
         <section className="py-16 bg-gradient-to-r from-zoo-teal-600 to-zoo-teal-700">
           <div className="zoo-container">
             <div className="text-center max-w-2xl mx-auto animate-on-scroll">
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">VISIT YOUR FAVOURITE ANIMALS</h2>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
+                VISIT YOUR FAVOURITE ANIMALS
+              </h2>
               <p className="text-xl text-white/80 mb-8">
-                Book your visit today and experience the wonder of wildlife up close. Every ticket helps support our
-                conservation efforts.
+                Book your visit today and experience the wonder of wildlife up
+                close. Every ticket helps support our conservation efforts.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/tickets" className="zoo-button-primary">
@@ -744,5 +792,5 @@ export default function HomePage() {
 
       <Footer />
     </>
-  )
+  );
 }
