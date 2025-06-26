@@ -99,7 +99,6 @@ export default function VisitPage() {
           title="PLAN YOUR VISIT"
           subtitle="Everything you need to know for the perfect zoo experience"
           backgroundImage="/images/header/animal-bg.png"
-          primaryCta={{ text: "BUY TICKETS", href: "/tickets" }}
           height="medium"
         />
 

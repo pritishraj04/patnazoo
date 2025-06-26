@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
@@ -67,7 +67,7 @@ export default function HomePage() {
   useEffect(() => {
     const now = new Date()
     const start = new Date(now.getFullYear(), 0, 0)
-    const diff = now - start
+    const diff = now.getTime() - start.getTime()
     const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24))
     setCurrentFactIndex(dayOfYear % funFacts.length)
   }, [])
@@ -326,7 +326,7 @@ export default function HomePage() {
                     let velocity = 0
                     let lastX = 0
                     let lastTime = 0
-                    let animationId = null
+                    let animationId: number | null = null
                     const dragThreshold = 10
                     let hasMoved = false
                     let clickPrevented = false
@@ -336,7 +336,7 @@ export default function HomePage() {
                       if (window.innerWidth >= 640) return // Only on mobile
 
                       const scrollPosition = el.scrollLeft
-                      const cardWidth = el.querySelector(".animal-card")?.offsetWidth || 0
+                      const cardWidth = (el.querySelector(".animal-card") as HTMLElement)?.offsetWidth || 0
                       const gap = 24 // 6 * 4px (gap-6)
                       const itemWidth = cardWidth + gap
                       const activeIndex = Math.round(scrollPosition / itemWidth)
@@ -354,8 +354,8 @@ export default function HomePage() {
                     }
 
                     // Scroll to specific slide
-                    const scrollToSlide = (index) => {
-                      const cardWidth = el.querySelector(".animal-card")?.offsetWidth || 0
+                    const scrollToSlide = (index: number) => {
+                      const cardWidth = (el.querySelector(".animal-card") as HTMLElement)?.offsetWidth || 0
                       const gap = 24
                       const itemWidth = cardWidth + gap
                       const targetScroll = index * itemWidth
@@ -389,7 +389,7 @@ export default function HomePage() {
                     }
 
                     // Mouse events
-                    const handleMouseDown = (e) => {
+                    const handleMouseDown = (e: MouseEvent) => {
                       if (window.innerWidth >= 640) return
 
                       isDragging = true
@@ -411,7 +411,7 @@ export default function HomePage() {
                       el.style.scrollBehavior = "auto"
                     }
 
-                    const handleMouseMove = (e) => {
+                    const handleMouseMove = (e: MouseEvent) => {
                       if (!isDragging || window.innerWidth >= 640) return
 
                       const currentX = e.pageX
@@ -452,7 +452,7 @@ export default function HomePage() {
                       }
                     }
 
-                    const handleMouseUp = (e) => {
+                    const handleMouseUp = (e: MouseEvent) => {
                       if (!isDragging) return
 
                       isDragging = false
@@ -474,7 +474,7 @@ export default function HomePage() {
                     }
 
                     // Touch events
-                    const handleTouchStart = (e) => {
+                    const handleTouchStart = (e: TouchEvent) => {
                       if (window.innerWidth >= 640) return
 
                       const touch = e.touches[0]
@@ -496,7 +496,7 @@ export default function HomePage() {
                       el.style.scrollBehavior = "auto"
                     }
 
-                    const handleTouchMove = (e) => {
+                    const handleTouchMove = (e: TouchEvent) => {
                       if (!isDragging || window.innerWidth >= 640) return
 
                       const touch = e.touches[0]
@@ -537,7 +537,7 @@ export default function HomePage() {
                       }
                     }
 
-                    const handleTouchEnd = (e) => {
+                    const handleTouchEnd = (e: TouchEvent) => {
                       if (!isDragging) return
 
                       isDragging = false
@@ -557,7 +557,7 @@ export default function HomePage() {
                     }
 
                     // Handle clicks on animal cards
-                    const handleClick = (e) => {
+                    const handleClick = (e: MouseEvent) => {
                       if (clickPrevented) {
                         e.preventDefault()
                         e.stopPropagation()
@@ -635,10 +635,10 @@ export default function HomePage() {
                   <button
                     key={index}
                     className="w-3 h-3 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-200 pagination-dot"
-                    onClick={(e) => {
+                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                       e.preventDefault()
-                      const container = e.target.closest(".relative").querySelector(".flex.overflow-x-auto")
-                      const cardWidth = container.querySelector(".animal-card")?.offsetWidth || 0
+                      const container = (e.target as HTMLElement).closest(".relative")?.querySelector(".flex.overflow-x-auto") as HTMLElement
+                      const cardWidth = (container.querySelector(".animal-card") as HTMLElement)?.offsetWidth || 0
                       const gap = 24
                       const itemWidth = cardWidth + gap
                       const targetScroll = index * itemWidth

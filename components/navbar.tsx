@@ -2,19 +2,20 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, ChevronDown } from "lucide-react"
 import { MobileNav } from "@/components/mobile-nav"
 import { cn } from "@/lib/utils"
 
-// Grouped menu structure definition
+// Simplified menu structure without overview pages
 const menuItems = [
   {
     title: "About",
-    href: "/about",
     groups: [
       {
         title: "Our Story",
         items: [
+          { title: "About Patna Zoo", href: "/about" },
           { title: "History & Legacy", href: "/about/history" },
           { title: "Director's Message", href: "/about/directors-message" },
         ],
@@ -30,11 +31,11 @@ const menuItems = [
   },
   {
     title: "Plan a Visit",
-    href: "/visit",
     groups: [
       {
         title: "Visitor Guide",
         items: [
+          { title: "Quick Summary", href: "/visit" },
           { title: "Tickets & Timings", href: "/visit/tickets" },
           { title: "Rules & Safety Guidelines", href: "/visit/rules" },
         ],
@@ -50,7 +51,6 @@ const menuItems = [
   },
   {
     title: "What's Here",
-    href: "/animals",
     groups: [
       {
         title: "Wildlife",
@@ -68,7 +68,6 @@ const menuItems = [
   },
   {
     title: "Zoo Experience",
-    href: "/experience",
     groups: [
       {
         title: "Dining & Shopping",
@@ -101,13 +100,13 @@ const menuItems = [
   },
   {
     title: "Programs & Updates",
-    href: "/programs",
     groups: [
       {
         title: "Get Involved",
         items: [
           { title: "Adopt an Animal", href: "/programs/adopt-an-animal" },
           { title: "Breeding Programs", href: "/programs/breeding" },
+          { title: "Events", href: "/events" }
         ],
       },
       {
@@ -125,13 +124,9 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
-  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
-  const [isHoveringDropdown, setIsHoveringDropdown] = useState(false)
-  const [isHoveringMenuItem, setIsHoveringMenuItem] = useState(false)
 
   const navRef = useRef<HTMLElement>(null)
-  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
-  const menuItemRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
+  const timeoutRef = useRef<number | null>(null)
 
   // Handle scroll effect for sticky header
   useEffect(() => {
@@ -145,31 +140,40 @@ export function Navbar() {
   }, [])
 
   // Clear timeout helper
-  const clearHoverTimeout = useCallback(() => {
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout)
-      setHoverTimeout(null)
+  const clearTimeout = useCallback(() => {
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
     }
-  }, [hoverTimeout])
+  }, [])
 
-  // Close dropdown with delay
-  const scheduleClose = useCallback(() => {
-    clearHoverTimeout()
-    const timeout = setTimeout(() => {
-      if (!isHoveringDropdown && !isHoveringMenuItem) {
-        setActiveMenu(null)
-      }
-    }, 300) // Increased delay for better UX
-    setHoverTimeout(timeout)
-  }, [clearHoverTimeout, isHoveringDropdown, isHoveringMenuItem])
+  // Handle mouse enter on menu item
+  const handleMenuEnter = useCallback(
+    (title: string) => {
+      clearTimeout()
+      setActiveMenu(title)
+    },
+    [clearTimeout],
+  )
+
+  // Handle mouse leave from entire menu area
+  const handleMenuAreaLeave = useCallback(() => {
+    clearTimeout()
+    timeoutRef.current = window.setTimeout(() => {
+      setActiveMenu(null)
+    }, 150)
+  }, [clearTimeout])
+
+  // Handle mouse enter back into menu area
+  const handleMenuAreaEnter = useCallback(() => {
+    clearTimeout()
+  }, [clearTimeout])
 
   // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (activeMenu && navRef.current && !navRef.current.contains(event.target as Node)) {
         setActiveMenu(null)
-        setIsHoveringDropdown(false)
-        setIsHoveringMenuItem(false)
       }
     }
 
@@ -179,120 +183,28 @@ export function Navbar() {
     }
   }, [activeMenu])
 
-  // Global mouse move handler for better hover detection
+  // Handle escape key
   useEffect(() => {
-    const handleGlobalMouseMove = (event: MouseEvent) => {
-      if (!activeMenu) return
-
-      const navElement = navRef.current
-      const activeDropdown = dropdownRefs.current[activeMenu]
-      const activeMenuItem = menuItemRefs.current[activeMenu]
-
-      if (!navElement || !activeDropdown || !activeMenuItem) return
-
-      // Get bounding rectangles
-      const navRect = navElement.getBoundingClientRect()
-      const dropdownRect = activeDropdown.getBoundingClientRect()
-      const menuItemRect = activeMenuItem.getBoundingClientRect()
-
-      // Create buffer zones
-      const bufferZone = 20 // pixels
-      const expandedNavRect = {
-        left: navRect.left - bufferZone,
-        right: navRect.right + bufferZone,
-        top: navRect.top - bufferZone,
-        bottom: Math.max(navRect.bottom, dropdownRect.bottom) + bufferZone,
-      }
-
-      // Check if mouse is within the expanded navigation area
-      const isInNavArea =
-        event.clientX >= expandedNavRect.left &&
-        event.clientX <= expandedNavRect.right &&
-        event.clientY >= expandedNavRect.top &&
-        event.clientY <= expandedNavRect.bottom
-
-      // Create a triangular safe zone for diagonal movement
-      const isInTriangleZone = isPointInTriangle(
-        { x: event.clientX, y: event.clientY },
-        { x: menuItemRect.left, y: menuItemRect.bottom },
-        { x: menuItemRect.right, y: menuItemRect.bottom },
-        { x: dropdownRect.left, y: dropdownRect.top },
-      )
-
-      if (!isInNavArea && !isInTriangleZone) {
-        scheduleClose()
-      } else {
-        clearHoverTimeout()
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveMenu(null)
       }
     }
 
-    if (activeMenu) {
-      document.addEventListener("mousemove", handleGlobalMouseMove, { passive: true })
-    }
-
-    return () => {
-      document.removeEventListener("mousemove", handleGlobalMouseMove)
-    }
-  }, [activeMenu, scheduleClose, clearHoverTimeout])
-
-  // Helper function to check if point is in triangle (for diagonal movement)
-  const isPointInTriangle = (
-    point: { x: number; y: number },
-    a: { x: number; y: number },
-    b: { x: number; y: number },
-    c: { x: number; y: number },
-  ) => {
-    const denom = (b.y - c.y) * (a.x - c.x) + (c.x - b.x) * (a.y - c.y)
-    if (Math.abs(denom) < 0.001) return false
-
-    const alpha = ((b.y - c.y) * (point.x - c.x) + (c.x - b.x) * (point.y - c.y)) / denom
-    const beta = ((c.y - a.y) * (point.x - c.x) + (a.x - c.x) * (point.y - c.y)) / denom
-    const gamma = 1 - alpha - beta
-
-    return alpha >= 0 && beta >= 0 && gamma >= 0
-  }
-
-  // Menu item hover handlers
-  const handleMenuItemEnter = useCallback(
-    (title: string) => {
-      clearHoverTimeout()
-      setIsHoveringMenuItem(true)
-      setActiveMenu(title)
-    },
-    [clearHoverTimeout],
-  )
-
-  const handleMenuItemLeave = useCallback(() => {
-    setIsHoveringMenuItem(false)
-    scheduleClose()
-  }, [scheduleClose])
-
-  // Dropdown hover handlers
-  const handleDropdownEnter = useCallback(() => {
-    clearHoverTimeout()
-    setIsHoveringDropdown(true)
-  }, [clearHoverTimeout])
-
-  const handleDropdownLeave = useCallback(() => {
-    setIsHoveringDropdown(false)
-    scheduleClose()
-  }, [scheduleClose])
-
-  // Keyboard navigation support
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      setActiveMenu(null)
-      setIsHoveringDropdown(false)
-      setIsHoveringMenuItem(false)
-    }
-  }, [])
-
-  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown)
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
     }
-  }, [handleKeyDown])
+  }, [])
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
   return (
     <>
@@ -336,15 +248,9 @@ export function Navbar() {
             ref={navRef}
             className="bg-white/95 backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 shadow-lg border border-white/20"
           >
-            <Link href="/" className="flex items-center gap-2 z-10">
-              <div className="w-12 h-12 bg-zoo-teal-700 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">P</span>
-              </div>
-              <div>
-                <div className="font-heading text-2xl leading-none text-zoo-teal-700">Patna</div>
-                <div className="font-heading text-2xl leading-none text-zoo-teal-700">Zoo</div>
-              </div>
-            </Link>
+						<Link href="/" className="flex items-center gap-2 z-10">
+                <Image src="/images/logo-large.svg" alt="Conservation work" width={180} height={50} className="ml-4" />
+						</Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-1 relative">
@@ -352,55 +258,51 @@ export function Navbar() {
                 <div
                   key={item.title}
                   className="relative"
-                  ref={(el) => (menuItemRefs.current[item.title] = el)}
-                  onMouseEnter={() => handleMenuItemEnter(item.title)}
-                  onMouseLeave={handleMenuItemLeave}
+                  onMouseEnter={() => handleMenuEnter(item.title)}
+                  onMouseLeave={handleMenuAreaLeave}
                 >
-                  <Link
-                    href={item.href}
+                  {/* Parent Menu Item - Non-clickable trigger */}
+                  <button
                     className={cn(
-                      "px-4 py-2 rounded-full flex items-center gap-1 transition-all duration-200 text-zoo-teal-700 hover:text-zoo-teal-500 hover:bg-zoo-teal-50/80",
+                      "px-4 py-2 rounded-full flex items-center gap-1 transition-all duration-200 text-zoo-teal-700 hover:text-zoo-teal-500 hover:bg-zoo-teal-50/80 focus:outline-none focus:ring-2 focus:ring-zoo-yellow-600 focus:ring-offset-2",
                       activeMenu === item.title && "bg-zoo-teal-50/80 text-zoo-teal-500",
                     )}
-                    onFocus={() => handleMenuItemEnter(item.title)}
+                    aria-expanded={activeMenu === item.title}
+                    aria-haspopup="true"
                   >
                     <span className="font-medium text-sm">{item.title}</span>
-                    {item.groups && (
-                      <ChevronDown
-                        className={cn(
-                          "w-4 h-4 transition-transform duration-200",
-                          activeMenu === item.title && "rotate-180",
-                        )}
-                      />
-                    )}
-                  </Link>
-
-                  {/* Grouped Dropdown Menu */}
-                  {item.groups && (
-                    <div
-                      ref={(el) => (dropdownRefs.current[item.title] = el)}
+                    <ChevronDown
                       className={cn(
-                        "absolute top-full left-1/2 transform -translate-x-1/2 mt-1 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100/50 overflow-hidden transition-all duration-300 ease-out",
-                        activeMenu === item.title
-                          ? "opacity-100 scale-100 translate-y-0 pointer-events-auto visible"
-                          : "opacity-0 scale-95 -translate-y-2 pointer-events-none invisible",
-                        item.groups.length <= 2 ? "w-96" : "w-[600px]",
+                        "w-4 h-4 transition-transform duration-200",
+                        activeMenu === item.title && "rotate-180",
                       )}
-                      onMouseEnter={handleDropdownEnter}
-                      onMouseLeave={handleDropdownLeave}
-                      style={{
-                        // Add a small bridge to prevent gaps
-                        paddingTop: "4px",
-                        marginTop: "-4px",
-                      }}
-                    >
-                      {/* Invisible bridge to prevent hover gaps */}
-                      <div className="absolute -top-1 left-0 right-0 h-2 bg-transparent" />
+                    />
+                  </button>
 
-                      <div className={cn("p-6 grid gap-8", item.groups.length <= 2 ? "grid-cols-2" : "grid-cols-3")}>
+                  {/* Reverted Dropdown Menu Design */}
+                  <div
+                    className={cn(
+                      "absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white/98 backdrop-blur-lg rounded-2xl shadow-2xl border border-zoo-teal-100/50 overflow-hidden transition-all duration-300 ease-out",
+                      activeMenu === item.title
+                        ? "opacity-100 scale-100 translate-y-0 pointer-events-auto visible"
+                        : "opacity-0 scale-95 -translate-y-2 pointer-events-none invisible",
+                      item.groups.length <= 2 ? "w-96" : "w-[600px]",
+                    )}
+                    onMouseEnter={handleMenuAreaEnter}
+                    onMouseLeave={handleMenuAreaLeave}
+                  >
+                    {/* Previous design with white background */}
+                    <div className="bg-gradient-to-br from-zoo-teal-50/50 to-zoo-beige-light/30 p-1">
+                      <div
+                        className={cn(
+                          "p-6 grid gap-8 bg-white/80 rounded-xl",
+                          item.groups.length <= 2 ? "grid-cols-2" : "grid-cols-3",
+                        )}
+                      >
+                        {/* Grouped Items */}
                         {item.groups.map((group) => (
                           <div key={group.title} className="space-y-3">
-                            <h3 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wide border-b border-gray-100 pb-2">
+                            <h3 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wide border-b border-zoo-teal-200 pb-2 flex items-center gap-2">
                               {group.title}
                             </h3>
                             <div className="space-y-1">
@@ -408,16 +310,27 @@ export function Navbar() {
                                 <Link
                                   key={subItem.title}
                                   href={subItem.href}
-                                  className="block px-3 py-2 text-zoo-teal-600 hover:text-zoo-teal-800 hover:bg-zoo-teal-50/60 rounded-md transition-all duration-200 text-sm font-medium group"
-                                  onClick={() => {
-                                    setActiveMenu(null)
-                                    setIsHoveringDropdown(false)
-                                    setIsHoveringMenuItem(false)
-                                  }}
+                                  className="block px-3 py-2.5 text-zoo-teal-600 hover:text-zoo-teal-800 hover:bg-zoo-teal-50/80 rounded-lg transition-all duration-200 text-sm font-medium group border border-transparent hover:border-zoo-teal-200/50"
+                                  onClick={() => setActiveMenu(null)}
                                 >
-                                  <span className="group-hover:translate-x-1 transition-transform duration-200 inline-block">
-                                    {subItem.title}
-                                  </span>
+                                  <div className="flex items-center justify-between">
+                                    <span className="group-hover:translate-x-1 transition-transform duration-200">
+                                      {subItem.title}
+                                    </span>
+                                    <svg
+                                      className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 5l7 7-7 7"
+                                      />
+                                    </svg>
+                                  </div>
                                 </Link>
                               ))}
                             </div>
@@ -425,13 +338,13 @@ export function Navbar() {
                         ))}
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               ))}
 
               <Link
                 href="/tickets"
-                className="ml-4 bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold text-sm px-6 py-2 rounded-full transition-all duration-200 hover:scale-105 hover:shadow-md"
+                className="ml-4 bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold text-sm px-6 py-4 rounded-full transition-all duration-200 hover:scale-105 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-zoo-yellow-600 focus:ring-offset-2"
               >
                 BOOK TICKETS
               </Link>

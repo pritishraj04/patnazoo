@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { X, ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -12,7 +13,6 @@ interface MenuGroup {
 
 interface MenuItem {
   title: string
-  href: string
   groups?: MenuGroup[]
 }
 
@@ -42,59 +42,49 @@ export function MobileNav({ isOpen, onClose, menuItems }: MobileNavProps) {
     >
       <div className="flex justify-between items-center p-4 border-b border-zoo-teal-200">
         <Link href="/" className="flex items-center gap-2" onClick={onClose}>
-          <div className="w-12 h-12 bg-zoo-teal-700 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-xl">P</span>
-          </div>
-          <div>
-            <div className="font-heading text-2xl leading-none text-zoo-teal-700">Patna</div>
-            <div className="font-heading text-2xl leading-none text-zoo-teal-700">Zoo</div>
-          </div>
+          <Image src="/images/logo-large.svg" alt="Conservation work" width={180} height={50} className="ml-4" />
         </Link>
 
-        <button onClick={onClose} className="p-2 rounded-full bg-zoo-teal-700 text-white">
+        <button
+          onClick={onClose}
+          className="p-2 rounded-full bg-zoo-teal-700 text-white hover:bg-zoo-teal-800 transition-colors"
+        >
           <X className="w-6 h-6" />
           <span className="sr-only">Close menu</span>
         </button>
       </div>
 
       <div className="p-4">
-        <div className="mb-4">
+        <div className="mb-6">
           <input
             type="search"
             placeholder="Search"
-            className="w-full p-3 rounded-full bg-white border border-zoo-teal-200 text-zoo-teal-700"
+            className="w-full p-3 rounded-full bg-white border border-zoo-teal-200 text-zoo-teal-700 placeholder-zoo-teal-700 focus:outline-none focus:ring-2 focus:ring-zoo-yellow-600"
           />
         </div>
 
-        <nav className="space-y-1">
+        <nav className="space-y-2">
           {menuItems.map((item) => (
             <div key={item.title} className="border-b border-zoo-teal-200">
               <button
-                className="flex items-center justify-between w-full py-4 text-zoo-teal-700 font-medium"
+                className="flex items-center justify-between w-full py-4 text-zoo-teal-700 font-medium hover:text-zoo-teal-500 transition-colors"
                 onClick={() => toggleSection(item.title)}
               >
                 <span>{item.title}</span>
-                {item.groups && (
-                  <ChevronDown
-                    className={cn("w-5 h-5 transition-transform", expandedSection === item.title ? "rotate-180" : "")}
-                  />
-                )}
+                <ChevronDown
+                  className={cn(
+                    "w-5 h-5 transition-transform text-zoo-yellow-600",
+                    expandedSection === item.title ? "rotate-180" : "",
+                  )}
+                />
               </button>
 
               {expandedSection === item.title && item.groups && (
                 <div className="pb-4 space-y-4">
-                  <Link
-                    href={item.href}
-                    className="flex items-center px-4 py-2 text-zoo-teal-600 hover:text-zoo-teal-500 hover:bg-zoo-teal-50 rounded-lg"
-                    onClick={onClose}
-                  >
-                    <span>Overview</span>
-                    <ChevronRight className="w-4 h-4 ml-auto" />
-                  </Link>
-
                   {item.groups.map((group) => (
                     <div key={group.title} className="px-4">
-                      <h4 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wide mb-2 border-b border-zoo-teal-200 pb-1">
+                      <h4 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wide mb-3 flex items-center gap-2">
+                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full"></div>
                         {group.title}
                       </h4>
                       <div className="space-y-1">
@@ -102,11 +92,13 @@ export function MobileNav({ isOpen, onClose, menuItems }: MobileNavProps) {
                           <Link
                             key={subItem.title}
                             href={subItem.href}
-                            className="flex items-center px-3 py-2 text-zoo-teal-600 hover:text-zoo-teal-500 hover:bg-zoo-teal-50 rounded-lg"
+                            className="flex items-center px-3 py-2.5 text-zoo-teal-600 hover:text-zoo-teal-500 hover:bg-zoo-teal-50 rounded-lg transition-all duration-200 group"
                             onClick={onClose}
                           >
-                            <span>{subItem.title}</span>
-                            <ChevronRight className="w-4 h-4 ml-auto" />
+                            <span className="group-hover:translate-x-1 transition-transform duration-200">
+                              {subItem.title}
+                            </span>
+                            <ChevronRight className="w-4 h-4 ml-auto text-zoo-yellow-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                           </Link>
                         ))}
                       </div>
@@ -119,13 +111,13 @@ export function MobileNav({ isOpen, onClose, menuItems }: MobileNavProps) {
         </nav>
 
         <div className="mt-8 space-y-4">
-          <Link
+          {/* <Link
             href="/join"
-            className="block w-full py-3 text-center font-bold text-zoo-teal-700 border-2 border-zoo-teal-700 rounded-full hover:bg-zoo-teal-700 hover:text-white transition-colors"
+            className="block w-full py-3 text-center font-bold text-zoo-teal-700 border-2 border-zoo-teal-700 rounded-full hover:bg-zoo-teal-700 hover:text-white transition-all duration-200"
             onClick={onClose}
           >
             JOIN
-          </Link>
+          </Link> */}
           <Link
             href="/tickets"
             className="block w-full py-3 text-center font-bold text-zoo-teal-900 bg-zoo-yellow-600 rounded-full hover:bg-zoo-yellow-500 transition-colors"

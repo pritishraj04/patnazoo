@@ -1,8 +1,7 @@
 "use client"
 
-import type React from "react"
+import React, { useState, useEffect } from "react"
 
-import { useState, useEffect } from "react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/hero-section"
@@ -15,7 +14,13 @@ import { MapPin, Phone, Mail, Clock, MessageSquare, Users, Calendar } from "luci
 
 export default function ContactPage() {
   const [isVisible, setIsVisible] = useState(false)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string
+    email: string
+    phone: string
+    subject: string
+    message: string
+  }>({
     name: "",
     email: "",
     phone: "",

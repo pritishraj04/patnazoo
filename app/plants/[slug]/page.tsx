@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -80,11 +80,34 @@ const plantsData = {
   // Add more plant data as needed...
 }
 
+type Plant = {
+  id: number;
+  name: string;
+  species: string;
+  category: string;
+  images: string[];
+  height: string;
+  bloomingSeason: string;
+  medicinal: boolean;
+  description: string;
+  habitat: string;
+  lifespan: string;
+  sunlight: string;
+  watering: string;
+  temperature: string;
+  medicinalUses: string;
+  culturalSignificance: string;
+  conservationStatus: string;
+  location: string;
+  bestViewingTime: string;
+  interestingFacts: string[];
+}
+
 export default function PlantDetailPage() {
   const params = useParams()
   const slug = params.slug as string
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [plant, setPlant] = useState<any>(null)
+  const [plant, setPlant] = useState<Plant | null>(null)
 
   useEffect(() => {
     // In a real app, you'd fetch this data from an API

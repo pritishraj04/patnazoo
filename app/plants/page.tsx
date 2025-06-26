@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/hero-section"
@@ -11,8 +11,8 @@ import { Button } from "@/components/ui/button"
 import { Search, Filter } from "lucide-react"
 
 export default function PlantsPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [selectedCategory, setSelectedCategory] = useState<string>("all")
 
   const plants = [
     {
