@@ -39,19 +39,19 @@ export default function DirectorsMessagePage() {
                 <div className="sticky top-24">
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-6">
                     <Image
-                      src="/placeholder.svg?height=600&width=450"
-                      alt="Dr. Amit Sharma, Director of Patna Zoo"
+                      src="/images/hemant-patil.jpg"
+                      alt="Hemant Patil, Director of Patna Zoo"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <h3 className="font-heading text-2xl text-white mb-1">Dr. Amit Sharma</h3>
+                  <h3 className="font-heading text-2xl text-white mb-1">Hemant Patil, IFS</h3>
                   <p className="text-zoo-yellow-600 font-medium mb-4">Director, Sanjay Gandhi Biological Park</p>
                   <div className="space-y-3 text-white/80 text-sm">
-                    <p>Ph.D. Wildlife Conservation</p>
+                    {/* <p>Ph.D. Wildlife Conservation</p>
                     <p>20+ years in conservation management</p>
                     <p>Former Regional Director, Wildlife Trust of India</p>
-                    <p>Member, IUCN Species Survival Commission</p>
+                    <p>Member, IUCN Species Survival Commission</p> */}
                   </div>
                 </div>
               </div>
@@ -113,7 +113,7 @@ export default function DirectorsMessagePage() {
                   </p>
 
                   <div className="pt-6">
-                    <p className="text-zoo-yellow-600 font-medium">Dr. Amit Sharma</p>
+                    <p className="text-zoo-yellow-600 font-medium">Hemant Patil, IFS</p>
                     <p className="text-white/80">Director, Sanjay Gandhi Biological Park</p>
                   </div>
                 </div>
