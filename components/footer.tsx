@@ -11,11 +11,11 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row gap-x-28 gap-y-12 justify-between mb-8">
             <div className="flex lg:flex-col items-center gap-4">
               <div className="flex items-start gap-4">
-                <Image src="/images/logo-small.svg" alt="Conservation work" width={120} height={90} className="ml-4" />
+                <Image src="/images/logo-bihar-sarkar.svg" alt="Government logo" width={70} height={20} className="ml-4" />
               </div>
 
               <div className="flex items-center gap-3 sm:ml-0 lg:ml-0">
-                <Image src="/images/logo-bihar-sarkar.svg" alt="Conservation work" width={70} height={20} className="ml-4" />
+                <Image src="/images/logo-small.svg" alt="Logo" width={120} height={90} className="ml-4" />
               </div>
             </div>
 

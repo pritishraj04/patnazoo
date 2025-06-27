@@ -120,8 +120,7 @@ export default function AnimalDetailPage() {
 
       <main>
         <HeroSection
-          title={animal.name}
-          subtitle={animal.species}
+
           backgroundImage={animal.photos[activeImage]}
           height="large"
         />
@@ -149,6 +148,14 @@ export default function AnimalDetailPage() {
                 </button>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Animal Title Section */}
+        <section className="py-8 bg-zoo-teal-700">
+          <div className="zoo-container text-center">
+            <h1 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg mb-2">{animal.name}</h1>
+            <p className="text-lg md:text-2xl text-white/90 drop-shadow-md">{animal.species}</p>
           </div>
         </section>
 

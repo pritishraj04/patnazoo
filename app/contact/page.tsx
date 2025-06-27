@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import type React from "react"
+import { useState, useEffect } from "react"
 
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -136,81 +137,98 @@ export default function ContactPage() {
                 className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
               >
                 <h3 className="font-heading text-3xl text-white mb-6">SEND US A MESSAGE</h3>
-                <Card className="bg-white border-none">
-                  <CardContent className="p-6">
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-zoo-teal-700 font-medium mb-2">Name *</label>
-                          <Input
-                            type="text"
-                            value={formData.name}
-                            onChange={(e) => handleInputChange("name", e.target.value)}
-                            className="border-zoo-teal-200 focus:border-zoo-teal-500"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-zoo-teal-700 font-medium mb-2">Email *</label>
-                          <Input
-                            type="email"
-                            value={formData.email}
-                            onChange={(e) => handleInputChange("email", e.target.value)}
-                            className="border-zoo-teal-200 focus:border-zoo-teal-500"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-zoo-teal-700 font-medium mb-2">Phone</label>
-                          <Input
-                            type="tel"
-                            value={formData.phone}
-                            onChange={(e) => handleInputChange("phone", e.target.value)}
-                            className="border-zoo-teal-200 focus:border-zoo-teal-500"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-zoo-teal-700 font-medium mb-2">Subject *</label>
-                          <Select
-                            value={formData.subject}
-                            onValueChange={(value) => handleInputChange("subject", value)}
-                          >
-                            <SelectTrigger className="border-zoo-teal-200 focus:border-zoo-teal-500">
-                              <SelectValue placeholder="Select a subject" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="general">General Inquiry</SelectItem>
-                              <SelectItem value="tickets">Tickets & Pricing</SelectItem>
-                              <SelectItem value="education">Education Programs</SelectItem>
-                              <SelectItem value="events">Events & Experiences</SelectItem>
-                              <SelectItem value="group">Group Bookings</SelectItem>
-                              <SelectItem value="feedback">Feedback</SelectItem>
-                              <SelectItem value="other">Other</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-zoo-teal-700 font-medium mb-2">Message *</label>
-                        <Textarea
-                          value={formData.message}
-                          onChange={(e) => handleInputChange("message", e.target.value)}
-                          className="border-zoo-teal-200 focus:border-zoo-teal-500 min-h-32"
-                          placeholder="Please provide details about your inquiry..."
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-lg">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <label className="block text-white font-medium text-base">Name *</label>
+                        <Input
+                          type="text"
+                          value={formData.name}
+                          onChange={(e) => handleInputChange("name", e.target.value)}
+                          placeholder="John Doe"
                           required
+                          className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-zoo-yellow-600 focus:ring-zoo-yellow-600"
                         />
                       </div>
+                      <div className="space-y-3">
+                        <label className="block text-white font-medium text-base">Email *</label>
+                        <Input
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => handleInputChange("email", e.target.value)}
+                          placeholder="your.email@example.com"
+                          required
+                          className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-zoo-yellow-600 focus:ring-zoo-yellow-600"
+                        />
+                      </div>
+                    </div>
 
-                      <Button type="submit" className="w-full zoo-button-primary">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <label className="block text-white font-medium text-base">Phone</label>
+                        <Input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => handleInputChange("phone", e.target.value)}
+                          placeholder="+91 98765 43210"
+                          className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-zoo-yellow-600 focus:ring-zoo-yellow-600"
+                        />
+                      </div>
+                      <div className="space-y-3">
+                        <label className="block text-white font-medium text-base">Subject *</label>
+                        <Select value={formData.subject} onValueChange={(value) => handleInputChange("subject", value)}>
+                          <SelectTrigger className="bg-white/10 border-white/20 text-white focus:ring-zoo-yellow-600 focus:border-zoo-yellow-600">
+                            <SelectValue placeholder="Select a subject" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-zoo-teal-800 border-white/20 text-white">
+                            <SelectItem value="general" className="focus:bg-zoo-teal-700 focus:text-white">
+                              General Inquiry
+                            </SelectItem>
+                            <SelectItem value="tickets" className="focus:bg-zoo-teal-700 focus:text-white">
+                              Tickets & Pricing
+                            </SelectItem>
+                            <SelectItem value="education" className="focus:bg-zoo-teal-700 focus:text-white">
+                              Education Programs
+                            </SelectItem>
+                            <SelectItem value="events" className="focus:bg-zoo-teal-700 focus:text-white">
+                              Events & Experiences
+                            </SelectItem>
+                            <SelectItem value="group" className="focus:bg-zoo-teal-700 focus:text-white">
+                              Group Bookings
+                            </SelectItem>
+                            <SelectItem value="feedback" className="focus:bg-zoo-teal-700 focus:text-white">
+                              Feedback
+                            </SelectItem>
+                            <SelectItem value="other" className="focus:bg-zoo-teal-700 focus:text-white">
+                              Other
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <label className="block text-white font-medium text-base">Message *</label>
+                      <Textarea
+                        value={formData.message}
+                        onChange={(e) => handleInputChange("message", e.target.value)}
+                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-zoo-yellow-600 focus:ring-zoo-yellow-600 min-h-32"
+                        placeholder="Please provide details about your inquiry..."
+                        required
+                      />
+                    </div>
+
+                    <div className="flex justify-center pt-6">
+                      <Button
+                        type="submit"
+                        className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wide rounded-full transition-all duration-300 px-10 py-6"
+                      >
                         SEND MESSAGE
                       </Button>
-                    </form>
-                  </CardContent>
-                </Card>
+                    </div>
+                  </form>
+                </div>
               </div>
 
               {/* Departments */}

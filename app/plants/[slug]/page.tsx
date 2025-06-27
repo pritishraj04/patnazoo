@@ -139,20 +139,7 @@ export default function PlantDetailPage() {
       <Navbar />
 
       <main className="min-h-screen bg-zoo-teal-700">
-        {/* Breadcrumb */}
-        <div className="bg-zoo-teal-800 py-4">
-          <div className="zoo-container">
-            <Link
-              href="/plants"
-              className="inline-flex items-center text-zoo-yellow-600 hover:text-zoo-yellow-500 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Plants
-            </Link>
-          </div>
-        </div>
-
-        <div className="zoo-container py-8">
+        <div className="zoo-container py-8 mt-28">
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Image Gallery */}
             <div className="space-y-4">
@@ -342,18 +329,17 @@ export default function PlantDetailPage() {
             <h3 className="text-white font-heading text-2xl mb-4">Plan Your Visit</h3>
             <p className="text-white/80 mb-6">Come and see this amazing plant species in person at Patna Zoo</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/tickets">
-                <Button className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold px-8 py-3">
-                  BOOK TICKETS
-                </Button>
+             <Link
+                href="/tickets"
+                className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold px-8 py-3 rounded-full transition-colors duration-200"
+              >
+                BOOK TICKETS
               </Link>
-              <Link href="/plants">
-                <Button
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-zoo-teal-900 px-8 py-3"
-                >
-                  EXPLORE MORE PLANTS
-                </Button>
+              <Link
+                href="/plants"
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-8 py-3 rounded-full transition-colors duration-200"
+              >
+                EXPLORE MORE PLANTS
               </Link>
             </div>
           </div>
