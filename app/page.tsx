@@ -134,10 +134,10 @@ export default function HomePage() {
   const carouselEvents = [
     {
       id: 1,
-      title: "Zoo Awareness Week",
+      title: "A Lake Break",
       description:
-        "Join us for a week of fun and learning as we celebrate the amazing animals at Patna Zoo and the importance of conservation.",
-      image: "/images/7e879b3e250e020505554420ddb55411.jpg",
+        "Experience a joy-full time with family boating, at the Lake.",
+      image: "/images/bottom-s1.jpg",
       href: "/events/zoo-awareness-week",
       buttonText: "Learn more",
     },
@@ -171,7 +171,7 @@ export default function HomePage() {
     },
     {
       id: 2,
-      src: "/images/slider/c1.png",
+      src: "/images/slider/n-rose-garden.jpg",
       alt: "Elephant sanctuary",
       title: "Elephant Sanctuary",
       subtitle: "Watch our gentle giants",
@@ -185,7 +185,7 @@ export default function HomePage() {
     },
     {
       id: 4,
-      src: "/images/slider/c4.png",
+      src: "/images/slider/n-shishu-park.jpg",
       alt: "Reptile house",
       title: "Reptile House",
       subtitle: "Fascinating cold-blooded creatures",
@@ -236,7 +236,7 @@ export default function HomePage() {
 
       <main>
         <HeroSection
-          images={["/images/hero/s1.jpg", "/images/hero/s2.jpg"]} // Use carousel on home page
+          images={["/images/hero/b1.jpg", "/images/hero/b2.jpg", "/images/hero/b3.jpg", "/images/hero/b4.jpg", "/images/hero/b5.jpg", "/images/hero/b6.jpg"]} // Use carousel on home page
           height="large"
         />
 
@@ -692,7 +692,7 @@ export default function HomePage() {
               </div>
 
               <div className="relative h-96 rounded-lg overflow-hidden animate-on-scroll stagger-2">
-                <Image src="/images/s1111.png" alt="Conservation work" fill className="object-cover" />
+                <Image src="/images/sustainable-dream.jpg" alt="Conservation work" fill className="object-cover" />
               </div>
             </div>
           </div>
@@ -704,7 +704,7 @@ export default function HomePage() {
             title="Make a Difference Today"
             subtitle="Adopt an Animal"
             description="Support our conservation efforts by adopting one of our amazing animals. Your contribution helps provide food, medical care, and habitat improvements while supporting wildlife conservation programs across Bihar."
-            image="/images/meet-animals/a1.jpg"
+            image="/images/adopt-an-animal.jpg"
             href="/programs/adopt-an-animal"
             buttonText="ADOPT AN ANIMAL"
             useBackgroundImage={false}

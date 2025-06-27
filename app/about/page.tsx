@@ -85,6 +85,7 @@ export default function AboutPage() {
       <HeroSection
         title="About Patna Zoo"
         subtitle="Sanjay Gandhi Biological Garden"
+        backgroundImage="/images/header/about-zoo.jpg"
         height="medium"
       />
 
@@ -106,7 +107,7 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="relative">
               <img
-                src="/placeholder.svg?height=400&width=1200"
+                src="/images/a-h-1.jpg"
                 alt="Key Personnel - Chief Minister, Prime Minister and other dignitaries"
                 className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
                 style={{

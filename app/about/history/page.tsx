@@ -135,7 +135,7 @@ export default function HistoryPage() {
                 style={{ opacity: 1, transform: "translateY(0px)" }}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/history-legacy.jpg"
                   alt="Historic photo of Patna Zoo"
                   fill
                   className="object-cover"
