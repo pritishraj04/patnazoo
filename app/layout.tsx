@@ -82,7 +82,7 @@ export default function RootLayout({
         </ThemeProvider>
         <footer className="text-center text-xs text-white/60 py-2 bg-zoo-teal-900">
           <p>
-            Prototype designed by{" "}
+            Designed By{" "}
             <a
               href="https://polardot.in"
               target="_blank"
