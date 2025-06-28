@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Users, TreePine, Award, Heart, Calendar, MapPin, Camera, FileText } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function AboutPage() {
   const stats = [
@@ -106,8 +107,10 @@ export default function AboutPage() {
           {/* Key Personnel Poster */}
           <div className="max-w-6xl mx-auto">
             <div className="relative">
-              <img
+              <Image
                 src="/images/a-h-1.jpg"
+                width={1920}
+                height={1080}
                 alt="Key Personnel - Chief Minister, Prime Minister and other dignitaries"
                 className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
                 style={{

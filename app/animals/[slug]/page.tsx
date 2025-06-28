@@ -312,12 +312,13 @@ export default function AnimalDetailPage() {
               </div>
 
               <div className="animate-on-scroll stagger-2">
-                <div className="relative h-80 rounded-2xl overflow-hidden">
+                <div className="relative rounded-2xl overflow-hidden">
                   <Image
                     src="/images/INCU/6-EN.svg"
                     alt="Tiger conservation"
-                    fill
-                    className="object-cover"
+                    width={644}
+                    height={324}
+                    className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
                   />
                   {/* <div className="absolute inset-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent flex items-end p-6">
                     <div>

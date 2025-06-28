@@ -44,26 +44,31 @@ export default function HistoryPage() {
   const team = [
     {
       "name": "Ram Kr. Pandey",
+      "image": "/images/teams/ram.png",
       "designation": "Veterinary Officer, Patna Zoo",
       "message": "Patna zoo's 50th anniversary celebrates our commitment to wildlife conservation. This coffee table book showcases the remarkable journey of nurturing and protecting diverse species. Together, let's continue our efforts in preserving our natural heritage for generations to come."
     },
     {
       "name": "Samrendra Bahadur Singh",
+      "image": "/images/teams/samrendra.png",
       "designation": "Veterinary Officer, Patna Zoo",
       "message": "Through the pages of this coffee table book, we celebrate the vibrant wildlife and conservation efforts of Patna zoo over the past 50 years. May it inspire future generations to protect and cherish our precious biodiversity for years to come."
     },
     {
       "name": "Anand Kumar",
+      "image": "/images/teams/anand.png",
       "designation": "ROF, Zoology section, Patna Zoo",
       "message": "The first cage of Patna Zoo stands as a testament to its remarkable five-decade journey. Its structure, meticulously designed by architects, encapsulates the enduring legacy of the zoo. With every passing year, it has stood the test of time, witnessing the evolution and progress of the zoo and its inhabitants. The First Cage stands tall, embodying the rich history and growth of Patna Zoo in a remarkable 50-year span."
     },
     {
       "name": "Arvind Kr. Verma",
+      "image": "/images/teams/arvind.png",
       "designation": "ROF, Botany section, Patna Zoo",
       "message": "Delighted to present the coffee table book celebrating the 50th anniversary of Patna Zoo. It showcases the incredible bio-diversity, conservation efforts, and memorable moments. A heartfelt tribute to the zoo's rich heritage and its role in promoting wildlife awareness. Enjoy the journey!"
     },
     {
       "name": "Arif",
+      "image": "/images/teams/arif.png",
       "designation": "Field Biologist, Patna Zoo",
       "message": "Congratulations to Patna Zoo on its 50th anniversary! As a field biologist, I am inspired by the incredible biodiversity and conservation efforts here. May this coffee table book showcase the zoo's journey and inspire future generations to protect our precious wildlife."
     }
@@ -201,7 +206,7 @@ export default function HistoryPage() {
                   >
                     {/* Year marker - left on mobile, alternating on desktop */}
                     <div
-                      className={`md:w-1/2 flex ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"} md:order-${index % 2 === 0 ? "1" : "2"}`}
+                      className={`md:w-1/2 flex ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"} ${index % 2 === 0 ? "md:order-1" : "md:order-2"}`}
                     >
                       <div className="relative">
                         {/* Mobile year marker */}
@@ -239,7 +244,7 @@ export default function HistoryPage() {
                     </div>
 
                     {/* Empty space for alternating layout on desktop */}
-                    <div className={`hidden md:block md:w-1/2 md:order-${index % 2 === 0 ? '2' : '1'}`}></div>
+                    <div className={`hidden md:block md:w-1/2 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}></div>
                   </div>
                 ))}
               </div>
@@ -288,7 +293,7 @@ export default function HistoryPage() {
             />
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5, 6].map((index) => (
+              {team.map((member, index) => (
                 <Card
                   key={index}
                   className="bg-white/10 border-white/20 text-white overflow-hidden transition-all duration-500 hover:scale-105 animate-on-scroll"
@@ -300,19 +305,17 @@ export default function HistoryPage() {
                 >
                   <div className="relative h-64">
                     <Image
-                      src={`/images/teams/arif.png`}
-                      alt={`Former Director ${index}`}
+                      src={member.image || "/placeholder.svg"}
+                      alt={`Member ${index + 1}`}
                       fill
                       className="object-cover"
                     />
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="font-heading text-xl mb-1">Ram Kr.
-                    Pandey</h3>
-                    <p className="text-zoo-yellow-600 text-sm mb-3">Veterinary Officer,
-                    Patna Zoo</p>
+                    <h3 className="font-heading text-xl mb-1">{member.name}</h3>
+                    <p className="text-zoo-yellow-600 text-sm mb-3">{member.designation}</p>
                     <p className="text-white/80">
-                    Patna Zoo's 50th anniversary marks a proud milestone in our journey of wildlife conservation. This coffee table book captures our legacy of protecting diverse species and preserving nature for future generations.
+                      {member.message}
                     </p>
                   </CardContent>
                 </Card>

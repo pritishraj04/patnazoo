@@ -217,7 +217,7 @@ export function Navbar() {
           <div>Opening times today: 10am - 6pm (Last entry at 5pm)</div>
         </div>
         <div className="flex-1 flex justify-end">
-          <button
+          {/* <button
             className="text-white/70 hover:text-white transition-colors"
             aria-label="Close notification"
             onClick={() => {
@@ -239,11 +239,11 @@ export function Navbar() {
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
-          </button>
+          </button> */}
         </div>
       </div>
 
-      <header className={cn("fixed left-0 right-0 z-50 transition-all duration-300", isScrolled ? "top-0" : "top-8")}>
+      <header className={cn("fixed left-0 right-0 z-50 transition-all duration-300", isScrolled ? "top-0" : "top-10 md:top-8")}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav
             ref={navRef}
