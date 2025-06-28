@@ -128,9 +128,9 @@ export default function AdoptAnimalPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <Badge variant="outline" className="bg-zoo-yellow-600 text-zoo-teal-900 border-zoo-yellow-600 mb-4">
-              Leadership
+            PATNA ZOO - ADOPTION
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Distinguished Patronage</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">YOU CAN MAKE A CHANGE</h2>
             <p className="text-white/80 text-lg max-w-3xl mx-auto">
               Under the esteemed guidance and support of our distinguished leaders, Patna Zoo continues to excel in
               wildlife conservation and public education.
@@ -141,7 +141,7 @@ export default function AdoptAnimalPage() {
           <div className="max-w-6xl mx-auto">
             <div className="relative">
               <img
-                src="/images/a-h-1.jpg"
+                src="/images/breeding-banner.jpg"
                 alt="Key Personnel - Chief Minister, Prime Minister and other dignitaries"
                 className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
                 style={{

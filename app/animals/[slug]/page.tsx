@@ -314,17 +314,17 @@ export default function AnimalDetailPage() {
               <div className="animate-on-scroll stagger-2">
                 <div className="relative h-80 rounded-2xl overflow-hidden">
                   <Image
-                    src="/"
+                    src="/images/INCU/6-EN.svg"
                     alt="Tiger conservation"
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent flex items-end p-6">
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent flex items-end p-6">
                     <div>
                       <h3 className="font-heading text-2xl text-white mb-2">Help Save Tigers</h3>
                       <p className="text-white/90">Your support helps protect these magnificent creatures</p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
