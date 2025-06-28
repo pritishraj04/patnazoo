@@ -210,7 +210,7 @@ export default function VisitPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <Utensils className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Food stalls</span>
+                        <span>Mayur Canteen</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Accessibility className="w-4 h-4 text-zoo-yellow-600" />

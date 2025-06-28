@@ -181,7 +181,7 @@ export default function ZooMapPage() {
                   {/* Map Image */}
                   <div className="relative aspect-[4/3] bg-zoo-teal-600">
                     <Image
-                      src="/placeholder.svg?height=900&width=1200"
+                      src="/images/patnazoo-map.jpg"
                       alt="Patna Zoo Map"
                       fill
                       className="object-cover"

@@ -52,7 +52,7 @@ export default function BreedingProgramsPage() {
 
       {/* Hero Section */}
       <HeroSection
-        backgroundImage="/placeholder.svg?height=600&width=1200"
+        backgroundImage="/images/breeding.jpg"
         height="medium"
         title="Breeding Programs"
         subtitle="Conservation Through Scientific Excellence"
@@ -225,7 +225,7 @@ export default function BreedingProgramsPage() {
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all duration-300">
               <div className="flex items-start gap-6">
                 <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
-                  <Image src="/placeholder.svg?height=96&width=96" alt="Tiger cubs" fill className="object-cover" />
+                  <Image src="/images/breeding-tiger.jpg" alt="Tiger cubs" fill className="object-cover" />
                 </div>
                 <div>
                   <h3 className="font-heading text-xl text-white mb-3">Royal Bengal Tiger Program</h3>
@@ -244,7 +244,7 @@ export default function BreedingProgramsPage() {
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all duration-300">
               <div className="flex items-start gap-6">
                 <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
-                  <Image src="/placeholder.svg?height=96&width=96" alt="Elephant calf" fill className="object-cover" />
+                  <Image src="/images/breeding-elephant.jpg" alt="Elephant calf" fill className="object-cover" />
                 </div>
                 <div>
                   <h3 className="font-heading text-xl text-white mb-3">Indian Elephant Conservation</h3>
@@ -264,7 +264,7 @@ export default function BreedingProgramsPage() {
               <div className="flex items-start gap-6">
                 <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
                   <Image
-                    src="/placeholder.svg?height=96&width=96"
+                    src="/images/breeding-ghariyal.jpg"
                     alt="Gharial hatchlings"
                     fill
                     className="object-cover"

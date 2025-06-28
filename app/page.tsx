@@ -138,7 +138,7 @@ export default function HomePage() {
       description:
         "Experience a joy-full time with family boating, at the Lake.",
       image: "/images/bottom-s1.jpg",
-      href: "/events/zoo-awareness-week",
+      href: "/experience/boating-lake",
       buttonText: "Learn more",
     },
     {
@@ -250,10 +250,10 @@ export default function HomePage() {
         <section className="py-16 bg-zoo-teal-700">
           <FeaturedContentCard
             title="Explore the Wildlife of Bihar"
-            subtitle="Discover local species"
-            description="Discover the diverse wildlife of Bihar, including native species and conservation efforts specific to the region. Learn about the unique ecosystems and the animals that call them home."
+            subtitle="Ranked 4th by CZA, MEE-2022"
+            description="Explore strategic vision of the Bihar Government and how it is playing a pivotal role in elevating Patna Zoo and wildlife conservation across the state."
             image="/images/bg2.png"
-            href="/exhibits/bihar-wildlife"
+            href="/about"
             buttonText="FIND OUT MORE"
             useBackgroundImage={true}
           />

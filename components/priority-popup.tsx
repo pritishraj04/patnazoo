@@ -36,7 +36,7 @@ export function PriorityPopup({ asSection = false }: PriorityPopupProps) {
       priority: "high",
       link: {
         text: "Check Weather Updates",
-        href: "/visit",
+        href: "https://www.accuweather.com/en/in/patna/202349/weather-forecast/202349",
       },
       validUntil: "2025-12-31", // Updated to future date
     },
