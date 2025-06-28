@@ -3,6 +3,7 @@ import { ApiResponse } from "./api-response";
 import { Animal, AnimalInfo } from "./zoological";
 import { LandingInfo } from "./landing";
 import { FunFactsInfo } from "./funfacts";
+import { DirectorMessageInfo } from "./directormessage";
 
 export type {
   PlantInfo,
@@ -12,4 +13,5 @@ export type {
   AnimalInfo,
   LandingInfo,
   FunFactsInfo,
+  DirectorMessageInfo,
 };
