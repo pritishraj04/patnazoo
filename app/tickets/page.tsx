@@ -697,7 +697,7 @@ export default function TicketsPage() {
                     <Button
                       type="submit"
                       disabled={!isFormValid}
-                      className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wide rounded-full transition-all duration-300 px-10 py-6 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wider rounded-full transition-all duration-300 px-10 py-6 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       CONFIRM BOOKING
                     </Button>

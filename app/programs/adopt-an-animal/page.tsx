@@ -215,7 +215,7 @@ export default function AdoptAnimalPage() {
                           </div>
 
                           <div className="mb-6">
-                            <h4 className="font-heading text-sm text-white mb-3 uppercase tracking-wide">
+                            <h4 className="font-heading text-sm text-white mb-3 uppercase tracking-wider">
                               Adoption Benefits
                             </h4>
                             <ul className="space-y-2">

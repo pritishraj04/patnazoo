@@ -83,7 +83,7 @@ export function MobileNav({ isOpen, onClose, menuItems }: MobileNavProps) {
                 <div className="pb-4 space-y-4">
                   {item.groups.map((group) => (
                     <div key={group.title} className="px-4">
-                      <h4 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wide mb-3 flex items-center gap-2">
+                      <h4 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wider mb-3 flex items-center gap-2">
                         <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full"></div>
                         {group.title}
                       </h4>

@@ -62,7 +62,7 @@ export function NewsletterSignup() {
 
           <Button
             type="submit"
-            className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wide py-3 px-6 rounded-full transition-all duration-300"
+            className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wider py-3 px-6 rounded-full transition-all duration-300"
           >
             SIGN UP
           </Button>

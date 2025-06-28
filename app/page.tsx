@@ -264,7 +264,7 @@ export default function HomePage() {
           <div className="zoo-container">
             <div className="max-w-5xl mx-auto animate-on-scroll">
               <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-zoo-yellow-500 text-zoo-teal-800 px-4 py-2 rounded-full font-heading font-bold text-sm uppercase tracking-wide mb-6">
+                <div className="inline-flex items-center gap-2 bg-zoo-yellow-500 text-zoo-teal-800 px-4 py-2 rounded-full font-heading font-bold text-sm uppercase tracking-wider mb-6">
                   <span>🌟</span>
                   Fun Fact of the Day
                 </div>

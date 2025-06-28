@@ -303,7 +303,7 @@ export function Navbar() {
                         {/* Grouped Items */}
                         {item.groups.map((group) => (
                           <div key={group.title} className="space-y-3">
-                            <h3 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wide border-b border-zoo-teal-200 pb-2 flex items-center gap-2">
+                            <h3 className="font-semibold text-zoo-teal-800 text-sm uppercase tracking-wider border-b border-zoo-teal-200 pb-2 flex items-center gap-2">
                               {group.title}
                             </h3>
                             <div className="space-y-1">
