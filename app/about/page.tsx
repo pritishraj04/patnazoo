@@ -145,6 +145,13 @@ export default function AboutPage() {
               </p>
 
               <p className="leading-relaxed">
+              Patna Zoo is considered one of the best in the large zoo category of India. Recently, our zoo was ranked 4th
+              by the Central Zoo Authority, New Delhi, in the MEE-2022. Patna Zoo is striving hard to provide an amazing and
+              exhilarating experience to common visitors as well as to sensitize and create awareness among people about the 
+              conservation of our natural flora and fauna.
+              </p>
+
+              <p className="leading-relaxed">
                 Our zoo is home to over 800 animals representing more than 110 species, including the majestic Royal
                 Bengal Tiger, Asian Elephants, One-horned Rhinoceros, and a variety of indigenous and exotic birds. The
                 botanical section features over 300 species of plants, creating a perfect ecosystem that supports both

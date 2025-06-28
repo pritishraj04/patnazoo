@@ -159,13 +159,15 @@ export default function ZooMapPage() {
                 <div className="space-y-4">
                   <Button className="w-full flex items-center gap-2 bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900">
                     <Download className="w-5 h-5" />
-                    <span>Download PDF Map</span>
+                    <span>Open in Maps</span>
                   </Button>
                   <Button
                     variant="outline"
                     className="w-full border-white text-white hover:bg-white hover:text-zoo-teal-700"
                   >
-                    Print Map
+                    <Download className="w-5 h-5" />
+                    <span>Download PDF Map</span>
+                    
                   </Button>
                 </div>
               </div>

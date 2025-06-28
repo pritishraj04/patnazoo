@@ -141,7 +141,7 @@ export default function HistoryPage() {
                   className="object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
-                  <p className="text-white/90 text-sm">Early days of Patna Zoo, circa 1970s</p>
+                  <p className="text-white/90 text-sm">A Golden Jubilee of Patna Zoo</p>
                 </div>
               </div>
             </div>
@@ -237,7 +237,7 @@ export default function HistoryPage() {
                   <p className="text-white">Years of conservation excellence</p>
                 </div>
                 <div className="bg-white/10 rounded-lg p-6">
-                  <div className="text-3xl text-zoo-yellow-600 font-bold mb-2">1M+</div>
+                  <div className="text-3xl text-zoo-yellow-600 font-bold mb-2">2.5M+</div>
                   <p className="text-white">Annual visitors educated</p>
                 </div>
                 <div className="bg-white/10 rounded-lg p-6">
