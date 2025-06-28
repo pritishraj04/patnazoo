@@ -52,7 +52,7 @@ export function AnimalCard({ name, species, category, image, slug, className }: 
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <Badge
-          className={`absolute top-3 right-3 sm:top-4 sm:right-4 text-white border-none uppercase tracking-wide font-heading responsive-text-xs font-bold px-2 py-1 sm:px-3 sm:py-1 ${
+          className={`absolute top-3 right-3 sm:top-4 sm:right-4 text-white border-none uppercase tracking-wider font-heading responsive-text-xs font-bold px-2 py-1 sm:px-3 sm:py-1 ${
             category === "Mammals"
               ? "bg-orange-500"
               : category === "Birds"

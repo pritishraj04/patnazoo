@@ -181,7 +181,7 @@ export default function PlantDetailPage() {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <Badge
-                    className={`text-white border-none uppercase tracking-wide font-heading text-sm font-bold px-3 py-1 ${
+                    className={`text-white border-none uppercase tracking-wider font-heading text-sm font-bold px-3 py-1 ${
                       plant.category === "Trees"
                         ? "bg-green-600"
                         : plant.category === "Flowers"

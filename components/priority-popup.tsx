@@ -178,7 +178,7 @@ export function PriorityPopup({ asSection = false }: PriorityPopupProps) {
                 </div>
                 <div>
                   <h2 className="font-heading text-2xl text-white mb-2">{currentMessage.title}</h2>
-                  <p className={`text-sm font-medium ${styles.accentColor} uppercase tracking-wide`}>
+                  <p className={`text-sm font-medium ${styles.accentColor} uppercase tracking-wider`}>
                     {currentMessage.priority === "high"
                       ? "High Priority"
                       : currentMessage.priority === "medium"
@@ -242,7 +242,7 @@ export function PriorityPopup({ asSection = false }: PriorityPopupProps) {
                   <div className="flex items-start justify-between mb-2">
                     <h3 className="font-heading text-xl text-white">{currentMessage.title}</h3>
                     <span
-                      className={`text-xs font-medium ${styles.accentColor} uppercase tracking-wide px-2 py-1 rounded-full bg-white/5`}
+                      className={`text-xs font-medium ${styles.accentColor} uppercase tracking-wider px-2 py-1 rounded-full bg-white/5`}
                     >
                       {currentMessage.priority === "high"
                         ? "High Priority"

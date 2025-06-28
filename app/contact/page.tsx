@@ -222,7 +222,7 @@ export default function ContactPage() {
                     <div className="flex justify-center pt-6">
                       <Button
                         type="submit"
-                        className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wide rounded-full transition-all duration-300 px-10 py-6"
+                        className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wider rounded-full transition-all duration-300 px-10 py-6"
                       >
                         SEND MESSAGE
                       </Button>
