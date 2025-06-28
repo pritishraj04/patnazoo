@@ -157,18 +157,19 @@ export default function ZooMapPage() {
                 </Card>
 
                 <div className="space-y-4">
-                  <Button className="w-full flex items-center gap-2 bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900">
-                    <Download className="w-5 h-5" />
+                  <Link href="https://maps.app.goo.gl/uWp15bYGRUtJoe4NA" target="_blank" rel="noopener noreferrer" className="flex gap-4 justify-center zoo-button-primary">
+                    <MapPin className="w-5 h-5" />
                     <span>Open in Maps</span>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="w-full border-white text-white hover:bg-white hover:text-zoo-teal-700"
-                  >
+                  </Link>
+                  <Link
+                    href="/downloads/patna-zoo-map.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    className="flex gap-4 justify-center  zoo-button-secondary">
                     <Download className="w-5 h-5" />
                     <span>Download PDF Map</span>
-                    
-                  </Button>
+                  </Link>
                 </div>
               </div>
 
