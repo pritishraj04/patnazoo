@@ -1,6 +1,8 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import type React from "react"
+
+import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
@@ -24,6 +26,50 @@ export function EventsCarousel({ events, backgroundImage }: EventsCarouselProps)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const carouselRef = useRef<HTMLDivElement>(null)
+
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  const nextSlide = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setCurrentIndex((prev) => (prev + 1) % events.length)
+    setTimeout(() => setIsTransitioning(false), 300)
+  }
+
+  const prevSlide = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setCurrentIndex((prev) => (prev - 1 + events.length) % events.length)
+    setTimeout(() => setIsTransitioning(false), 300)
+  }
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }, [])
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }, [])
+
+  const handleTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      nextSlide()
+    }
+    if (isRightSwipe) {
+      prevSlide()
+    }
+  }, [touchStart, touchEnd])
+
+  const currentEvent = events[currentIndex]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,16 +95,6 @@ export function EventsCarousel({ events, backgroundImage }: EventsCarouselProps)
     }
   }, [])
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % events.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + events.length) % events.length)
-  }
-
-  const currentEvent = events[currentIndex]
-
   return (
     <section className="py-16 bg-zoo-teal-700" ref={carouselRef}>
       <div className="zoo-container">
@@ -76,7 +112,7 @@ export function EventsCarousel({ events, backgroundImage }: EventsCarouselProps)
 
         {/* Carousel Container with Background */}
         <div className="relative max-w-4xl mx-auto">
-          <div className="relative overflow-hidden rounded-3xl">
+          <div className="relative overflow-hidden rounded-3xl touch-pan-y">
             {/* Background Image - only for carousel container */}
             <div className="absolute inset-0">
               <Image src={backgroundImage || "/placeholder.svg"} alt="Zoo background" fill className="object-cover" />
@@ -104,9 +140,12 @@ export function EventsCarousel({ events, backgroundImage }: EventsCarouselProps)
                 {/* Event Card */}
                 <div
                   className={cn(
-                    "transition-all duration-700",
+                    "transition-all duration-700 touch-pan-y",
                     isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95",
                   )}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 >
                   <div className="bg-white rounded-3xl p-8 max-w-md mx-auto shadow-2xl transform transition-all duration-500 hover:scale-105">
                     <div className="relative h-48 mb-6 rounded-2xl overflow-hidden">
@@ -114,8 +153,16 @@ export function EventsCarousel({ events, backgroundImage }: EventsCarouselProps)
                         src={currentEvent?.image || "/placeholder.svg"}
                         alt={currentEvent?.title || "Event"}
                         fill
-                        className="object-cover"
+                        className={cn(
+                          "object-cover transition-all duration-500",
+                          isTransitioning ? "opacity-80 scale-105" : "opacity-100 scale-100",
+                        )}
+                        priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
+                      {isTransitioning && (
+                        <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px] transition-all duration-300" />
+                      )}
                     </div>
 
                     <h3 className="font-heading text-2xl md:text-3xl text-zoo-teal-700 mb-4">{currentEvent?.title}</h3>

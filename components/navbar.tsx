@@ -25,6 +25,7 @@ const menuItems = [
         items: [
           { title: "Gallery", href: "/about/gallery" },
           { title: "Zoo Map", href: "/about/map" },
+          { title: "Contact Us", href: "/contact" }
         ],
       },
     ],
@@ -351,7 +352,7 @@ export function Navbar() {
             </div>
 
             {/* Mobile Navigation */}
-            <div className="lg:hidden flex items-center gap-3">
+            <div className="lg:hidden flex items-center gap-3 ml-10">
               <Link
                 href="/tickets"
                 className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold text-sm px-4 py-2 rounded-full transition-colors"

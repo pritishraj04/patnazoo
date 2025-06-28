@@ -44,13 +44,8 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/visit/accessibility" className="hover:underline">
-                      Accessibility
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/visit/faqs" className="hover:underline">
-                      FAQs
+                    <Link href="/visit/facilities" className="hover:underline">
+                      Facilities
                     </Link>
                   </li>
                 </ul>
@@ -65,17 +60,17 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/animals/birds" className="hover:underline">
+                    <Link href="/animals?category=birds" className="hover:underline">
                       Birds
                     </Link>
                   </li>
                   <li>
-                    <Link href="/animals/reptiles" className="hover:underline">
+                    <Link href="/animals?category=reptiles" className="hover:underline">
                       Reptiles
                     </Link>
                   </li>
                   <li>
-                    <Link href="/animals/plants" className="hover:underline">
+                    <Link href="/plants" className="hover:underline">
                       Plants
                     </Link>
                   </li>
@@ -127,7 +122,7 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/conservation/our-work" className="hover:underline">
+                    <Link href="/conservation" className="hover:underline">
                       Our Work
                     </Link>
                   </li>
