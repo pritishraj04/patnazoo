@@ -202,13 +202,13 @@ export default function FacilitiesPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/visitor-comfort.jpg"
                   alt="Zoo facilities overview"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
-                  <p className="text-white/90 text-sm">Modern facilities for visitor comfort</p>
+                  <p className="text-white/90 text-sm">A perfect day at Patna Zoo</p>
                 </div>
               </div>
             </div>

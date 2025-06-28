@@ -41,6 +41,36 @@ export default function HistoryPage() {
     }
   }, [])
 
+  const team = [
+    {
+      "name": "Ram Kr. Pandey",
+      "designation": "Veterinary Officer, Patna Zoo",
+      "message": "Patna zoo's 50th anniversary celebrates our commitment to wildlife conservation. This coffee table book showcases the remarkable journey of nurturing and protecting diverse species. Together, let's continue our efforts in preserving our natural heritage for generations to come."
+    },
+    {
+      "name": "Samrendra Bahadur Singh",
+      "designation": "Veterinary Officer, Patna Zoo",
+      "message": "Through the pages of this coffee table book, we celebrate the vibrant wildlife and conservation efforts of Patna zoo over the past 50 years. May it inspire future generations to protect and cherish our precious biodiversity for years to come."
+    },
+    {
+      "name": "Anand Kumar",
+      "designation": "ROF, Zoology section, Patna Zoo",
+      "message": "The first cage of Patna Zoo stands as a testament to its remarkable five-decade journey. Its structure, meticulously designed by architects, encapsulates the enduring legacy of the zoo. With every passing year, it has stood the test of time, witnessing the evolution and progress of the zoo and its inhabitants. The First Cage stands tall, embodying the rich history and growth of Patna Zoo in a remarkable 50-year span."
+    },
+    {
+      "name": "Arvind Kr. Verma",
+      "designation": "ROF, Botany section, Patna Zoo",
+      "message": "Delighted to present the coffee table book celebrating the 50th anniversary of Patna Zoo. It showcases the incredible bio-diversity, conservation efforts, and memorable moments. A heartfelt tribute to the zoo's rich heritage and its role in promoting wildlife awareness. Enjoy the journey!"
+    },
+    {
+      "name": "Arif",
+      "designation": "Field Biologist, Patna Zoo",
+      "message": "Congratulations to Patna Zoo on its 50th anniversary! As a field biologist, I am inspired by the incredible biodiversity and conservation efforts here. May this coffee table book showcase the zoo's journey and inspire future generations to protect our precious wildlife."
+    }
+
+  ]
+  
+
   const timelineEvents = [
     {
       year: "1969",
@@ -270,17 +300,19 @@ export default function HistoryPage() {
                 >
                   <div className="relative h-64">
                     <Image
-                      src={`/placeholder.svg?height=300&width=300`}
+                      src={`/images/teams/arif.png`}
                       alt={`Former Director ${index}`}
                       fill
                       className="object-cover"
                     />
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="font-heading text-xl mb-1">Dr. Rajesh Kumar</h3>
-                    <p className="text-zoo-yellow-600 text-sm mb-3">Director (1995-2002)</p>
+                    <h3 className="font-heading text-xl mb-1">Ram Kr.
+                    Pandey</h3>
+                    <p className="text-zoo-yellow-600 text-sm mb-3">Veterinary Officer,
+                    Patna Zoo</p>
                     <p className="text-white/80">
-                      Led major conservation initiatives and facility modernization during his tenure.
+                    Patna Zoo's 50th anniversary marks a proud milestone in our journey of wildlife conservation. This coffee table book captures our legacy of protecting diverse species and preserving nature for future generations.
                     </p>
                   </CardContent>
                 </Card>
