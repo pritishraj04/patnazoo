@@ -281,10 +281,10 @@ export default function AnimalDetailPage() {
           <div className="zoo-container">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="animate-on-scroll">
-                <h2 className="font-heading text-4xl text-white mb-6">Conservation Status</h2>
+                <h2 className="font-heading text-4xl text-white mb-6">Conservation Status : Endangred (EN)</h2>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="font-heading text-xl text-zoo-yellow-600 mb-3">Current Threats</h3>
+                    <h3 className="font-heading text-xl text-zoo-yellow-600 mb-3">IUCN RED LIST THREATS</h3>
                     <ul className="space-y-2">
                       {animal.threats.map((threat, index) => (
                         <li key={index} className="flex items-center gap-2 text-white/90">
@@ -314,7 +314,7 @@ export default function AnimalDetailPage() {
               <div className="animate-on-scroll stagger-2">
                 <div className="relative h-80 rounded-2xl overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
+                    src="/"
                     alt="Tiger conservation"
                     fill
                     className="object-cover"
