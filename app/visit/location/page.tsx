@@ -1,25 +1,37 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/hero-section"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { MapPin, Car, Bus, Train, Plane, Navigation, Clock, Phone } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Navbar } from "@/components/navbar";
+import Link from "next/link";
+import { Footer } from "@/components/footer";
+import { HeroSection } from "@/components/hero-section";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  MapPin,
+  Download,
+  Car,
+  Bus,
+  Train,
+  Plane,
+  Navigation,
+  Clock,
+  Phone,
+} from "lucide-react";
 
 export default function LocationPage() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    setIsVisible(true);
+  }, []);
 
   const transportOptions = [
     {
       icon: <Car className="w-8 h-8" />,
       title: "By Car",
-      description: "Drive to Bailey Road, Patna. Free parking available at the zoo entrance.",
+      description:
+        "Drive to Bailey Road, Patna. Free parking available at the zoo entrance.",
       details: [
         "From Patna Junction: 15 minutes via Bailey Road",
         "From Patna Airport: 25 minutes via NH-83",
@@ -30,7 +42,8 @@ export default function LocationPage() {
     {
       icon: <Bus className="w-8 h-8" />,
       title: "By Bus",
-      description: "Regular city bus services operate along Bailey Road with direct stops at the zoo.",
+      description:
+        "Regular city bus services operate along Bailey Road with direct stops at the zoo.",
       details: [
         "Bus routes: 12, 15, 23, 45 stop at Patna Zoo",
         "Frequency: Every 10-15 minutes",
@@ -41,7 +54,8 @@ export default function LocationPage() {
     {
       icon: <Train className="w-8 h-8" />,
       title: "By Train",
-      description: "Patna Junction is the nearest railway station, well connected to major cities.",
+      description:
+        "Patna Junction is the nearest railway station, well connected to major cities.",
       details: [
         "Distance from Patna Junction: 8 km",
         "Auto-rickshaw fare: ₹80-100",
@@ -52,7 +66,8 @@ export default function LocationPage() {
     {
       icon: <Plane className="w-8 h-8" />,
       title: "By Air",
-      description: "Jay Prakash Narayan International Airport is the nearest airport.",
+      description:
+        "Jay Prakash Narayan International Airport is the nearest airport.",
       details: [
         "Distance from airport: 12 km",
         "Taxi fare: ₹250-350",
@@ -60,16 +75,20 @@ export default function LocationPage() {
         "Journey time: 30-40 minutes",
       ],
     },
-  ]
+  ];
 
   const landmarks = [
-    { name: "Patna Junction Railway Station", distance: "8 km", direction: "Southeast" },
+    {
+      name: "Patna Junction Railway Station",
+      distance: "8 km",
+      direction: "Southeast",
+    },
     { name: "Gandhi Maidan", distance: "6 km", direction: "South" },
     { name: "Patna Museum", distance: "4 km", direction: "South" },
     { name: "Boring Road", distance: "3 km", direction: "Southwest" },
     { name: "Kankarbagh", distance: "5 km", direction: "West" },
     { name: "Danapur", distance: "12 km", direction: "West" },
-  ]
+  ];
 
   return (
     <>
@@ -88,14 +107,22 @@ export default function LocationPage() {
           <div className="zoo-container">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div
-                className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`transition-all duration-1000 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
-                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">FIND US</h2>
+                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
+                  FIND US
+                </h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <MapPin className="w-6 h-6 text-zoo-yellow-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-heading text-xl text-white mb-2">Address</h3>
+                      <h3 className="font-heading text-xl text-white mb-2">
+                        Address
+                      </h3>
                       <p className="text-white/90">
                         Sanjay Gandhi Biological Park
                         <br />
@@ -109,7 +136,9 @@ export default function LocationPage() {
                   <div className="flex items-start gap-4">
                     <Phone className="w-6 h-6 text-zoo-yellow-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-heading text-xl text-white mb-2">Contact</h3>
+                      <h3 className="font-heading text-xl text-white mb-2">
+                        Contact
+                      </h3>
                       <p className="text-white/90">
                         Phone: +91 7070707070
                         <br />
@@ -121,7 +150,9 @@ export default function LocationPage() {
                   <div className="flex items-start gap-4">
                     <Clock className="w-6 h-6 text-zoo-yellow-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-heading text-xl text-white mb-2">Opening Hours</h3>
+                      <h3 className="font-heading text-xl text-white mb-2">
+                        Opening Hours
+                      </h3>
                       <p className="text-white/90">
                         Tuesday - Sunday: 10:00 AM - 6:00 PM
                         <br />
@@ -133,14 +164,29 @@ export default function LocationPage() {
               </div>
 
               <div
-                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <div className="w-full h-full bg-zoo-teal-600 flex items-center justify-center rounded-lg">
                   <div className="text-center text-white">
-                    <MapPin className="w-16 h-16 mx-auto mb-4" />
-                    <p className="text-lg font-medium">Interactive Map</p>
-                    <p className="text-sm opacity-80">Sanjay Gandhi Biological Park</p>
-                    <p className="text-sm opacity-80">Bailey Road, Patna</p>
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.0333387688593!2d85.10212109999999!3d25.603808400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed570303d1e895%3A0x9afbc441239dd40a!2sPatna%20Zoo!5e0!3m2!1sen!2sin!4v1751109448138!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ 
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 'none'
+                      }}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
                   </div>
                 </div>
               </div>
@@ -152,24 +198,38 @@ export default function LocationPage() {
         <section className="py-16 bg-zoo-teal-800">
           <div className="zoo-container">
             <div
-              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`text-center mb-12 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">HOW TO REACH</h2>
-              <p className="text-xl text-white/80">Multiple convenient ways to reach Patna Zoo</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
+                HOW TO REACH
+              </h2>
+              <p className="text-xl text-white/80">
+                Multiple convenient ways to reach Patna Zoo
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {transportOptions.map((option, index) => (
                 <Card
                   key={index}
-                  className={`bg-white/10 border-white/20 text-white transition-all duration-500 hover:scale-105 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  className={`bg-white/10 border-white/20 text-white transition-all duration-500 hover:scale-105 ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8"
+                  }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <CardHeader>
                     <div className="flex items-center gap-4">
                       <div className="text-zoo-yellow-600">{option.icon}</div>
                       <div>
-                        <CardTitle className="font-heading text-2xl">{option.title}</CardTitle>
+                        <CardTitle className="font-heading text-2xl">
+                          {option.title}
+                        </CardTitle>
                         <p className="text-white/80">{option.description}</p>
                       </div>
                     </div>
@@ -179,7 +239,9 @@ export default function LocationPage() {
                       {option.details.map((detail, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <div className="w-1.5 h-1.5 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-white/90 text-sm">{detail}</span>
+                          <span className="text-white/90 text-sm">
+                            {detail}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -194,24 +256,42 @@ export default function LocationPage() {
         <section className="py-16 bg-zoo-teal-700">
           <div className="zoo-container">
             <div
-              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`text-center mb-12 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">NEARBY LANDMARKS</h2>
-              <p className="text-xl text-white/80">Navigate using these well-known locations</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
+                NEARBY LANDMARKS
+              </h2>
+              <p className="text-xl text-white/80">
+                Navigate using these well-known locations
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {landmarks.map((landmark, index) => (
                 <Card
                   key={index}
-                  className={`bg-white/10 border-white/20 text-white text-center transition-all duration-500 hover:scale-105 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  className={`bg-white/10 border-white/20 text-white text-center transition-all duration-500 hover:scale-105 ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8"
+                  }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <CardContent className="p-6">
                     <Navigation className="w-8 h-8 text-zoo-yellow-600 mx-auto mb-3" />
-                    <h3 className="font-heading text-lg mb-2">{landmark.name}</h3>
-                    <p className="text-zoo-yellow-600 font-medium">{landmark.distance}</p>
-                    <p className="text-white/80 text-sm">{landmark.direction}</p>
+                    <h3 className="font-heading text-lg mb-2">
+                      {landmark.name}
+                    </h3>
+                    <p className="text-zoo-yellow-600 font-medium">
+                      {landmark.distance}
+                    </p>
+                    <p className="text-white/80 text-sm">
+                      {landmark.direction}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -224,84 +304,120 @@ export default function LocationPage() {
           <div className="zoo-container">
             <div className="grid md:grid-cols-2 gap-12">
               <Card
-                className={`bg-white/10 border-white/20 text-white ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`bg-white/10 border-white/20 text-white ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <CardHeader>
-                  <CardTitle className="font-heading text-2xl">Travel Tips</CardTitle>
+                  <CardTitle className="font-heading text-2xl">
+                    Travel Tips
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-zoo-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-zoo-teal-900 text-sm font-bold">1</span>
+                      <span className="text-zoo-teal-900 text-sm font-bold">
+                        1
+                      </span>
                     </div>
                     <p className="text-white/90">
-                      <strong>Best Time to Travel:</strong> Avoid peak hours (8-10 AM, 5-7 PM) for smoother traffic
+                      <strong>Best Time to Travel:</strong> Avoid peak hours
+                      (8-10 AM, 5-7 PM) for smoother traffic
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-zoo-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-zoo-teal-900 text-sm font-bold">2</span>
+                      <span className="text-zoo-teal-900 text-sm font-bold">
+                        2
+                      </span>
                     </div>
                     <p className="text-white/90">
-                      <strong>Parking:</strong> Arrive early during weekends and holidays for better parking spots
+                      <strong>Parking:</strong> Arrive early during weekends and
+                      holidays for better parking spots
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-zoo-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-zoo-teal-900 text-sm font-bold">3</span>
+                      <span className="text-zoo-teal-900 text-sm font-bold">
+                        3
+                      </span>
                     </div>
                     <p className="text-white/90">
-                      <strong>Public Transport:</strong> City buses are the most economical option during peak hours
+                      <strong>Public Transport:</strong> City buses are the most
+                      economical option during peak hours
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-zoo-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-zoo-teal-900 text-sm font-bold">4</span>
+                      <span className="text-zoo-teal-900 text-sm font-bold">
+                        4
+                      </span>
                     </div>
                     <p className="text-white/90">
-                      <strong>Navigation:</strong> Use "Patna Chidiya Ghar" as destination in GPS apps
+                      <strong>Navigation:</strong> Use "Patna Chidiya Ghar" as
+                      destination in GPS apps
                     </p>
                   </div>
                 </CardContent>
               </Card>
 
               <Card
-                className={`bg-white/10 border-white/20 text-white ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`bg-white/10 border-white/20 text-white ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <CardHeader>
-                  <CardTitle className="font-heading text-2xl">Accessibility</CardTitle>
+                  <CardTitle className="font-heading text-2xl">
+                    Accessibility
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-zoo-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-zoo-teal-900 text-sm font-bold">♿</span>
+                      <span className="text-zoo-teal-900 text-sm font-bold">
+                        ♿
+                      </span>
                     </div>
                     <p className="text-white/90">
-                      <strong>Wheelchair Access:</strong> Main pathways are paved and accessible
+                      <strong>Wheelchair Access:</strong> Main pathways are
+                      paved and accessible
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-zoo-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-zoo-teal-900 text-sm font-bold">P</span>
+                      <span className="text-zoo-teal-900 text-sm font-bold">
+                        P
+                      </span>
                     </div>
                     <p className="text-white/90">
-                      <strong>Accessible Parking:</strong> Reserved spots available near the entrance
+                      <strong>Accessible Parking:</strong> Reserved spots
+                      available near the entrance
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-zoo-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-zoo-teal-900 text-sm font-bold">🚻</span>
+                      <span className="text-zoo-teal-900 text-sm font-bold">
+                        🚻
+                      </span>
                     </div>
                     <p className="text-white/90">
-                      <strong>Facilities:</strong> Accessible restrooms and seating areas throughout the zoo
+                      <strong>Facilities:</strong> Accessible restrooms and
+                      seating areas throughout the zoo
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-zoo-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-zoo-teal-900 text-sm font-bold">ℹ</span>
+                      <span className="text-zoo-teal-900 text-sm font-bold">
+                        ℹ
+                      </span>
                     </div>
                     <p className="text-white/90">
-                      <strong>Assistance:</strong> Staff available to help visitors with special needs
+                      <strong>Assistance:</strong> Staff available to help
+                      visitors with special needs
                     </p>
                   </div>
                 </CardContent>
@@ -314,13 +430,32 @@ export default function LocationPage() {
         <section className="py-16 bg-gradient-to-r from-zoo-teal-600 to-zoo-teal-700">
           <div className="zoo-container">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">PLAN YOUR JOURNEY</h2>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
+                PLAN YOUR JOURNEY
+              </h2>
               <p className="text-xl text-white/80 mb-8">
-                Ready to visit? Check our opening hours and ticket prices before you travel.
+                Ready to visit? Check our opening hours and ticket prices before
+                you travel.
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
-                <Button className="zoo-button-primary">VIEW TICKETS & TIMINGS</Button>
-                <Button className="zoo-button-secondary">DOWNLOAD MAP</Button>
+                <Link
+                  href="/visit/tickets"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex gap-4 justify-center zoo-button-primary"
+                >
+                  VIEW TICKETS & TIMINGS
+                </Link>
+                <Link
+                  href="/downloads/patna-zoo-map.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="flex gap-4 justify-center  zoo-button-secondary"
+                >
+                  <Download className="w-5 h-5" />
+                  <span>Download PDF Map</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -329,5 +464,5 @@ export default function LocationPage() {
 
       <Footer />
     </>
-  )
+  );
 }
