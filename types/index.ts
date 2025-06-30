@@ -4,6 +4,7 @@ import { Animal, AnimalInfo } from "./zoological";
 import { LandingInfo } from "./landing";
 import { FunFactsInfo } from "./funfacts";
 import { DirectorMessageInfo } from "./directormessage";
+import { CarouselImage } from "./carousel";
 
 export type {
   PlantInfo,
@@ -14,4 +15,5 @@ export type {
   LandingInfo,
   FunFactsInfo,
   DirectorMessageInfo,
+  CarouselImage,
 };

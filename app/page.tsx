@@ -14,12 +14,13 @@ import { EventsCarousel } from "@/components/events-carousel";
 import { ImageCarousel } from "@/components/image-carousel";
 import { PriorityPopup } from "@/components/priority-popup";
 import { useApiData } from "@/hooks/index";
-import { FunFactsInfo } from "@/types/index";
+import { FunFactsInfo, CarouselImage } from "@/types/index";
 
 export default function HomePage() {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
 
   const { data: funFactsData } = useApiData<FunFactsInfo[]>("/funfacts");
+  const { data: carouselImagesData } = useApiData<CarouselImage[]>("/sliders");
 
   // Get current day of year to determine which fact to show
   useEffect(() => {
@@ -55,6 +56,8 @@ export default function HomePage() {
     };
   }, []);
 
+  const sliderImages = carouselImagesData?.map((item) => item.slider_img);
+ 
   const featuredAnimals = [
     {
       id: 1,
@@ -194,10 +197,7 @@ export default function HomePage() {
       <PriorityPopup />
 
       <main>
-        <HeroSection
-          images={["/images/hero/b1.jpg", "/images/hero/b2.jpg", "/images/hero/b3.jpg", "/images/hero/b4.jpg", "/images/hero/b5.jpg", "/images/hero/b6.jpg"]} // Use carousel on home page
-          height="large"
-        />
+        <HeroSection images={sliderImages} height="large" />
 
         {/* Image Carousel */}
         <ImageCarousel images={carouselImages} />
@@ -733,7 +733,12 @@ export default function HomePage() {
               </div>
 
               <div className="relative h-96 rounded-lg overflow-hidden animate-on-scroll stagger-2">
-                <Image src="/images/sustainable-dream.jpg" alt="Conservation work" fill className="object-cover" />
+                <Image
+                  src="/images/sustainable-dream.jpg"
+                  alt="Conservation work"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>

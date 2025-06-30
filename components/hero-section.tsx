@@ -23,7 +23,7 @@ export function HeroSection({
 }: HeroSectionProps) {
   // Determine which mode to use
   const isCarousel = images && images.length > 1
-  const displayImage = backgroundImage || (images && images[0]) || "/placeholder.svg"
+  const displayImage = backgroundImage || (images && images[0]) || "/images/hero/b1.jpg"
 
   const autoplayRef = useRef(
     AutoPlay({
