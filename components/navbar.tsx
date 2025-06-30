@@ -7,7 +7,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { cn } from "@/lib/utils";
 import { useApiData } from "@/hooks/index";
 import { LandingInfo } from "@/types/index";
-
+import Image from "next/image"
 // Simplified menu structure without overview pages
 const menuItems = [
   {
@@ -132,6 +132,10 @@ export function Navbar() {
 
   const navRef = useRef<HTMLElement>(null)
   const timeoutRef = useRef<number | null>(null)
+
+  const { data: landingPageData, loading } = useApiData<LandingInfo>(
+    "/landingpagedetails"
+  );
 
   // Handle scroll effect for sticky header
   useEffect(() => {
