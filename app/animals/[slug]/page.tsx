@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
@@ -21,6 +21,7 @@ import {
 import { useApiData, useConvertStringToArray } from "@/hooks/index";
 import { AnimalInfo } from "@/types/index";
 import { useParams } from "next/navigation";
+import { iucnImages } from "@/public/images/INCU";
 
 export default function AnimalDetailPage() {
   const [activeImage, setActiveImage] = useState(0);
@@ -30,6 +31,7 @@ export default function AnimalDetailPage() {
   const { data: animalDetails, loading } = useApiData<AnimalInfo>(
     `/zoological/${slug}`
   );
+  console.log("Animals Details", animalDetails);
 
   const didYouKnowArray = useConvertStringToArray(animalDetails?.fun_facts);
   const threatsArray = useConvertStringToArray(animalDetails?.CS_tent);
@@ -37,6 +39,14 @@ export default function AnimalDetailPage() {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const sectionImages = useMemo(() => {
+    try {
+      return JSON.parse(animalDetails?.section_image || "[]");
+    } catch {
+      return [];
+    }
+  }, [animalDetails]);
 
   const facts = [
     {
@@ -118,9 +128,12 @@ export default function AnimalDetailPage() {
 
       <main>
         <HeroSection
-          title={animalDetails.name}
-          subtitle={animalDetails.species}
-          backgroundImage="/placeholder.svg?height=800&width=1200"
+          // title={animalDetails.name}
+          // subtitle={animalDetails.species}
+          // backgroundImage={sectionImages[activeImage] || "/placeholder.svg"}
+          // backgroundImage={"/placeholder.svg"}
+          backgroundImage={(sectionImages && sectionImages.length > 0 && sectionImages[activeImage]) || "/placeholder.svg"}
+
           height="large"
         />
 
@@ -128,7 +141,7 @@ export default function AnimalDetailPage() {
         <section className="bg-zoo-teal-800 py-6">
           <div className="zoo-container">
             <div className="flex gap-2 justify-center overflow-x-auto pb-2">
-              {Array.from({ length: 4 }).map((_, index) => (
+              {sectionImages?.map((photo: any, index: any) => (
                 <button
                   key={index}
                   className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
@@ -140,9 +153,8 @@ export default function AnimalDetailPage() {
                 >
                   <div className="relative w-full h-full">
                     <Image
-                      // src={photo || "/placeholder.svg"}
-                      src={"/placeholder.svg"}
-                      alt={`${animalDetails?.name} ${index + 1}`}
+                      src={photo || "/placeholder.svg"}
+                      alt={`${animalDetails.name} ${index + 1}`}
                       fill
                       className="object-cover"
                     />
@@ -156,8 +168,12 @@ export default function AnimalDetailPage() {
         {/* Animal Title Section */}
         <section className="py-8 bg-zoo-teal-700">
           <div className="zoo-container text-center">
-            <h1 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg mb-2">{animalDetails.name}</h1>
-            <p className="text-lg md:text-2xl text-white/90 drop-shadow-md">{animalDetails.species}</p>
+            <h1 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg mb-2">
+              {animalDetails.name}
+            </h1>
+            <p className="text-lg md:text-2xl text-white/90 drop-shadow-md">
+              {animalDetails.species}
+            </p>
           </div>
         </section>
 
@@ -307,10 +323,14 @@ export default function AnimalDetailPage() {
           <div className="zoo-container">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="animate-on-scroll">
-                <h2 className="font-heading text-4xl text-white mb-6">Conservation Status</h2>
+                <h2 className="font-heading text-4xl text-white mb-6">
+                  Conservation Status
+                </h2>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="font-heading text-xl text-zoo-yellow-600 mb-3">Current Threats</h3>
+                    <h3 className="font-heading text-xl text-zoo-yellow-600 mb-3">
+                      Current Threats
+                    </h3>
                     <ul className="space-y-2">
                       {threatsArray.map((threat, index) => (
                         <li
@@ -349,13 +369,19 @@ export default function AnimalDetailPage() {
 
               <div className="animate-on-scroll stagger-2">
                 <div className="relative rounded-2xl overflow-hidden">
-                  <Image
-                    src="/images/INCU/6-EN.svg"
-                    alt="Tiger conservation"
-                    width={644}
-                    height={324}
-                    className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
-                  />
+                  {animalDetails?.IUCN && (
+                    <Image
+                      src={
+                        iucnImages[
+                          animalDetails.IUCN as keyof typeof iucnImages
+                        ] || iucnImages["1"]
+                      }
+                      alt={`${animalDetails.name} IUCN category`}
+                      width={644}
+                      height={324}
+                      className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
+                    />
+                  )}
                   {/* <div className="absolute inset-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent flex items-end p-6">
                     <div>
                       <h3 className="font-heading text-2xl text-white mb-2">

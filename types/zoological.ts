@@ -30,6 +30,8 @@ export interface AnimalInfo {
   CS_image: string;
   image: string;
   section_image: string;
+  IUCN: string;
+  animal_url: string | null;
   created_at: string | null;
   updated_at: string | null;
 }
