@@ -118,9 +118,8 @@ export default function AnimalDetailPage() {
 
       <main>
         <HeroSection
-          title={animalDetails?.name}
-          subtitle={animalDetails?.species}
-          // backgroundImage={animal.photos[activeImage]}
+          title={animalDetails.name}
+          subtitle={animalDetails.species}
           backgroundImage="/placeholder.svg?height=800&width=1200"
           height="large"
         />
@@ -151,6 +150,14 @@ export default function AnimalDetailPage() {
                 </button>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Animal Title Section */}
+        <section className="py-8 bg-zoo-teal-700">
+          <div className="zoo-container text-center">
+            <h1 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg mb-2">{animalDetails.name}</h1>
+            <p className="text-lg md:text-2xl text-white/90 drop-shadow-md">{animalDetails.species}</p>
           </div>
         </section>
 
@@ -300,14 +307,10 @@ export default function AnimalDetailPage() {
           <div className="zoo-container">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="animate-on-scroll">
-                <h2 className="font-heading text-4xl text-white mb-6">
-                  Conservation Status
-                </h2>
+                <h2 className="font-heading text-4xl text-white mb-6">Conservation Status</h2>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="font-heading text-xl text-zoo-yellow-600 mb-3">
-                      Current Threats
-                    </h3>
+                    <h3 className="font-heading text-xl text-zoo-yellow-600 mb-3">Current Threats</h3>
                     <ul className="space-y-2">
                       {threatsArray.map((threat, index) => (
                         <li
@@ -345,14 +348,15 @@ export default function AnimalDetailPage() {
               </div>
 
               <div className="animate-on-scroll stagger-2">
-                <div className="relative h-80 rounded-2xl overflow-hidden">
+                <div className="relative rounded-2xl overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
+                    src="/images/INCU/6-EN.svg"
                     alt="Tiger conservation"
-                    fill
-                    className="object-cover"
+                    width={644}
+                    height={324}
+                    className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent flex items-end p-6">
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent flex items-end p-6">
                     <div>
                       <h3 className="font-heading text-2xl text-white mb-2">
                         Help Save Tigers
@@ -361,7 +365,7 @@ export default function AnimalDetailPage() {
                         Your support helps protect these magnificent creatures
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

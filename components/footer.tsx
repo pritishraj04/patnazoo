@@ -1,32 +1,25 @@
 import Link from "next/link"
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
+import Image from "next/image"
+
 
 export function Footer() {
   return (
     <footer className="bg-zoo-teal-700 py-8">
       <div className="zoo-container">
         <div className="bg-zoo-beige-light text-zoo-teal-700 rounded-3xl p-8 md:p-12">
-          <div className="flex flex-col lg:flex-row gap-8 justify-between mb-8">
-            <div className="flex flex-col sm:flex-row lg:flex-col items-start gap-4">
+          <div className="flex flex-col lg:flex-row gap-x-28 gap-y-12 justify-between mb-8">
+            <div className="flex lg:flex-col items-center gap-4">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-zoo-teal-700 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white font-bold text-xl">P</span>
-                </div>
-                <div>
-                  <div className="font-heading text-2xl leading-none">Patna</div>
-                  <div className="font-heading text-2xl leading-none">Zoo</div>
-                </div>
+                <Image src="/images/logo-bihar-sarkar.svg" alt="Government logo" width={70} height={20} className="ml-4" />
               </div>
 
               <div className="flex items-center gap-3 sm:ml-0 lg:ml-0">
-                <div className="w-8 h-8 bg-zoo-teal-700 rounded flex items-center justify-center flex-shrink-0">
-                  <span className="text-white font-bold text-xs">BS</span>
-                </div>
-                <div className="text-sm text-zoo-teal-600">Bihar Sarkar</div>
+                <Image src="/images/logo-small.svg" alt="Logo" width={120} height={90} className="ml-4" />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
                 <h4 className="font-bold mb-4">Quick Links</h4>
                 <ul className="space-y-2 text-sm">
@@ -51,13 +44,8 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/visit/accessibility" className="hover:underline">
-                      Accessibility
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/visit/faqs" className="hover:underline">
-                      FAQs
+                    <Link href="/visit/facilities" className="hover:underline">
+                      Facilities
                     </Link>
                   </li>
                 </ul>
@@ -72,17 +60,17 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/animals/birds" className="hover:underline">
+                    <Link href="/animals?category=birds" className="hover:underline">
                       Birds
                     </Link>
                   </li>
                   <li>
-                    <Link href="/animals/reptiles" className="hover:underline">
+                    <Link href="/animals?category=reptiles" className="hover:underline">
                       Reptiles
                     </Link>
                   </li>
                   <li>
-                    <Link href="/animals/plants" className="hover:underline">
+                    <Link href="/plants" className="hover:underline">
                       Plants
                     </Link>
                   </li>
@@ -134,7 +122,7 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/conservation/our-work" className="hover:underline">
+                    <Link href="/conservation" className="hover:underline">
                       Our Work
                     </Link>
                   </li>

@@ -202,13 +202,13 @@ export default function FacilitiesPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/visitor-comfort.jpg"
                   alt="Zoo facilities overview"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
-                  <p className="text-white/90 text-sm">Modern facilities for visitor comfort</p>
+                  <p className="text-white/90 text-sm">A perfect day at Patna Zoo</p>
                 </div>
               </div>
             </div>
@@ -327,9 +327,21 @@ export default function FacilitiesPage() {
               <CardContent className="p-0">
                 <div className="relative h-96 bg-zoo-teal-600 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <MapPin className="w-16 h-16 mx-auto mb-4" />
-                    <p className="text-lg font-medium">Interactive Facility Map</p>
-                    <p className="text-sm opacity-80">Locate all amenities and services</p>
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.0333387688593!2d85.10212109999999!3d25.603808400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed570303d1e895%3A0x9afbc441239dd40a!2sPatna%20Zoo!5e0!3m2!1sen!2sin!4v1751109448138!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ 
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 'none'
+                      }}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
                   </div>
                 </div>
                 <div className="p-6">

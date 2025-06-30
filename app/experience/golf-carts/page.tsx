@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -398,27 +398,64 @@ export default function GolfCartsPage() {
                                 </Badge>
                               </div>
                               <p className="text-white/70 text-sm mb-1">{item.description}</p>
-                              {item.duration && (
-                                <p className="text-zoo-yellow-600 text-xs">Duration: {item.duration}</p>
-                              )}
-                              {item.capacity && (
-                                <p className="text-zoo-yellow-600 text-xs">Capacity: {item.capacity}</p>
-                              )}
-                              {item.features && <p className="text-white/60 text-xs">Features: {item.features}</p>}
-                              {item.distance && (
-                                <p className="text-zoo-yellow-600 text-xs">Distance: {item.distance}</p>
-                              )}
-                              {item.highlights && (
-                                <p className="text-white/60 text-xs">Highlights: {item.highlights}</p>
-                              )}
-                              {item.benefit && <p className="text-zoo-yellow-600 text-xs">Benefit: {item.benefit}</p>}
-                              {item.discount && <p className="text-green-400 text-xs">Offer: {item.discount}</p>}
+                              {Object.entries(item).map(([key, value]) => {
+                                if (
+                                  [
+                                    "duration",
+                                    "capacity",
+                                    "features",
+                                    "distance",
+                                    "highlights",
+                                    "benefit",
+                                    "discount",
+                                    "price"
+                                  ].includes(key) && value
+                                ) {
+                                  switch (key) {
+                                    case "duration":
+                                      return (
+                                        <p key={key} className="text-zoo-yellow-600 text-xs">Duration: {value}</p>
+                                      )
+                                    case "capacity":
+                                      return (
+                                        <p key={key} className="text-zoo-yellow-600 text-xs">Capacity: {value}</p>
+                                      )
+                                    case "features":
+                                      return (
+                                        <p key={key} className="text-white/60 text-xs">Features: {value}</p>
+                                      )
+                                    case "distance":
+                                      return (
+                                        <p key={key} className="text-zoo-yellow-600 text-xs">Distance: {value}</p>
+                                      )
+                                    case "highlights":
+                                      return (
+                                        <p key={key} className="text-white/60 text-xs">Highlights: {value}</p>
+                                      )
+                                    case "benefit":
+                                      return (
+                                        <p key={key} className="text-zoo-yellow-600 text-xs">Benefit: {value}</p>
+                                      )
+                                    case "discount":
+                                      return (
+                                        <p key={key} className="text-green-400 text-xs">Offer: {value}</p>
+                                      )
+                                    case "price":
+                                      if (typeof value === "number" && value > 0) {
+                                        return (
+                                          <div key={key} className="text-right ml-4">
+                                            <span className="text-lg font-bold text-zoo-yellow-600">₹{value}</span>
+                                          </div>
+                                        )
+                                      }
+                                      return null
+                                    default:
+                                      return null
+                                  }
+                                }
+                                return null
+                              })}
                             </div>
-                            {item.price !== undefined && item.price > 0 && (
-                              <div className="text-right ml-4">
-                                <span className="text-lg font-bold text-zoo-yellow-600">₹{item.price}</span>
-                              </div>
-                            )}
                           </div>
                         ))}
                       </div>

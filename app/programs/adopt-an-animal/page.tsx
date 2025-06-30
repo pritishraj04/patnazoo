@@ -123,6 +123,37 @@ export default function AdoptAnimalPage() {
           height="medium"
         />
 
+              {/* Key Personnel Banner */}
+      <section className="bg-zoo-teal-800 py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <Badge variant="outline" className="bg-zoo-yellow-600 text-zoo-teal-900 border-zoo-yellow-600 mb-4">
+            PATNA ZOO - ADOPTION
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">YOU CAN MAKE A CHANGE</h2>
+            <p className="text-white/80 text-lg max-w-3xl mx-auto">
+              Under the esteemed guidance and support of our distinguished leaders, Patna Zoo continues to excel in
+              wildlife conservation and public education.
+            </p>
+          </div>
+
+          {/* Key Personnel Poster */}
+          <div className="max-w-6xl mx-auto">
+            <div className="relative">
+              <img
+                src="/images/breeding-banner.jpg"
+                alt="Key Personnel - Chief Minister, Prime Minister and other dignitaries"
+                className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
+                style={{
+                  aspectRatio: "21/9",
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
         {/* Introduction */}
         <section className="py-16 bg-zoo-teal-700">
           <div className="zoo-container">
@@ -215,7 +246,7 @@ export default function AdoptAnimalPage() {
                           </div>
 
                           <div className="mb-6">
-                            <h4 className="font-heading text-sm text-white mb-3 uppercase tracking-wide">
+                            <h4 className="font-heading text-sm text-white mb-3 uppercase tracking-wider">
                               Adoption Benefits
                             </h4>
                             <ul className="space-y-2">

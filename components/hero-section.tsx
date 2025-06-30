@@ -58,17 +58,20 @@ export function HeroSection({
   }, [emblaApi, onSelect])
 
   const heightClasses = {
-    full: "h-screen",
-    large: "h-[40svh] min-h-[400px] sm:h-[80svh] sm:min-h-[700px]",
-    medium: "h-[60svh] min-h-[400px] sm:h-[60svh] sm:min-h-[400px]",
-    small: "h-[40vh] min-h-[300px] sm:h-[30vh] sm:min-h-[200px]",
+    full: "h-screen min-h-[400px] sm:min-h-[600px] md:min-h-[800px]",
+    large:
+      "h-[50vh] min-h-[350px] sm:h-[60vh] sm:min-h-[400px] md:h-[70vh] md:min-h-[600px] lg:h-[80vh] lg:min-h-[700px]",
+    medium:
+      "h-[40vh] min-h-[250px] sm:h-[50vh] sm:min-h-[350px] md:h-[60vh] md:min-h-[400px] lg:h-[70vh] lg:min-h-[500px]",
+    small:
+      "h-[30vh] min-h-[180px] sm:h-[35vh] sm:min-h-[200px] md:h-[40vh] md:min-h-[250px] lg:h-[45vh] lg:min-h-[300px]",
   }
 
   return (
     <section className={cn("relative overflow-hidden flex flex-col justify-center", heightClasses[height])}>
       {isCarousel ? (
-        <div className="embla h-full" ref={emblaRef}>
-          <div className="embla__container flex h-full">
+        <div className="embla h-full w-full" ref={emblaRef}>
+          <div className="embla__container flex h-full w-full">
             {images.map((image, index) => (
               <div key={index} className="embla__slide flex-none w-full h-full relative">
                 <Image

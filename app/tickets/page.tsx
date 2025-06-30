@@ -13,6 +13,7 @@ import { Users, Clock, MapPin, Calendar, AlertTriangle, Info } from "lucide-reac
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import Link from "next/link"
 
 export default function TicketsPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -696,7 +697,7 @@ export default function TicketsPage() {
                     <Button
                       type="submit"
                       disabled={!isFormValid}
-                      className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wide rounded-full transition-all duration-300 px-10 py-6 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wider rounded-full transition-all duration-300 px-10 py-6 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       CONFIRM BOOKING
                     </Button>
@@ -749,13 +750,12 @@ export default function TicketsPage() {
                   <p className="mb-2">Group discounts available</p>
                   <p className="mb-2">Student rates: School ₹10, College ₹30</p>
                   <p className="mb-2">January 1st special pricing</p>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="mt-2 border-white text-white hover:bg-white hover:text-zoo-teal-700"
+                  <Link
+                    href="/contact"
+                    className="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-8 py-3 rounded-full transition-colors duration-200"
                   >
                     Contact Us
-                  </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>

@@ -306,7 +306,7 @@ export function PriorityPopup({ asSection = false }: PriorityPopupProps) {
                       {currentMessage.title}
                     </h3>
                     <span
-                      className={`text-xs font-medium ${styles.accentColor} uppercase tracking-wide px-2 py-1 rounded-full bg-white/5`}
+                      className={`text-xs font-medium ${styles.accentColor} uppercase tracking-wider px-2 py-1 rounded-full bg-white/5`}
                     >
                       {currentMessage.priority === "high"
                         ? "High Priority"

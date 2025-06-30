@@ -59,16 +59,16 @@ export default function DirectorsMessagePage() {
                     )}
                   </div>
                   <h3 className="font-heading text-2xl text-white mb-1">
-                    Dr. {directorMessageData?.name}
+                    {directorMessageData?.name}
                   </h3>
                   <p className="text-zoo-yellow-600 font-medium mb-4">
                     Director, Sanjay Gandhi Biological Park
                   </p>
                   <div className="space-y-3 text-white/80 text-sm">
-                    <p>Ph.D. Wildlife Conservation</p>
+                    {/* <p>Ph.D. Wildlife Conservation</p>
                     <p>20+ years in conservation management</p>
                     <p>Former Regional Director, Wildlife Trust of India</p>
-                    <p>Member, IUCN Species Survival Commission</p>
+                    <p>Member, IUCN Species Survival Commission</p> */}
                   </div>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function DirectorsMessagePage() {
 
                   <div className="pt-6">
                     <p className="text-zoo-yellow-600 font-medium">
-                      Dr. {directorMessageData?.name}
+                      {directorMessageData?.name}
                     </p>
                     <p className="text-white/80">
                       Director, Sanjay Gandhi Biological Park
