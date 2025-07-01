@@ -5,6 +5,7 @@ import { LandingInfo } from "./landing";
 import { FunFactsInfo } from "./funfacts";
 import { DirectorMessageInfo } from "./directormessage";
 import { CarouselImage } from "./carousel";
+import { NewsItem } from "./featurednews";
 
 export type {
   PlantInfo,
@@ -16,4 +17,5 @@ export type {
   FunFactsInfo,
   DirectorMessageInfo,
   CarouselImage,
+  NewsItem,
 };
