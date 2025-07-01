@@ -97,67 +97,6 @@ export default function DirectorsMessagePage() {
                     }}
                   />
 
-                  {/* <p className="text-xl leading-relaxed">
-                    Welcome to Sanjay Gandhi Biological Park, a sanctuary where
-                    conservation, education, and recreation come together to
-                    create meaningful connections between people and wildlife.
-                  </p>
-
-                  <p className="text-lg">
-                    As the Director of Patna Zoo, I am honored to lead an
-                    institution that has been a cornerstone of Bihar's
-                    environmental education and conservation efforts for over
-                    five decades. Our zoo is more than just a collection of
-                    animals; it is a living classroom, a conservation center,
-                    and a place where memories are made.
-                  </p>
-
-                  <p className="text-lg">
-                    In today's rapidly changing world, zoos play a critical role
-                    in wildlife conservation. At Patna Zoo, we are committed to
-                    providing the highest standards of animal care while
-                    contributing to global conservation efforts through our
-                    breeding programs, research initiatives, and public
-                    education.
-                  </p>
-
-                  <p className="text-lg">
-                    Our focus on native species of Bihar and Eastern India
-                    reflects our commitment to regional conservation. By
-                    showcasing the incredible biodiversity of our region, we
-                    hope to inspire visitors to appreciate and protect the
-                    natural heritage that belongs to all of us.
-                  </p>
-
-                  <p className="text-lg">
-                    Education is at the heart of our mission. Through our
-                    various programs, we strive to foster a deeper understanding
-                    of wildlife and the environment, especially among young
-                    people who will be the stewards of our planet in the future.
-                  </p>
-
-                  <p className="text-lg">
-                    As we look to the future, we are excited about enhancing
-                    visitor experiences while advancing our conservation goals.
-                    Our ongoing projects aim to create more naturalistic
-                    habitats for our animals, improve accessibility for all
-                    visitors, and expand our educational offerings.
-                  </p>
-
-                  <p className="text-lg">
-                    I invite you to explore our zoo, learn about the fascinating
-                    animals in our care, and join us in our mission to protect
-                    wildlife and wild places. Your visit supports our
-                    conservation efforts and helps ensure that future
-                    generations will continue to share our planet with the
-                    remarkable diversity of life that makes Earth so special.
-                  </p>
-
-                  <p className="text-lg">
-                    Thank you for your interest and support. We look forward to
-                    welcoming you to Patna Zoo.
-                  </p> */}
-
                   <div className="pt-6">
                     <p className="text-zoo-yellow-600 font-medium">
                       {directorMessageData?.name}
@@ -187,7 +126,15 @@ export default function DirectorsMessagePage() {
                   <h3 className="font-heading text-3xl mb-6 text-zoo-yellow-600">
                     OUR VISION
                   </h3>
-                  <p className="text-white/90 text-lg mb-4">
+                  {directorMessageData?.vision && (
+                    <div
+                      className="text-white/90 text-lg mb-4"
+                      dangerouslySetInnerHTML={{
+                        __html: directorMessageData?.vision,
+                      }}
+                    />
+                  )}
+                  {/* <p className="text-white/90 text-lg mb-4">
                     To be a leading center of excellence in wildlife
                     conservation, environmental education, and sustainable
                     practices in Eastern India.
@@ -198,7 +145,7 @@ export default function DirectorsMessagePage() {
                     habitats, and where every visitor leaves our zoo with a
                     deeper appreciation for wildlife and a commitment to
                     conservation.
-                  </p>
+                  </p> */}
                 </CardContent>
               </Card>
 
@@ -214,16 +161,19 @@ export default function DirectorsMessagePage() {
                     OUR MISSION
                   </h3>
                   <ul className="space-y-4 text-white/90">
-                    <li className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-zoo-yellow-600 flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-zoo-teal-900 font-bold">1</span>
-                      </div>
-                      <p>
-                        To conserve wildlife with special emphasis on endangered
-                        species through ex-situ breeding programs
-                      </p>
-                    </li>
-                    <li className="flex items-start gap-3">
+                    {JSON.parse(directorMessageData?.mission || "[]").map(
+                      (msg: string, index: number) => (
+                        <li className="flex items-start gap-3" key={index}>
+                          <div className="w-6 h-6 rounded-full bg-zoo-yellow-600 flex items-center justify-center flex-shrink-0 mt-1">
+                            <span className="text-zoo-teal-900 font-bold">
+                              {index + 1}
+                            </span>
+                          </div>
+                          <p>{msg}</p>
+                        </li>
+                      )
+                    )}
+                    {/* <li className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full bg-zoo-yellow-600 flex items-center justify-center flex-shrink-0 mt-1">
                         <span className="text-zoo-teal-900 font-bold">2</span>
                       </div>
@@ -240,8 +190,8 @@ export default function DirectorsMessagePage() {
                         To provide a recreational space that fosters a
                         connection between people and nature
                       </p>
-                    </li>
-                    <li className="flex items-start gap-3">
+                    </li> */}
+                    {/* <li className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full bg-zoo-yellow-600 flex items-center justify-center flex-shrink-0 mt-1">
                         <span className="text-zoo-teal-900 font-bold">4</span>
                       </div>
@@ -249,7 +199,7 @@ export default function DirectorsMessagePage() {
                         To conduct research that contributes to the scientific
                         understanding of wildlife and conservation
                       </p>
-                    </li>
+                    </li> */}
                   </ul>
                 </CardContent>
               </Card>

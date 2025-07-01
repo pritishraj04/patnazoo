@@ -3,4 +3,6 @@ export interface DirectorMessageInfo {
   image: string;
   message: string;
   name: string;
+  vision: string;
+  mission: string;
 }
