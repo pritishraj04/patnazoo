@@ -13,6 +13,14 @@ import { FeaturedContentCard } from "@/components/featured-content-card"
 import { EventsCarousel } from "@/components/events-carousel"
 import { ImageCarousel } from "@/components/image-carousel"
 import { PriorityPopup } from "@/components/priority-popup"
+import { PosterPopup } from "@/components/poster-popup"
+
+// Poster Configuration - Set imageUrl to empty string to disable
+const posterConfig = {
+  imageUrl: "/images/adopt-an-animal.jpg", // Set to "" to disable popup
+  linkUrl: "/programs/adopt-an-animal", // Optional navigation URL
+  alt: "Adopt an Animal Poster", // Alt text for accessibility
+}      
 
 export default function HomePage() {
   const [currentFactIndex, setCurrentFactIndex] = useState(0)
@@ -233,6 +241,9 @@ export default function HomePage() {
 
       {/* Full-screen Priority Popup */}
       <PriorityPopup />
+
+       {/* Poster Popup - only shows if imageUrl is configured */}
+      <PosterPopup imageUrl={posterConfig.imageUrl} linkUrl={posterConfig.linkUrl} alt={posterConfig.alt} />
 
       <main>
         <HeroSection
