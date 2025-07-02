@@ -15,13 +15,16 @@ export function NewsletterSignup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  console.log("BASE_URL in news LetterText", BASE_URL);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/enquiry", {
+      const response = await axios.post(`${BASE_URL}/enquiry`, {
         firstname: firstName,
         lastname: lastName,
         email,
