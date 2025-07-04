@@ -22,6 +22,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useApiData, useConvertStringToArray } from "@/hooks/index";
 import { PlantInfo } from "@/types/index";
+import Loader from "@/components/Loader";
 
 type Plant = {
   id: number;
@@ -44,7 +45,7 @@ type Plant = {
   location: string;
   bestViewingTime: string;
   interestingFacts: string[];
-}
+};
 
 export default function PlantDetailPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -57,17 +58,7 @@ export default function PlantDetailPage() {
   const didYouKnowArray = useConvertStringToArray(plantDetails?.DYK);
 
   if (!plantDetails || loading) {
-    return (
-      <>
-        <Navbar />
-        <div className="min-h-screen bg-zoo-teal-700 flex items-center justify-center">
-          <div className="flex justify-center items-center py-10">
-            <LoaderCircle className="h-12 w-12 animate-spin text-white" />
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
+    return <Loader />;
   }
 
   return (
@@ -321,7 +312,7 @@ export default function PlantDetailPage() {
               Come and see this amazing plant species in person at Patna Zoo
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-             <Link
+              <Link
                 href="/tickets"
                 className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold px-8 py-3 rounded-full transition-colors duration-200"
               >

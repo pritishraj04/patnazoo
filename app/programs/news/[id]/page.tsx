@@ -23,6 +23,7 @@ import {
   Users,
   LoaderCircle,
 } from "lucide-react";
+import Loader from "@/components/Loader";
 
 export default function NewsDetailsPage() {
   const params = useParams();
@@ -31,7 +32,6 @@ export default function NewsDetailsPage() {
   const { data: newsItemsData, loading } = useApiData<NewsItem>(
     `/featurednews/${id}`
   );
-  console.log("newsItemsData", newsItemsData);
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -76,16 +76,8 @@ export default function NewsDetailsPage() {
     });
   };
 
-  if (loading) {
-    return (
-      <>
-        <Navbar />
-        <div className="flex justify-center items-center py-10">
-          <LoaderCircle className="h-12 w-12 animate-spin text-white" />
-        </div>
-        <Footer />
-      </>
-    );
+  if (!newsItemsData && loading) {
+    return <Loader />;
   }
 
   return (

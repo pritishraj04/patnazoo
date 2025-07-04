@@ -22,6 +22,7 @@ import { useApiData, useConvertStringToArray } from "@/hooks/index";
 import { AnimalInfo } from "@/types/index";
 import { useParams } from "next/navigation";
 import { iucnImages } from "@/public/images/INCU";
+import Loader from "@/components/Loader";
 
 export default function AnimalDetailPage() {
   const [activeImage, setActiveImage] = useState(0);
@@ -110,17 +111,7 @@ export default function AnimalDetailPage() {
   }, []);
 
   if (!animalDetails || loading) {
-    return (
-      <>
-        <Navbar />
-        <div className="min-h-screen bg-zoo-teal-700 flex items-center justify-center">
-          <div className="flex justify-center items-center py-10">
-            <LoaderCircle className="h-12 w-12 animate-spin text-white" />
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
+    return <Loader />;
   }
   return (
     <>
@@ -132,8 +123,12 @@ export default function AnimalDetailPage() {
           // subtitle={animalDetails.species}
           // backgroundImage={sectionImages[activeImage] || "/placeholder.svg"}
           // backgroundImage={"/placeholder.svg"}
-          backgroundImage={(sectionImages && sectionImages.length > 0 && sectionImages[activeImage]) || "/placeholder.svg"}
-
+          backgroundImage={
+            (sectionImages &&
+              sectionImages.length > 0 &&
+              sectionImages[activeImage]) ||
+            "/placeholder.svg"
+          }
           height="large"
         />
 

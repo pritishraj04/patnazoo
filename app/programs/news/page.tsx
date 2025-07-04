@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useApiData } from "@/hooks/index";
 import { NewsItem } from "@/types/index";
+import Loader from "@/components/Loader";
 
 export default function NewsPage() {
   const { data: newsItemsData, loading } =
@@ -68,6 +69,10 @@ export default function NewsPage() {
 
   const featuredNews = newsItemsData?.filter((item) => item.featured);
   const regularNews = newsItemsData?.filter((item) => !item.featured);
+
+  if (!newsItemsData || (loading && !featuredNews && !regularNews)) {
+    return <Loader />;
+  }
 
   return (
     <>

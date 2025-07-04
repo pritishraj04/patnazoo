@@ -11,6 +11,7 @@ import { useApiData } from "@/hooks/index";
 import { HistoryInfo } from "@/types/index";
 import { hi } from "date-fns/locale";
 import { LoaderCircle } from "lucide-react";
+import Loader from "@/components/Loader";
 
 export default function HistoryPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -147,17 +148,7 @@ export default function HistoryPage() {
   ];
 
   if (!historyData || loading) {
-    return (
-      <>
-        <Navbar />
-        <div className="min-h-screen bg-zoo-teal-700 flex items-center justify-center">
-          <div className="flex justify-center items-center py-10">
-            <LoaderCircle className="h-12 w-12 animate-spin text-white" />
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
+    return <Loader />;
   }
 
   return (
