@@ -6,6 +6,7 @@ import { FunFactsInfo } from "./funfacts";
 import { DirectorMessageInfo } from "./directormessage";
 import { CarouselImage } from "./carousel";
 import { NewsItem } from "./featurednews";
+import { HistoryInfo } from "./history";
 
 export type {
   PlantInfo,
@@ -18,4 +19,5 @@ export type {
   DirectorMessageInfo,
   CarouselImage,
   NewsItem,
+  HistoryInfo,
 };
