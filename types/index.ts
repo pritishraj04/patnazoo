@@ -7,6 +7,7 @@ import { DirectorMessageInfo } from "./directormessage";
 import { CarouselImage } from "./carousel";
 import { NewsItem } from "./featurednews";
 import { HistoryInfo } from "./history";
+import { AboutInfo } from "./about";
 
 export type {
   PlantInfo,
@@ -20,4 +21,5 @@ export type {
   CarouselImage,
   NewsItem,
   HistoryInfo,
+  AboutInfo
 };

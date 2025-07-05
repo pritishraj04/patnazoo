@@ -1,47 +1,86 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/hero-section"
-import { SectionHeading } from "@/components/section-heading"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Users, TreePine, Award, Heart, Calendar, MapPin, Camera, FileText } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+"use client";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { HeroSection } from "@/components/hero-section";
+import { SectionHeading } from "@/components/section-heading";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Users,
+  TreePine,
+  Award,
+  Heart,
+  Calendar,
+  MapPin,
+  Camera,
+  FileText,
+  LucideIcon,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { useApiData } from "@/hooks/index";
+import { AboutInfo } from "@/types/index";
+import Loader from "@/components/Loader";
+import { useMemo } from "react";
 
 export default function AboutPage() {
-  const stats = [
-    { icon: MapPin, label: "Area", value: "153 Acres", color: "bg-zoo-yellow-600" },
-    { icon: Calendar, label: "Established", value: "1973", color: "bg-zoo-teal-600" },
-    { icon: Users, label: "Annual Visitors", value: "2M+", color: "bg-zoo-yellow-600" },
-    { icon: Award, label: "Species", value: "800+", color: "bg-zoo-teal-600" },
-  ]
+  const { data: aboutUsData, loading } = useApiData<AboutInfo>("/about-us");
 
-  const highlights = [
+  const ourImpact = useMemo(() => {
+    try {
+      return JSON.parse(aboutUsData?.b_t_no || "[]");
+    } catch {
+      return [];
+    }
+  }, [aboutUsData?.b_t_no]);
+
+  const parsedHighlights = useMemo(() => {
+    try {
+      return JSON.parse(aboutUsData?.about_wpm || "[]");
+    } catch {
+      return [];
+    }
+  }, [aboutUsData?.about_wpm]);
+
+  const iconMap: Record<string, LucideIcon> = {
+    "Conservation Leadership": TreePine,
+    "Educational Impact": Award,
+    "Community Engagement": Users,
+    "Research Excellence": Heart,
+  };
+
+  const highlights = parsedHighlights.map((item: any) => ({
+    title: item.label,
+    description: item.value,
+    icon: iconMap[item.label],
+  }));
+
+  const stats = [
     {
-      icon: TreePine,
-      title: "Conservation Leadership",
-      description:
-        "Successfully breeding endangered species including Royal Bengal Tigers, One-horned Rhinoceros, and various indigenous birds, contributing to national conservation programs.",
+      icon: MapPin,
+      label: "Area",
+      value: ourImpact[0]?.value,
+      color: "bg-zoo-yellow-600",
     },
     {
-      icon: Award,
-      title: "Educational Impact",
-      description:
-        "Welcoming over 2 million visitors annually, we provide immersive educational experiences through guided tours, workshops, and interactive programs for all ages.",
+      icon: Calendar,
+      label: "Established",
+      value: ourImpact[1]?.value,
+      color: "bg-zoo-teal-600",
     },
     {
       icon: Users,
-      title: "Community Engagement",
-      description:
-        "Actively engaging with local communities through outreach programs, school visits, and conservation awareness campaigns to build a network of wildlife advocates.",
+      label: "Annual Visitors",
+      value: ourImpact[2]?.value,
+      color: "bg-zoo-yellow-600",
     },
     {
-      icon: Heart,
-      title: "Research Excellence",
-      description:
-        "Conducting vital research on animal behavior, breeding patterns, and conservation strategies in collaboration with national and international organizations.",
+      icon: Award,
+      label: "Species",
+      value: ourImpact[3]?.value,
+      color: "bg-zoo-teal-600",
     },
-  ]
+  ];
 
   const aboutSections = [
     {
@@ -76,7 +115,11 @@ export default function AboutPage() {
       link: "/about/map",
       color: "bg-zoo-yellow-600",
     },
-  ]
+  ];
+
+  if (!aboutUsData && loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="min-h-screen bg-zoo-teal-700">
@@ -94,13 +137,19 @@ export default function AboutPage() {
       <section className="bg-zoo-teal-800 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <Badge variant="outline" className="bg-zoo-yellow-600 text-zoo-teal-900 border-zoo-yellow-600 mb-4">
+            <Badge
+              variant="outline"
+              className="bg-zoo-yellow-600 text-zoo-teal-900 border-zoo-yellow-600 mb-4"
+            >
               Leadership
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Distinguished Patronage</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Distinguished Patronage
+            </h2>
             <p className="text-white/80 text-lg max-w-3xl mx-auto">
-              Under the esteemed guidance and support of our distinguished leaders, Patna Zoo continues to excel in
-              wildlife conservation and public education.
+              Under the esteemed guidance and support of our distinguished
+              leaders, Patna Zoo continues to excel in wildlife conservation and
+              public education.
             </p>
           </div>
 
@@ -108,7 +157,7 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="relative">
               <Image
-                src="/images/a-h-1.jpg"
+                src={aboutUsData?.banner_image || "/images/a-h-1.jpg"}
                 width={1920}
                 height={1080}
                 alt="Key Personnel - Chief Minister, Prime Minister and other dignitaries"
@@ -133,33 +182,51 @@ export default function AboutPage() {
             />
 
             <div className="prose prose-lg max-w-none text-white/90 space-y-6">
-              <p className="text-xl leading-relaxed">
-                Established in 1973, the Sanjay Gandhi Biological Garden, popularly known as Patna Zoo, stands as a
-                testament to Bihar's commitment to wildlife conservation and environmental education. Spread across 153
-                acres of lush greenery, our zoo has evolved from a modest collection of animals to a comprehensive
-                biological garden that serves as a sanctuary for diverse flora and fauna.
+              {aboutUsData?.our_story && (
+                <div
+                  className="text-xl leading-relaxed"
+                  dangerouslySetInnerHTML={{
+                    __html: aboutUsData?.our_story,
+                  }}
+                />
+              )}
+              {/* <p className="text-xl leading-relaxed">
+                Established in 1973, the Sanjay Gandhi Biological Garden,
+                popularly known as Patna Zoo, stands as a testament to Bihar's
+                commitment to wildlife conservation and environmental education.
+                Spread across 153 acres of lush greenery, our zoo has evolved
+                from a modest collection of animals to a comprehensive
+                biological garden that serves as a sanctuary for diverse flora
+                and fauna.
               </p>
 
               <p className="leading-relaxed">
-                Named after the late Sanjay Gandhi, our institution embodies the vision of creating a space where
-                wildlife thrives in naturalistic habitats while serving as an educational hub for visitors of all ages.
-                Over the decades, we have successfully bred numerous endangered species, contributing significantly to
+                Named after the late Sanjay Gandhi, our institution embodies the
+                vision of creating a space where wildlife thrives in
+                naturalistic habitats while serving as an educational hub for
+                visitors of all ages. Over the decades, we have successfully
+                bred numerous endangered species, contributing significantly to
                 national and international conservation efforts.
               </p>
 
               <p className="leading-relaxed">
-              Patna Zoo is considered one of the best in the large zoo category of India. Recently, our zoo was ranked 4th
-              by the Central Zoo Authority, New Delhi, in the MEE-2022. Patna Zoo is striving hard to provide an amazing and
-              exhilarating experience to common visitors as well as to sensitize and create awareness among people about the 
-              conservation of our natural flora and fauna.
+                Patna Zoo is considered one of the best in the large zoo
+                category of India. Recently, our zoo was ranked 4th by the
+                Central Zoo Authority, New Delhi, in the MEE-2022. Patna Zoo is
+                striving hard to provide an amazing and exhilarating experience
+                to common visitors as well as to sensitize and create awareness
+                among people about the conservation of our natural flora and
+                fauna.
               </p>
 
               <p className="leading-relaxed">
-                Our zoo is home to over 800 animals representing more than 110 species, including the majestic Royal
-                Bengal Tiger, Asian Elephants, One-horned Rhinoceros, and a variety of indigenous and exotic birds. The
-                botanical section features over 300 species of plants, creating a perfect ecosystem that supports both
-                wildlife and environmental education.
-              </p>
+                Our zoo is home to over 800 animals representing more than 110
+                species, including the majestic Royal Bengal Tiger, Asian
+                Elephants, One-horned Rhinoceros, and a variety of indigenous
+                and exotic birds. The botanical section features over 300
+                species of plants, creating a perfect ecosystem that supports
+                both wildlife and environmental education.
+              </p> */}
             </div>
           </div>
         </div>
@@ -168,19 +235,23 @@ export default function AboutPage() {
       {/* Statistics */}
       <section className="bg-zoo-teal-800 py-16">
         <div className="container mx-auto px-4">
-          <SectionHeading
-            title="By the Numbers"
-            subtitle="Our Impact"
-          />
+          <SectionHeading title="By the Numbers" subtitle="Our Impact" />
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
-              <Card key={index} className="bg-white/10 border-white/20 text-center backdrop-blur-sm">
+              <Card
+                key={index}
+                className="bg-white/10 border-white/20 text-center backdrop-blur-sm"
+              >
                 <CardContent className="p-6">
-                  <div className={`w-12 h-12 ${stat.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <div
+                    className={`w-12 h-12 ${stat.color} rounded-full flex items-center justify-center mx-auto mb-4`}
+                  >
                     <stat.icon className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-2xl font-bold text-zoo-yellow-600 mb-1">{stat.value}</div>
+                  <div className="text-2xl font-bold text-zoo-yellow-600 mb-1">
+                    {stat.value}
+                  </div>
                   <div className="text-white/80 text-sm">{stat.label}</div>
                 </CardContent>
               </Card>
@@ -207,9 +278,7 @@ export default function AboutPage() {
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
                 </div>
                 <p className="text-white/90 leading-relaxed">
-                  To conserve wildlife through breeding programs, research, and education while providing a sanctuary
-                  for endangered species. We strive to create awareness about biodiversity conservation and inspire
-                  future generations to protect our natural heritage.
+                  {aboutUsData?.about_mission}
                 </p>
               </CardContent>
             </Card>
@@ -223,9 +292,7 @@ export default function AboutPage() {
                   <h3 className="text-2xl font-bold text-white">Our Vision</h3>
                 </div>
                 <p className="text-white/90 leading-relaxed">
-                  To be recognized as a world-class zoological institution that leads in wildlife conservation,
-                  education, and research. We envision a future where humans and wildlife coexist harmoniously,
-                  supported by informed communities committed to environmental stewardship.
+                  {aboutUsData?.about_vision}
                 </p>
               </CardContent>
             </Card>
@@ -255,17 +322,31 @@ export default function AboutPage() {
                       <section.icon className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-3">{section.title}</h3>
+                      <h3 className="text-xl font-bold text-white mb-3">
+                        {section.title}
+                      </h3>
                     </div>
                   </div>
-                  <p className="text-white/80 leading-relaxed mb-6">{section.excerpt}</p>
+                  <p className="text-white/80 leading-relaxed mb-6">
+                    {section.excerpt}
+                  </p>
                   <Link
                     href={section.link}
                     className="inline-flex items-center gap-2 bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-semibold px-6 py-3 rounded-full transition-colors duration-200"
                   >
                     View More
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </Link>
                 </CardContent>
@@ -284,7 +365,7 @@ export default function AboutPage() {
           />
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {highlights.map((highlight, index) => (
+            {highlights.map((highlight: any, index: string) => (
               <Card
                 key={index}
                 className="bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/15 transition-all duration-300 hover:-translate-y-1"
@@ -295,8 +376,12 @@ export default function AboutPage() {
                       <highlight.icon className="w-6 h-6 text-zoo-teal-900" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-3">{highlight.title}</h3>
-                      <p className="text-white/80 leading-relaxed">{highlight.description}</p>
+                      <h3 className="text-xl font-bold text-white mb-3">
+                        {highlight?.title}
+                      </h3>
+                      <p className="text-white/80 leading-relaxed">
+                        {highlight?.description}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -310,10 +395,13 @@ export default function AboutPage() {
       <section className="bg-zoo-teal-800 py-16">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Conservation Mission</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Join Our Conservation Mission
+            </h2>
             <p className="text-white/90 text-lg mb-8 leading-relaxed">
-              Be part of our journey in protecting wildlife and preserving biodiversity for future generations. Your
-              visit and support make a real difference in our conservation efforts.
+              Be part of our journey in protecting wildlife and preserving
+              biodiversity for future generations. Your visit and support make a
+              real difference in our conservation efforts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -335,5 +423,5 @@ export default function AboutPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
