@@ -8,6 +8,7 @@ import { CarouselImage } from "./carousel";
 import { NewsItem } from "./featurednews";
 import { HistoryInfo } from "./history";
 import { AboutInfo } from "./about";
+import { GalleryItem } from "./gallery";
 
 export type {
   PlantInfo,
@@ -21,5 +22,6 @@ export type {
   CarouselImage,
   NewsItem,
   HistoryInfo,
-  AboutInfo
+  AboutInfo,
+  GalleryItem,
 };
