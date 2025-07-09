@@ -9,7 +9,7 @@ import { NewsItem } from "./program-updates/featurednews";
 import { HistoryInfo } from "./about/history";
 import { AboutInfo } from "./about/about";
 import { GalleryItem, GalleryImage } from "./about/gallery";
-import { TabMenuData } from "./zoo-experience/mayut-canteen";
+import { TabMenuData } from "./zoo-experience/tab-menu";
 
 export type {
   PlantInfo,
