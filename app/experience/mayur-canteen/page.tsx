@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -10,8 +10,13 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Utensils, Clock, MapPin, Star, Leaf, Coffee } from "lucide-react";
 import { ImageGallery } from "@/components/image-gallery";
-import { useApiData, useParsedGalleryImages } from "@/hooks/index";
-import { GalleryItem } from "@/types/index";
+import {
+  useApiData,
+  useParsedGalleryImages,
+  useActiveTab,
+} from "@/hooks/index";
+import { GalleryItem, TabMenuData } from "@/types/index";
+import Loader from "@/components/Loader";
 
 export default function MayurCanteenPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,177 +24,31 @@ export default function MayurCanteenPage() {
   const { data: galleryItem } = useApiData<GalleryItem>(
     "/zoo-exp/gallery/mayur-canteen"
   );
-
   const galleryImages = useParsedGalleryImages(galleryItem);
+
+  const { data: menuData, loading } = useApiData<TabMenuData[]>(
+    "/zooexp/mayur-canteen"
+  );
+  const [activeTab, setActiveTab] = useActiveTab(menuData);
+
+  const menuCategories = useMemo(() => {
+    if (!menuData) return [];
+
+    return menuData?.map((tabData) => ({
+      id: tabData.tab.toLowerCase().replace(/\s+/g, "-"),
+      name: tabData.tab,
+      items: tabData.tab_content.map((item) => ({
+        name: item.title,
+        price: parseFloat(item.price),
+        description: item.description,
+        veg: item.tag.toUpperCase(),
+      })),
+    }));
+  }, [menuData]);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  const menuCategories = [
-    {
-      id: "snacks",
-      name: "Snacks & Light Bites",
-      items: [
-        {
-          name: "Samosa",
-          price: 15,
-          description: "Crispy fried pastry with spiced potato filling",
-          veg: true,
-        },
-        {
-          name: "Pakora",
-          price: 20,
-          description: "Mixed vegetable fritters",
-          veg: true,
-        },
-        {
-          name: "Chaat",
-          price: 25,
-          description: "Tangy street food mix",
-          veg: true,
-        },
-        {
-          name: "Sandwich",
-          price: 30,
-          description: "Grilled vegetable sandwich",
-          veg: true,
-        },
-        {
-          name: "French Fries",
-          price: 35,
-          description: "Crispy golden potato fries",
-          veg: true,
-        },
-        {
-          name: "Spring Rolls",
-          price: 40,
-          description: "Crispy vegetable spring rolls",
-          veg: true,
-        },
-      ],
-    },
-    {
-      id: "meals",
-      name: "Main Meals",
-      items: [
-        {
-          name: "Dal Rice",
-          price: 60,
-          description: "Traditional lentil curry with steamed rice",
-          veg: true,
-        },
-        {
-          name: "Rajma Rice",
-          price: 70,
-          description: "Kidney bean curry with rice",
-          veg: true,
-        },
-        {
-          name: "Chole Bhature",
-          price: 80,
-          description: "Spiced chickpeas with fried bread",
-          veg: true,
-        },
-        {
-          name: "Veg Thali",
-          price: 120,
-          description: "Complete meal with variety of dishes",
-          veg: true,
-        },
-        {
-          name: "Biryani",
-          price: 100,
-          description: "Fragrant rice with vegetables and spices",
-          veg: true,
-        },
-        {
-          name: "Paratha Combo",
-          price: 90,
-          description: "Stuffed flatbread with curry and pickle",
-          veg: true,
-        },
-      ],
-    },
-    {
-      id: "beverages",
-      name: "Beverages",
-      items: [
-        {
-          name: "Tea",
-          price: 10,
-          description: "Fresh brewed Indian tea",
-          veg: true,
-        },
-        {
-          name: "Coffee",
-          price: 15,
-          description: "Hot filter coffee",
-          veg: true,
-        },
-        {
-          name: "Lassi",
-          price: 25,
-          description: "Traditional yogurt drink",
-          veg: true,
-        },
-        {
-          name: "Fresh Lime Water",
-          price: 20,
-          description: "Refreshing lime juice",
-          veg: true,
-        },
-        {
-          name: "Soft Drinks",
-          price: 25,
-          description: "Assorted cold drinks",
-          veg: true,
-        },
-        {
-          name: "Mineral Water",
-          price: 15,
-          description: "Bottled drinking water",
-          veg: true,
-        },
-      ],
-    },
-    {
-      id: "desserts",
-      name: "Desserts & Sweets",
-      items: [
-        {
-          name: "Ice Cream",
-          price: 30,
-          description: "Assorted flavors",
-          veg: true,
-        },
-        {
-          name: "Kulfi",
-          price: 25,
-          description: "Traditional Indian ice cream",
-          veg: true,
-        },
-        {
-          name: "Gulab Jamun",
-          price: 20,
-          description: "Sweet milk dumplings in syrup",
-          veg: true,
-        },
-        {
-          name: "Jalebi",
-          price: 30,
-          description: "Crispy sweet spirals",
-          veg: true,
-        },
-        {
-          name: "Rasgulla",
-          price: 25,
-          description: "Spongy cottage cheese balls in syrup",
-          veg: true,
-        },
-      ],
-    },
-  ];
 
   const facilities = [
     {
@@ -215,6 +74,10 @@ export default function MayurCanteenPage() {
       description: "Fresh, locally sourced ingredients for authentic taste",
     },
   ];
+
+  if (loading || !activeTab) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -311,7 +174,11 @@ export default function MayurCanteenPage() {
               </p>
             </div>
 
-            <Tabs defaultValue="snacks" className="max-w-6xl mx-auto">
+            <Tabs
+              defaultValue={activeTab}
+              onValueChange={setActiveTab}
+              className="max-w-6xl mx-auto"
+            >
               <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-white/10 border-white/20 mb-8">
                 {menuCategories.map((category) => (
                   <TabsTrigger
@@ -345,7 +212,7 @@ export default function MayurCanteenPage() {
                                 {item.veg && (
                                   <Badge className="bg-green-500 text-white text-xs px-2 py-0.5">
                                     <Leaf className="w-3 h-3 mr-1" />
-                                    VEG
+                                    {item.veg}
                                   </Badge>
                                 )}
                               </div>
