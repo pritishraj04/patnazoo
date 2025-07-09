@@ -1,22 +1,30 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from "react"
-import Image from "next/image"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/hero-section"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Car, Clock, MapPin, Users, Zap, Shield } from "lucide-react"
-import { ImageGallery } from "@/components/image-gallery"
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { HeroSection } from "@/components/hero-section";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Car, Clock, MapPin, Users, Zap, Shield } from "lucide-react";
+import { ImageGallery } from "@/components/image-gallery";
+import { useApiData, useParsedGalleryImages } from "@/hooks/index";
+import { GalleryItem } from "@/types/index";
 
 export default function GolfCartsPage() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
+
+  const { data: galleryItem } = useApiData<GalleryItem>(
+    "/zoo-exp/gallery/golf-carts"
+  );
+
+  const galleryImages = useParsedGalleryImages(galleryItem);
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    setIsVisible(true);
+  }, []);
 
   const cartCategories = [
     {
@@ -229,13 +237,14 @@ export default function GolfCartsPage() {
         },
       ],
     },
-  ]
+  ];
 
   const facilities = [
     {
       icon: <Zap className="w-6 h-6" />,
       title: "Eco-Friendly Electric",
-      description: "100% electric vehicles with zero emissions and solar charging stations",
+      description:
+        "100% electric vehicles with zero emissions and solar charging stations",
     },
     {
       icon: <Users className="w-6 h-6" />,
@@ -245,53 +254,15 @@ export default function GolfCartsPage() {
     {
       icon: <Shield className="w-6 h-6" />,
       title: "Safety First",
-      description: "Comprehensive safety features and regular maintenance checks",
+      description:
+        "Comprehensive safety features and regular maintenance checks",
     },
     {
       icon: <Car className="w-6 h-6" />,
       title: "Comfortable Ride",
       description: "Cushioned seats, weather protection, and smooth operation",
     },
-  ]
-
-  const galleryImages = [
-    {
-      src: "/placeholder.svg?height=400&width=600",
-      alt: "Family enjoying golf cart tour",
-      title: "Family Cart Tours",
-      description: "Comfortable transportation for the whole family",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=600",
-      alt: "Electric golf cart at charging station",
-      title: "Eco-Friendly Carts",
-      description: "100% electric vehicles with solar charging",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=600",
-      alt: "Accessible golf cart with ramp",
-      title: "Accessible Options",
-      description: "Wheelchair accessible carts available",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=600",
-      alt: "Golf cart on scenic zoo route",
-      title: "Scenic Routes",
-      description: "Beautiful pathways throughout the zoo",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=600",
-      alt: "Group of golf carts for large families",
-      title: "Group Rentals",
-      description: "Multiple carts for large groups and events",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=600",
-      alt: "Golf cart rental station",
-      title: "Rental Station",
-      description: "Convenient pickup and drop-off locations",
-    },
-  ]
+  ];
 
   return (
     <>
@@ -310,23 +281,33 @@ export default function GolfCartsPage() {
           <div className="zoo-container">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div
-                className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`transition-all duration-1000 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
-                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">COMFORTABLE EXPLORATION</h2>
+                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
+                  COMFORTABLE EXPLORATION
+                </h2>
                 <p className="text-white/90 text-lg mb-4">
-                  Explore Patna Zoo in comfort and style with our eco-friendly electric golf carts. Perfect for
-                  families, elderly visitors, and anyone who wants to cover more ground while conserving energy for
-                  enjoying the attractions.
+                  Explore Patna Zoo in comfort and style with our eco-friendly
+                  electric golf carts. Perfect for families, elderly visitors,
+                  and anyone who wants to cover more ground while conserving
+                  energy for enjoying the attractions.
                 </p>
                 <p className="text-white/90 text-lg mb-4">
-                  Our fleet of well-maintained electric carts offers a quiet, emission-free way to navigate the zoo's
-                  extensive pathways. Choose from various cart sizes and tour routes to customize your perfect zoo
-                  experience.
+                  Our fleet of well-maintained electric carts offers a quiet,
+                  emission-free way to navigate the zoo's extensive pathways.
+                  Choose from various cart sizes and tour routes to customize
+                  your perfect zoo experience.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center gap-2">
                     <Clock className="w-5 h-5 text-zoo-yellow-600" />
-                    <span className="text-white">Available: 9:00 AM - 5:00 PM</span>
+                    <span className="text-white">
+                      Available: 9:00 AM - 5:00 PM
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-zoo-yellow-600" />
@@ -340,7 +321,11 @@ export default function GolfCartsPage() {
               </div>
 
               <div
-                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <Image
                   src="/placeholder.svg?height=400&width=600"
@@ -349,7 +334,9 @@ export default function GolfCartsPage() {
                   className="object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
-                  <p className="text-white/90 text-sm">Eco-friendly electric carts for comfortable zoo exploration</p>
+                  <p className="text-white/90 text-sm">
+                    Eco-friendly electric carts for comfortable zoo exploration
+                  </p>
                 </div>
               </div>
             </div>
@@ -360,10 +347,18 @@ export default function GolfCartsPage() {
         <section className="py-16 bg-zoo-teal-800">
           <div className="zoo-container">
             <div
-              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`text-center mb-12 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">CART SERVICES</h2>
-              <p className="text-xl text-white/80">Choose the perfect cart and route for your zoo adventure</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
+                CART SERVICES
+              </h2>
+              <p className="text-xl text-white/80">
+                Choose the perfect cart and route for your zoo adventure
+              </p>
             </div>
 
             <Tabs defaultValue="rentals" className="max-w-6xl mx-auto">
@@ -383,12 +378,17 @@ export default function GolfCartsPage() {
                 <TabsContent key={category.id} value={category.id}>
                   <Card className="bg-white/10 border-white/20 text-white">
                     <CardHeader>
-                      <CardTitle className="font-heading text-2xl text-center">{category.name}</CardTitle>
+                      <CardTitle className="font-heading text-2xl text-center">
+                        {category.name}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="grid md:grid-cols-2 gap-4">
                         {category.items.map((item, index) => (
-                          <div key={index} className="flex justify-between items-start p-4 bg-white/5 rounded-lg">
+                          <div
+                            key={index}
+                            className="flex justify-between items-start p-4 bg-white/5 rounded-lg"
+                          >
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
                                 <span className="font-medium">{item.name}</span>
@@ -397,7 +397,9 @@ export default function GolfCartsPage() {
                                   ECO
                                 </Badge>
                               </div>
-                              <p className="text-white/70 text-sm mb-1">{item.description}</p>
+                              <p className="text-white/70 text-sm mb-1">
+                                {item.description}
+                              </p>
                               {Object.entries(item).map(([key, value]) => {
                                 if (
                                   [
@@ -408,52 +410,96 @@ export default function GolfCartsPage() {
                                     "highlights",
                                     "benefit",
                                     "discount",
-                                    "price"
-                                  ].includes(key) && value
+                                    "price",
+                                  ].includes(key) &&
+                                  value
                                 ) {
                                   switch (key) {
                                     case "duration":
                                       return (
-                                        <p key={key} className="text-zoo-yellow-600 text-xs">Duration: {value}</p>
-                                      )
+                                        <p
+                                          key={key}
+                                          className="text-zoo-yellow-600 text-xs"
+                                        >
+                                          Duration: {value}
+                                        </p>
+                                      );
                                     case "capacity":
                                       return (
-                                        <p key={key} className="text-zoo-yellow-600 text-xs">Capacity: {value}</p>
-                                      )
+                                        <p
+                                          key={key}
+                                          className="text-zoo-yellow-600 text-xs"
+                                        >
+                                          Capacity: {value}
+                                        </p>
+                                      );
                                     case "features":
                                       return (
-                                        <p key={key} className="text-white/60 text-xs">Features: {value}</p>
-                                      )
+                                        <p
+                                          key={key}
+                                          className="text-white/60 text-xs"
+                                        >
+                                          Features: {value}
+                                        </p>
+                                      );
                                     case "distance":
                                       return (
-                                        <p key={key} className="text-zoo-yellow-600 text-xs">Distance: {value}</p>
-                                      )
+                                        <p
+                                          key={key}
+                                          className="text-zoo-yellow-600 text-xs"
+                                        >
+                                          Distance: {value}
+                                        </p>
+                                      );
                                     case "highlights":
                                       return (
-                                        <p key={key} className="text-white/60 text-xs">Highlights: {value}</p>
-                                      )
+                                        <p
+                                          key={key}
+                                          className="text-white/60 text-xs"
+                                        >
+                                          Highlights: {value}
+                                        </p>
+                                      );
                                     case "benefit":
                                       return (
-                                        <p key={key} className="text-zoo-yellow-600 text-xs">Benefit: {value}</p>
-                                      )
+                                        <p
+                                          key={key}
+                                          className="text-zoo-yellow-600 text-xs"
+                                        >
+                                          Benefit: {value}
+                                        </p>
+                                      );
                                     case "discount":
                                       return (
-                                        <p key={key} className="text-green-400 text-xs">Offer: {value}</p>
-                                      )
+                                        <p
+                                          key={key}
+                                          className="text-green-400 text-xs"
+                                        >
+                                          Offer: {value}
+                                        </p>
+                                      );
                                     case "price":
-                                      if (typeof value === "number" && value > 0) {
+                                      if (
+                                        typeof value === "number" &&
+                                        value > 0
+                                      ) {
                                         return (
-                                          <div key={key} className="text-right ml-4">
-                                            <span className="text-lg font-bold text-zoo-yellow-600">₹{value}</span>
+                                          <div
+                                            key={key}
+                                            className="text-right ml-4"
+                                          >
+                                            <span className="text-lg font-bold text-zoo-yellow-600">
+                                              ₹{value}
+                                            </span>
                                           </div>
-                                        )
+                                        );
                                       }
-                                      return null
+                                      return null;
                                     default:
-                                      return null
+                                      return null;
                                   }
                                 }
-                                return null
+                                return null;
                               })}
                             </div>
                           </div>
@@ -471,23 +517,41 @@ export default function GolfCartsPage() {
         <section className="py-16 bg-zoo-teal-700">
           <div className="zoo-container">
             <div
-              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`text-center mb-12 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">WHY CHOOSE OUR CARTS</h2>
-              <p className="text-xl text-white/80">Experience comfort, safety, and environmental responsibility</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
+                WHY CHOOSE OUR CARTS
+              </h2>
+              <p className="text-xl text-white/80">
+                Experience comfort, safety, and environmental responsibility
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {facilities.map((facility, index) => (
                 <Card
                   key={index}
-                  className={`bg-white/10 border-white/20 text-white text-center transition-all duration-500 hover:scale-105 animate-on-scroll ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  className={`bg-white/10 border-white/20 text-white text-center transition-all duration-500 hover:scale-105 animate-on-scroll ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8"
+                  }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <CardContent className="p-6">
-                    <div className="text-zoo-yellow-600 mb-4 flex justify-center">{facility.icon}</div>
-                    <h3 className="font-heading text-lg mb-2">{facility.title}</h3>
-                    <p className="text-white/80 text-sm">{facility.description}</p>
+                    <div className="text-zoo-yellow-600 mb-4 flex justify-center">
+                      {facility.icon}
+                    </div>
+                    <h3 className="font-heading text-lg mb-2">
+                      {facility.title}
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      {facility.description}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -499,10 +563,18 @@ export default function GolfCartsPage() {
         <section className="py-16 bg-zoo-teal-800">
           <div className="zoo-container">
             <div
-              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`text-center mb-12 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">CART GALLERY</h2>
-              <p className="text-xl text-white/80">See our fleet and facilities in action</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
+                CART GALLERY
+              </h2>
+              <p className="text-xl text-white/80">
+                See our fleet and facilities in action
+              </p>
             </div>
 
             <ImageGallery images={galleryImages} />
@@ -514,7 +586,11 @@ export default function GolfCartsPage() {
           <div className="zoo-container">
             <div className="grid md:grid-cols-2 gap-12">
               <Card
-                className={`bg-white/10 border-white/20 text-white animate-on-scroll ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`bg-white/10 border-white/20 text-white animate-on-scroll ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <CardHeader>
                   <CardTitle className="font-heading text-2xl flex items-center gap-2">
@@ -525,7 +601,9 @@ export default function GolfCartsPage() {
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Tuesday - Sunday</span>
-                    <span className="text-zoo-yellow-600">9:00 AM - 5:00 PM</span>
+                    <span className="text-zoo-yellow-600">
+                      9:00 AM - 5:00 PM
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Monday</span>
@@ -535,14 +613,19 @@ export default function GolfCartsPage() {
                   </div>
                   <div className="pt-4 border-t border-white/20">
                     <p className="text-white/80 text-sm">
-                      <strong>Note:</strong> Last rental 2 hours before zoo closing time
+                      <strong>Note:</strong> Last rental 2 hours before zoo
+                      closing time
                     </p>
                   </div>
                 </CardContent>
               </Card>
 
               <Card
-                className={`bg-white/10 border-white/20 text-white animate-on-scroll stagger-2 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`bg-white/10 border-white/20 text-white animate-on-scroll stagger-2 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <CardHeader>
                   <CardTitle className="font-heading text-2xl flex items-center gap-2">
@@ -553,15 +636,21 @@ export default function GolfCartsPage() {
                 <CardContent className="space-y-4">
                   <div>
                     <p className="font-medium mb-1">Main Entrance</p>
-                    <p className="text-white/80">Primary rental station with full fleet</p>
+                    <p className="text-white/80">
+                      Primary rental station with full fleet
+                    </p>
                   </div>
                   <div>
                     <p className="font-medium mb-1">Central Plaza</p>
-                    <p className="text-white/80">Mid-zoo pickup point for convenience</p>
+                    <p className="text-white/80">
+                      Mid-zoo pickup point for convenience
+                    </p>
                   </div>
                   <div>
                     <p className="font-medium mb-1">Booking</p>
-                    <p className="text-white/80">Online booking recommended, walk-ins welcome</p>
+                    <p className="text-white/80">
+                      Online booking recommended, walk-ins welcome
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -572,5 +661,5 @@ export default function GolfCartsPage() {
 
       <Footer />
     </>
-  )
+  );
 }
