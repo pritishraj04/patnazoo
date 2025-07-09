@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { ApiResponse } from "@/types/api-response";
+import { ApiResponse } from "@/types/others/api-response";
 
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
