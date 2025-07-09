@@ -10,3 +10,9 @@ export interface GalleryItem {
   created_at: string;
   updated_at: string;
 }
+
+export interface GalleryImage {
+  url: string;
+  title: string;
+  description: string;
+}
