@@ -1,22 +1,30 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/hero-section"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Baby, Clock, MapPin, Star, Users, Shield } from "lucide-react"
-import { ImageGallery } from "@/components/image-gallery"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { HeroSection } from "@/components/hero-section";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Baby, Clock, MapPin, Star, Users, Shield } from "lucide-react";
+import { ImageGallery } from "@/components/image-gallery";
+import { useApiData, useParsedGalleryImages } from "@/hooks/index";
+import { GalleryItem } from "@/types/index";
 
 export default function ShishuUdyanPage() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
+
+  const { data: galleryItem } = useApiData<GalleryItem>(
+    "/zoo-exp/gallery/shishu-udyan"
+  );
+
+  const galleryImages = useParsedGalleryImages(galleryItem);
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    setIsVisible(true);
+  }, []);
 
   const playAreas = [
     {
@@ -29,10 +37,30 @@ export default function ShishuUdyanPage() {
           description: "Safe foam structures for crawling and climbing",
           safety: true,
         },
-        { name: "Sensory Garden", age: "1-3 years", description: "Touch-friendly plants and textures", safety: true },
-        { name: "Mini Slides", age: "1-3 years", description: "Low-height slides with safety barriers", safety: true },
-        { name: "Sand Pit", age: "1-3 years", description: "Clean sand play area with toys", safety: true },
-        { name: "Water Play", age: "1-3 years", description: "Shallow water features for splashing", safety: true },
+        {
+          name: "Sensory Garden",
+          age: "1-3 years",
+          description: "Touch-friendly plants and textures",
+          safety: true,
+        },
+        {
+          name: "Mini Slides",
+          age: "1-3 years",
+          description: "Low-height slides with safety barriers",
+          safety: true,
+        },
+        {
+          name: "Sand Pit",
+          age: "1-3 years",
+          description: "Clean sand play area with toys",
+          safety: true,
+        },
+        {
+          name: "Water Play",
+          age: "1-3 years",
+          description: "Shallow water features for splashing",
+          safety: true,
+        },
         {
           name: "Animal Sounds Corner",
           age: "1-3 years",
@@ -63,7 +91,12 @@ export default function ShishuUdyanPage() {
           description: "Small animals like rabbits and guinea pigs",
           safety: true,
         },
-        { name: "Art & Craft Station", age: "3-6 years", description: "Supervised creative activities", safety: false },
+        {
+          name: "Art & Craft Station",
+          age: "3-6 years",
+          description: "Supervised creative activities",
+          safety: false,
+        },
         {
           name: "Story Circle",
           age: "3-6 years",
@@ -94,7 +127,12 @@ export default function ShishuUdyanPage() {
           description: "Educational activities about wildlife",
           safety: false,
         },
-        { name: "Tree House", age: "6-12 years", description: "Elevated play structure with slides", safety: true },
+        {
+          name: "Tree House",
+          age: "6-12 years",
+          description: "Elevated play structure with slides",
+          safety: true,
+        },
         {
           name: "Animal Care Experience",
           age: "6-12 years",
@@ -131,7 +169,12 @@ export default function ShishuUdyanPage() {
           description: "Special birthday party packages",
           safety: false,
         },
-        { name: "Summer Camps", age: "5-12 years", description: "Week-long nature and wildlife camps", safety: true },
+        {
+          name: "Summer Camps",
+          age: "5-12 years",
+          description: "Week-long nature and wildlife camps",
+          safety: true,
+        },
         {
           name: "School Field Trips",
           age: "All ages",
@@ -152,30 +195,33 @@ export default function ShishuUdyanPage() {
         },
       ],
     },
-  ]
+  ];
 
   const gardenFeatures = [
     {
       icon: <Baby className="w-6 h-6" />,
       title: "Age-Appropriate Design",
-      description: "Separate zones designed specifically for different age groups",
+      description:
+        "Separate zones designed specifically for different age groups",
     },
     {
       icon: <Shield className="w-6 h-6" />,
       title: "Safety First",
-      description: "All equipment meets international safety standards with trained supervision",
+      description:
+        "All equipment meets international safety standards with trained supervision",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Educational Programs",
-      description: "Learning activities that connect children with nature and wildlife",
+      description:
+        "Learning activities that connect children with nature and wildlife",
     },
     {
       icon: <Star className="w-6 h-6" />,
       title: "Interactive Experiences",
       description: "Hands-on activities that make learning fun and memorable",
     },
-  ]
+  ];
 
   return (
     <>
@@ -194,18 +240,26 @@ export default function ShishuUdyanPage() {
           <div className="zoo-container">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div
-                className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`transition-all duration-1000 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
-                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">CHILDREN'S PARADISE</h2>
+                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
+                  CHILDREN'S PARADISE
+                </h2>
                 <p className="text-white/90 text-lg mb-4">
-                  Shishu Udyan is a specially designed children's garden that combines fun, learning, and nature
-                  exploration. Our safe and engaging environment helps children develop a love for wildlife and
-                  environmental conservation from an early age.
+                  Shishu Udyan is a specially designed children's garden that
+                  combines fun, learning, and nature exploration. Our safe and
+                  engaging environment helps children develop a love for
+                  wildlife and environmental conservation from an early age.
                 </p>
                 <p className="text-white/90 text-lg mb-4">
-                  With age-appropriate play areas, educational activities, and interactive experiences, children can
-                  explore, learn, and play while parents relax knowing their little ones are in a secure, supervised
-                  environment.
+                  With age-appropriate play areas, educational activities, and
+                  interactive experiences, children can explore, learn, and play
+                  while parents relax knowing their little ones are in a secure,
+                  supervised environment.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center gap-2">
@@ -224,7 +278,11 @@ export default function ShishuUdyanPage() {
               </div>
 
               <div
-                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <Image
                   src="/placeholder.svg?height=400&width=600"
@@ -233,7 +291,9 @@ export default function ShishuUdyanPage() {
                   className="object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
-                  <p className="text-white/90 text-sm">Children enjoying safe and educational play activities</p>
+                  <p className="text-white/90 text-sm">
+                    Children enjoying safe and educational play activities
+                  </p>
                 </div>
               </div>
             </div>
@@ -244,10 +304,18 @@ export default function ShishuUdyanPage() {
         <section className="py-16 bg-zoo-teal-800">
           <div className="zoo-container">
             <div
-              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`text-center mb-12 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">PLAY AREAS & ACTIVITIES</h2>
-              <p className="text-xl text-white/80">Age-appropriate fun and learning experiences</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
+                PLAY AREAS & ACTIVITIES
+              </h2>
+              <p className="text-xl text-white/80">
+                Age-appropriate fun and learning experiences
+              </p>
             </div>
 
             <Tabs defaultValue="toddlers" className="max-w-6xl mx-auto">
@@ -267,12 +335,17 @@ export default function ShishuUdyanPage() {
                 <TabsContent key={area.id} value={area.id}>
                   <Card className="bg-white/10 border-white/20 text-white">
                     <CardHeader>
-                      <CardTitle className="font-heading text-2xl text-center">{area.name}</CardTitle>
+                      <CardTitle className="font-heading text-2xl text-center">
+                        {area.name}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="grid md:grid-cols-2 gap-4">
                         {area.items.map((item, index) => (
-                          <div key={index} className="flex justify-between items-start p-4 bg-white/5 rounded-lg">
+                          <div
+                            key={index}
+                            className="flex justify-between items-start p-4 bg-white/5 rounded-lg"
+                          >
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
                                 <span className="font-medium">{item.name}</span>
@@ -283,8 +356,12 @@ export default function ShishuUdyanPage() {
                                   </Badge>
                                 )}
                               </div>
-                              <p className="text-white/70 text-sm mb-1">{item.description}</p>
-                              <p className="text-zoo-yellow-600 text-xs font-medium">{item.age}</p>
+                              <p className="text-white/70 text-sm mb-1">
+                                {item.description}
+                              </p>
+                              <p className="text-zoo-yellow-600 text-xs font-medium">
+                                {item.age}
+                              </p>
                             </div>
                           </div>
                         ))}
@@ -301,23 +378,41 @@ export default function ShishuUdyanPage() {
         <section className="py-16 bg-zoo-teal-700">
           <div className="zoo-container">
             <div
-              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`text-center mb-12 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">WHY CHOOSE SHISHU UDYAN</h2>
-              <p className="text-xl text-white/80">Safe, educational, and fun for the whole family</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
+                WHY CHOOSE SHISHU UDYAN
+              </h2>
+              <p className="text-xl text-white/80">
+                Safe, educational, and fun for the whole family
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {gardenFeatures.map((feature, index) => (
                 <Card
                   key={index}
-                  className={`bg-white/10 border-white/20 text-white text-center transition-all duration-500 hover:scale-105 animate-on-scroll ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  className={`bg-white/10 border-white/20 text-white text-center transition-all duration-500 hover:scale-105 animate-on-scroll ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8"
+                  }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <CardContent className="p-6">
-                    <div className="text-zoo-yellow-600 mb-4 flex justify-center">{feature.icon}</div>
-                    <h3 className="font-heading text-lg mb-2">{feature.title}</h3>
-                    <p className="text-white/80 text-sm">{feature.description}</p>
+                    <div className="text-zoo-yellow-600 mb-4 flex justify-center">
+                      {feature.icon}
+                    </div>
+                    <h3 className="font-heading text-lg mb-2">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      {feature.description}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -329,52 +424,21 @@ export default function ShishuUdyanPage() {
         <section className="py-16 bg-zoo-teal-800">
           <div className="zoo-container">
             <div
-              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`text-center mb-12 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">GARDEN GALLERY</h2>
-              <p className="text-xl text-white/80">See children enjoying our safe and fun activities</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
+                GARDEN GALLERY
+              </h2>
+              <p className="text-xl text-white/80">
+                See children enjoying our safe and fun activities
+              </p>
             </div>
 
-            <ImageGallery
-              images={[
-                {
-                  src: "/placeholder.svg?height=400&width=600",
-                  alt: "Toddler play area",
-                  title: "Toddler Play Area",
-                  description: "Safe soft play structures for our youngest visitors",
-                },
-                {
-                  src: "/placeholder.svg?height=400&width=600",
-                  alt: "Adventure playground",
-                  title: "Adventure Playground",
-                  description: "Exciting climbing frames and slides for older children",
-                },
-                {
-                  src: "/placeholder.svg?height=400&width=600",
-                  alt: "Nature learning activities",
-                  title: "Nature Learning",
-                  description: "Educational activities connecting children with wildlife",
-                },
-                {
-                  src: "/placeholder.svg?height=400&width=600",
-                  alt: "Butterfly garden",
-                  title: "Butterfly Garden",
-                  description: "Enclosed garden where children can observe butterflies",
-                },
-                {
-                  src: "/placeholder.svg?height=400&width=600",
-                  alt: "Art and craft activities",
-                  title: "Creative Activities",
-                  description: "Supervised art and craft sessions for all ages",
-                },
-                {
-                  src: "/placeholder.svg?height=400&width=600",
-                  alt: "Family enjoying together",
-                  title: "Family Fun",
-                  description: "Parents and children enjoying quality time together",
-                },
-              ]}
-            />
+            <ImageGallery images={galleryImages} />
           </div>
         </section>
 
@@ -383,7 +447,11 @@ export default function ShishuUdyanPage() {
           <div className="zoo-container">
             <div className="grid md:grid-cols-2 gap-12">
               <Card
-                className={`bg-white/10 border-white/20 text-white animate-on-scroll ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`bg-white/10 border-white/20 text-white animate-on-scroll ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <CardHeader>
                   <CardTitle className="font-heading text-2xl flex items-center gap-2">
@@ -394,7 +462,9 @@ export default function ShishuUdyanPage() {
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Tuesday - Sunday</span>
-                    <span className="text-zoo-yellow-600">9:00 AM - 5:30 PM</span>
+                    <span className="text-zoo-yellow-600">
+                      9:00 AM - 5:30 PM
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Monday</span>
@@ -404,14 +474,19 @@ export default function ShishuUdyanPage() {
                   </div>
                   <div className="pt-4 border-t border-white/20">
                     <p className="text-white/80 text-sm">
-                      <strong>Note:</strong> Adult supervision required for children under 8 years
+                      <strong>Note:</strong> Adult supervision required for
+                      children under 8 years
                     </p>
                   </div>
                 </CardContent>
               </Card>
 
               <Card
-                className={`bg-white/10 border-white/20 text-white animate-on-scroll stagger-2 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`bg-white/10 border-white/20 text-white animate-on-scroll stagger-2 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
               >
                 <CardHeader>
                   <CardTitle className="font-heading text-2xl flex items-center gap-2">
@@ -422,15 +497,21 @@ export default function ShishuUdyanPage() {
                 <CardContent className="space-y-4">
                   <div>
                     <p className="font-medium mb-1">Location</p>
-                    <p className="text-white/80">Adjacent to the children's zoo, easily accessible</p>
+                    <p className="text-white/80">
+                      Adjacent to the children's zoo, easily accessible
+                    </p>
                   </div>
                   <div>
                     <p className="font-medium mb-1">Safety Features</p>
-                    <p className="text-white/80">Trained staff, first aid station, secure boundaries</p>
+                    <p className="text-white/80">
+                      Trained staff, first aid station, secure boundaries
+                    </p>
                   </div>
                   <div>
                     <p className="font-medium mb-1">Special Programs</p>
-                    <p className="text-white/80">Birthday parties, school trips, summer camps available</p>
+                    <p className="text-white/80">
+                      Birthday parties, school trips, summer camps available
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -441,5 +522,5 @@ export default function ShishuUdyanPage() {
 
       <Footer />
     </>
-  )
+  );
 }
