@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -17,8 +17,12 @@ import {
   CreditCard,
 } from "lucide-react";
 import { ImageGallery } from "@/components/image-gallery";
-import { useApiData, useParsedGalleryImages } from "@/hooks/index";
-import { GalleryItem } from "@/types/index";
+import {
+  useApiData,
+  useParsedGalleryImages,
+  useActiveTab,
+} from "@/hooks/index";
+import { GalleryItem, TabMenuData } from "@/types/index";
 
 export default function SouvenirShopPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,180 +33,29 @@ export default function SouvenirShopPage() {
 
   const galleryImages = useParsedGalleryImages(galleryItem);
 
+  const { data: menuData, loading } = useApiData<TabMenuData[]>(
+    "/zooexp/souvenir-shop"
+  );
+  const [activeTab, setActiveTab] = useActiveTab(menuData);
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const productCategories = [
-    {
-      id: "toys",
-      name: "Toys & Plushies",
-      items: [
-        {
-          name: "Tiger Plush Toy",
-          price: 250,
-          description: "Soft and cuddly tiger stuffed animal",
-          popular: true,
-        },
-        {
-          name: "Elephant Soft Toy",
-          price: 300,
-          description: "Large elephant plush with realistic details",
-          popular: false,
-        },
-        {
-          name: "Animal Puzzle Set",
-          price: 150,
-          description: "Educational wooden animal puzzles",
-          popular: false,
-        },
-        {
-          name: "Zoo Animal Figures",
-          price: 200,
-          description: "Set of 6 realistic animal figurines",
-          popular: true,
-        },
-        {
-          name: "Peacock Feather Fan",
-          price: 80,
-          description: "Traditional decorative fan with peacock feathers",
-          popular: false,
-        },
-        {
-          name: "Mini Zoo Playset",
-          price: 450,
-          description: "Complete miniature zoo with animals",
-          popular: true,
-        },
-      ],
-    },
-    {
-      id: "clothing",
-      name: "Clothing & Accessories",
-      items: [
-        {
-          name: "Zoo T-Shirt",
-          price: 350,
-          description: "Cotton t-shirt with Patna Zoo logo",
-          popular: true,
-        },
-        {
-          name: "Animal Print Cap",
-          price: 180,
-          description: "Adjustable cap with animal prints",
-          popular: false,
-        },
-        {
-          name: "Eco-friendly Tote Bag",
-          price: 120,
-          description: "Reusable bag with zoo conservation message",
-          popular: true,
-        },
-        {
-          name: "Kids Safari Hat",
-          price: 220,
-          description: "Sun protection hat for young explorers",
-          popular: false,
-        },
-        {
-          name: "Zoo Hoodie",
-          price: 650,
-          description: "Warm hoodie with embroidered zoo logo",
-          popular: false,
-        },
-        {
-          name: "Animal Socks Set",
-          price: 150,
-          description: "Pack of 3 colorful animal-themed socks",
-          popular: true,
-        },
-      ],
-    },
-    {
-      id: "educational",
-      name: "Educational Items",
-      items: [
-        {
-          name: "Wildlife Encyclopedia",
-          price: 400,
-          description: "Comprehensive guide to Indian wildlife",
-          popular: true,
-        },
-        {
-          name: "Animal Fact Cards",
-          price: 100,
-          description: "Set of 50 educational animal cards",
-          popular: false,
-        },
-        {
-          name: "Nature Journal",
-          price: 180,
-          description: "Guided journal for wildlife observations",
-          popular: false,
-        },
-        {
-          name: "Binoculars for Kids",
-          price: 320,
-          description: "Child-friendly binoculars for animal watching",
-          popular: true,
-        },
-        {
-          name: "Conservation Poster Set",
-          price: 80,
-          description: "Educational posters about wildlife conservation",
-          popular: false,
-        },
-        {
-          name: "Animal Sound Book",
-          price: 250,
-          description: "Interactive book with real animal sounds",
-          popular: true,
-        },
-      ],
-    },
-    {
-      id: "souvenirs",
-      name: "Memorabilia & Gifts",
-      items: [
-        {
-          name: "Zoo Keychain",
-          price: 50,
-          description: "Metal keychain with zoo logo",
-          popular: true,
-        },
-        {
-          name: "Photo Frame",
-          price: 120,
-          description: "Wooden frame with animal motifs",
-          popular: false,
-        },
-        {
-          name: "Ceramic Mug",
-          price: 180,
-          description: "Coffee mug with wildlife photography",
-          popular: true,
-        },
-        {
-          name: "Fridge Magnets Set",
-          price: 80,
-          description: "Set of 5 animal-shaped magnets",
-          popular: false,
-        },
-        {
-          name: "Bookmark Collection",
-          price: 60,
-          description: "Beautiful bookmarks with animal quotes",
-          popular: false,
-        },
-        {
-          name: "Zoo Calendar",
-          price: 150,
-          description: "Annual calendar with stunning wildlife photos",
-          popular: true,
-        },
-      ],
-    },
-  ];
+  const productCategories = useMemo(() => {
+    if (!menuData) return [];
+
+    return menuData?.map((tabData) => ({
+      id: tabData.tab.toLowerCase().replace(/\s+/g, "-"),
+      name: tabData.tab,
+      items: tabData.tab_content.map((item) => ({
+        name: item.title,
+        price: parseFloat(item.price),
+        description: item.description,
+        popular: item.tag.toUpperCase(),
+      })),
+    }));
+  }, [menuData]);
 
   const shopFeatures = [
     {
@@ -324,7 +177,11 @@ export default function SouvenirShopPage() {
               </p>
             </div>
 
-            <Tabs defaultValue="toys" className="max-w-6xl mx-auto">
+            <Tabs
+              defaultValue={activeTab}
+              onValueChange={setActiveTab}
+              className="max-w-6xl mx-auto"
+            >
               <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-white/10 border-white/20 mb-8">
                 {productCategories.map((category) => (
                   <TabsTrigger
