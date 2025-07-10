@@ -13,8 +13,16 @@ import { FeaturedContentCard } from "@/components/featured-content-card";
 import { EventsCarousel } from "@/components/events-carousel";
 import { ImageCarousel } from "@/components/image-carousel";
 import { PriorityPopup } from "@/components/priority-popup";
+import { PosterPopup } from "@/components/poster-popup";
 import { useApiData } from "@/hooks/index";
 import { FunFactsInfo, CarouselImage } from "@/types/index";
+
+// Poster Configuration - Set imageUrl to empty string to disable
+const posterConfig = {
+  imageUrl: "/images/adopt-an-animal.jpg", // Set to "" to disable popup
+  linkUrl: "/programs/adopt-an-animal", // Optional navigation URL
+  alt: "Adopt an Animal Poster", // Alt text for accessibility
+};
 
 export default function HomePage() {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
@@ -57,7 +65,7 @@ export default function HomePage() {
   }, []);
 
   const sliderImages = carouselImagesData?.map((item) => item.slider_img);
- 
+
   const featuredAnimals = [
     {
       id: 1,
@@ -196,6 +204,13 @@ export default function HomePage() {
       {/* Full-screen Priority Popup */}
       <PriorityPopup />
 
+      {/* Poster Popup - only shows if imageUrl is configured */}
+      <PosterPopup
+        imageUrl={posterConfig.imageUrl}
+        linkUrl={posterConfig.linkUrl}
+        alt={posterConfig.alt}
+      />
+
       <main>
         <HeroSection images={sliderImages} height="large" />
 
@@ -203,7 +218,7 @@ export default function HomePage() {
         <ImageCarousel images={carouselImages} />
 
         {/* Priority Section - appears above "Explore the Wildlife of Bihar" */}
-        <PriorityPopup asSection={true} />
+        {/* <PriorityPopup asSection={true} /> */}
 
         {/* Featured Content Card - Heart of India with background image */}
         <section className="py-16 bg-zoo-teal-700">
@@ -259,7 +274,7 @@ export default function HomePage() {
                             — {currentFact?.subject}
                           </span>
                         ) : (
-                          <span className="font-heading text-lg md:text-xl">
+                          <span className="font-heading text-lg md:text-xl animate-pulse">
                             — Royal Bengal Tiger
                           </span>
                         )}

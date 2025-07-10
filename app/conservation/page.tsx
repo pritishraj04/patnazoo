@@ -119,8 +119,6 @@ export default function ConservationPage() {
           title="CONSERVATION IN ACTION"
           subtitle="Protecting wildlife and preserving nature for future generations"
           backgroundImage="/images/header/animal-bg.png"
-          primaryCta={{ text: "SUPPORT OUR WORK", href: "/support" }}
-          secondaryCta={{ text: "LEARN MORE", href: "#projects" }}
           height="large"
         />
 

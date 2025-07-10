@@ -36,40 +36,41 @@ export function PriorityPopup({ asSection = false }: PriorityPopupProps) {
   );
 
   // Sample messages - in a real app, these would come from an API or CMS
-  // const sampleMessages: PopupMessage[] = [
-  //   {
-  //     id: "high-weather-1",
-  //     title: "Weather Advisory",
-  //     message: landingPageData?.weather_description,
-  //     priority: landingPageData?.weather_priority.toLowerCase() as "info" | "medium" | "high",
-  //     link: {
-  //       text: "Check Weather Updates",
-  //       href: "/visit",
-  //     },
-  //     validUntil: "2025-12-31", // Updated to future date
-  //   },
-  //   // Uncomment to test different priorities
-  //   // {
-  //   //   id: "medium-maintenance-1",
-  //   //   title: "Scheduled Maintenance",
-  //   //   message: "The Tiger Territory exhibit will be under maintenance from 2 PM to 4 PM today. All other exhibits remain open as usual.",
-  //   //   priority: "medium",
-  //   //   link: {
-  //   //     text: "View All Exhibits",
-  //   //     href: "/animals"
-  //   //   }
-  //   // },
-  //   // {
-  //   //   id: "info-new-arrival-1",
-  //   //   title: "New Arrival",
-  //   //   message: "We're excited to welcome our newest family member - a baby elephant born last week! Visit the Elephant Sanctuary to catch a glimpse of our little one.",
-  //   //   priority: "info",
-  //   //   link: {
-  //   //     text: "Meet Our Animals",
-  //   //     href: "/animals/indian-elephant"
-  //   //   }
-  //   // }
-  // ];
+  const sampleMessages: PopupMessage[] = [
+    // {
+    //   id: "high-weather-1",
+    //   title: "Weather Advisory",
+    //   message:
+    //     "Due to heavy rainfall expected today, some outdoor exhibits may be temporarily closed for visitor safety. Indoor exhibits and covered areas remain open. Please check our latest updates before your visit.",
+    //   priority: "high",
+    //   link: {
+    //     text: "Check Weather Updates",
+    //     href: "https://www.accuweather.com/en/in/patna/202349/weather-forecast/202349",
+    //   },
+    //   validUntil: "2025-12-31", // Updated to future date
+    // },
+    // Uncomment to test different priorities
+    // {
+    //   id: "medium-maintenance-1",
+    //   title: "Scheduled Maintenance",
+    //   message: "The Tiger Territory exhibit will be under maintenance from 2 PM to 4 PM today. All other exhibits remain open as usual.",
+    //   priority: "medium",
+    //   link: {
+    //     text: "View All Exhibits",
+    //     href: "/animals"
+    //   }
+    // },
+    // {
+    //   id: "info-new-arrival-1",
+    //   title: "New Arrival",
+    //   message: "We're excited to welcome our newest family member - a baby elephant born last week! Visit the Elephant Sanctuary to catch a glimpse of our little one.",
+    //   priority: "info",
+    //   link: {
+    //     text: "Meet Our Animals",
+    //     href: "/animals/indian-elephant"
+    //   }
+    // }
+  ]
 
   useEffect(() => {
     if (!landingPageData) return;
@@ -215,7 +216,8 @@ export function PriorityPopup({ asSection = false }: PriorityPopupProps) {
   if (!asSection && showPopup) {
     return (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-300"
+        className="fixed inset-0 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-300"
+        style={{ zIndex: 9999 }}
         onClick={handleBackdropClick}
       >
         <div className="relative w-full max-w-2xl mx-auto animate-in slide-in-from-bottom-4 zoom-in-95 duration-300">
