@@ -202,7 +202,7 @@ export default function HomePage() {
       <Navbar />
 
       {/* Full-screen Priority Popup */}
-      <PriorityPopup />
+      {/* <PriorityPopup /> */}
 
       {/* Poster Popup - only shows if imageUrl is configured */}
       <PosterPopup
