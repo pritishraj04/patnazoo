@@ -64,8 +64,7 @@ export function PlantCard({
     >
       <div className="relative aspect-square overflow-hidden">
         <Image
-          // src={image || "/placeholder.svg"}
-          src={"/placeholder.svg"}
+          src={image || "/placeholder.svg"}
           alt={name}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"

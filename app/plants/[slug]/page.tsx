@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -48,7 +48,7 @@ type Plant = {
 };
 
 export default function PlantDetailPage() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
   const params = useParams();
   const slug = params.slug as string;
 
@@ -56,6 +56,14 @@ export default function PlantDetailPage() {
     `/botanical/${slug}`
   );
   const didYouKnowArray = useConvertStringToArray(plantDetails?.DYK);
+
+  const sectionImages = useMemo(() => {
+    try {
+      return JSON.parse(plantDetails?.section_image || "[]");
+    } catch {
+      return [];
+    }
+  }, [plantDetails]);
 
   if (!plantDetails || loading) {
     return <Loader />;
@@ -76,7 +84,12 @@ export default function PlantDetailPage() {
                   //   plantDetails?.images[currentImageIndex] ||
                   //   "/placeholder.svg"
                   // }
-                  src={"/placeholder.svg"}
+                  src={
+                    (sectionImages &&
+                      sectionImages.length > 0 &&
+                      sectionImages[activeImage]) ||
+                    "/placeholder.svg"
+                  }
                   alt={plantDetails?.name ?? "Plant Image"}
                   fill
                   className="object-cover"
@@ -85,19 +98,19 @@ export default function PlantDetailPage() {
 
               {plantDetails?.images.length > 1 && (
                 <div className="flex gap-2">
-                  {Array.from({ length: 4 }).map((_, index) => (
+                  {sectionImages?.map((photo: any, index: any) => (
                     <button
                       key={index}
-                      onClick={() => setCurrentImageIndex(index)}
+                      onClick={() => setActiveImage(index)}
                       className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                        currentImageIndex === index
+                        activeImage === index
                           ? "border-zoo-yellow-600"
                           : "border-transparent hover:border-zoo-yellow-600/50"
                       }`}
                     >
                       <Image
-                        src="/placeholder.svg"
-                        alt={`Placeholder ${index + 1}`}
+                        src={photo || "/placeholder.svg"}
+                        alt={`${plantDetails.name} ${index + 1}`}
                         fill
                         className="object-cover"
                       />

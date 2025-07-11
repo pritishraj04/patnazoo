@@ -1,11 +1,11 @@
 // Interface for the API response structure
 
-
 export interface Plants {
   id: number;
   boat_name: string;
   name: string;
   species: string;
+  images: string;
   category: string;
   slug: string;
   Qf_height: string;
@@ -36,6 +36,6 @@ export interface PlantInfo {
   DYK: string;
   images: string;
   section_image: string;
-  created_at: string; 
+  created_at: string;
   updated_at: string;
 }

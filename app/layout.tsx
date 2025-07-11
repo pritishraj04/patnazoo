@@ -82,14 +82,14 @@ export default function RootLayout({
         </ThemeProvider>
         <footer className="text-center text-xs text-white/60 py-2 bg-zoo-teal-900">
           <p>
-            Designed By{" "}
+            Developed By{" "}
             <a
-              href="https://polardot.in"
+              href="https://filliptechnologies.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:text-white"
             >
-              Polardot.in
+              Fillip Technologies
             </a>
           </p>
         </footer>

@@ -128,7 +128,7 @@ export default function PlantsPage() {
                     name={plant.name}
                     species={plant.species}
                     category={plant.category}
-                    image={plant.name}
+                    image={plant.images}
                     slug={plant.slug}
                     height={plant.Qf_height}
                     bloomingSeason={plant.Qf_bloom}
