@@ -10,6 +10,7 @@ import { HistoryInfo } from "./about/history";
 import { AboutInfo } from "./about/about";
 import { GalleryItem, GalleryImage } from "./about/gallery";
 import { TabMenuData } from "./zoo-experience/tab-menu";
+import { FaqsItems } from "./plan-visit/faqs";
 
 export type {
   PlantInfo,
@@ -27,4 +28,5 @@ export type {
   GalleryItem,
   GalleryImage,
   TabMenuData,
+  FaqsItems,
 };
