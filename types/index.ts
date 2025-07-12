@@ -11,6 +11,7 @@ import { AboutInfo } from "./about/about";
 import { GalleryItem, GalleryImage } from "./about/gallery";
 import { TabMenuData } from "./zoo-experience/tab-menu";
 import { FaqsItems } from "./plan-visit/faqs";
+import { PricingInfo } from "./plan-visit/tickets";
 
 export type {
   PlantInfo,
@@ -29,4 +30,5 @@ export type {
   GalleryImage,
   TabMenuData,
   FaqsItems,
+  PricingInfo,
 };
