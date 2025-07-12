@@ -199,7 +199,7 @@ export default function AdoptAnimalPage() {
             </div>
 
             <Tabs defaultValue="Big Cats" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8 bg-white/10 border-white/20">
+              <TabsList className="grid w-full h-auto grid-cols-2 lg:grid-cols-4 mb-8 bg-white/10 border-white/20">
                 {adoptionPackages.map((category) => (
                   <TabsTrigger
                     key={category.category}

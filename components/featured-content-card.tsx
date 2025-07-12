@@ -57,7 +57,7 @@ export function FeaturedContentCard({
       <div className={cn("zoo-container animate-on-scroll", className)} ref={cardRef}>
         <div className="relative overflow-hidden rounded-3xl h-96 md:h-[500px]">
           {/* Background Image */}
-          <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
+          <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover object-[0%_50%] md:object-center" />
 
           {/* Overlay */}
           <div className="absolute inset-0"></div>
