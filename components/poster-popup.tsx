@@ -1,54 +1,58 @@
-"use client"
-import { useState, useEffect } from "react"
-import { X } from "lucide-react"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
+"use client";
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface PosterPopupProps {
-  imageUrl?: string
-  linkUrl?: string
-  alt?: string
+  imageUrl?: string;
+  linkUrl?: string;
+  alt?: string;
 }
 
-export function PosterPopup({ imageUrl, linkUrl, alt = "Poster" }: PosterPopupProps) {
-  const [isVisible, setIsVisible] = useState(false)
-  const [imageLoaded, setImageLoaded] = useState(false)
-  const router = useRouter()
+export function PosterPopup({
+  imageUrl,
+  linkUrl,
+  alt = "Poster",
+}: PosterPopupProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // Only show if imageUrl is provided and valid
     if (imageUrl && imageUrl.trim() !== "") {
       // Small delay to ensure it appears after other elements load
       const timer = setTimeout(() => {
-        setIsVisible(true)
-      }, 1000)
+        setIsVisible(true);
+      }, 1000);
 
-      return () => clearTimeout(timer)
+      return () => clearTimeout(timer);
     }
-  }, [imageUrl])
+  }, [imageUrl]);
 
   const handleClose = () => {
-    setIsVisible(false)
-  }
+    setIsVisible(false);
+  };
 
   const handleImageClick = () => {
     if (linkUrl && linkUrl.trim() !== "") {
-      handleClose()
+      handleClose();
       // Small delay for smooth transition
       setTimeout(() => {
-        router.push(linkUrl)
-      }, 300)
+        router.push(linkUrl);
+      }, 300);
     }
-  }
+  };
 
   const handleBackdropClick = () => {
     // Backdrop click should only close, never navigate
-    handleClose()
-  }
+    handleClose();
+  };
 
   // Don't render if no image URL or not visible
   if (!imageUrl || imageUrl.trim() === "" || !isVisible) {
-    return null
+    return null;
   }
 
   return (
@@ -87,12 +91,12 @@ export function PosterPopup({ imageUrl, linkUrl, alt = "Poster" }: PosterPopupPr
           transition: "all 0.2s ease",
         }}
         onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.7)"
-          e.currentTarget.style.color = "#d1d5db"
+          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+          e.currentTarget.style.color = "#d1d5db";
         }}
         onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.5)"
-          e.currentTarget.style.color = "white"
+          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+          e.currentTarget.style.color = "white";
         }}
         aria-label="Close poster"
       >
@@ -144,6 +148,9 @@ export function PosterPopup({ imageUrl, linkUrl, alt = "Poster" }: PosterPopupPr
               fontSize: "0.875rem",
               fontWeight: "500",
               pointerEvents: "none",
+              whiteSpace: "nowrap", 
+              maxWidth: "90vw", 
+              textAlign: "center",
             }}
           >
             Click image to learn more
@@ -162,5 +169,5 @@ export function PosterPopup({ imageUrl, linkUrl, alt = "Poster" }: PosterPopupPr
         }
       `}</style>
     </div>
-  )
+  );
 }
