@@ -178,7 +178,7 @@ export default function EventsPage() {
           title="EVENTS & EXPERIENCES"
           subtitle="Discover exciting programs and special events throughout the year"
           backgroundImage="/images/header/animal-bg.png"
-          primaryCta={{ text: "VIEW CALENDAR", href: "#events" }}
+          // primaryCta={{ text: "VIEW CALENDAR", href: "#events" }}
           height="medium"
         />
 
@@ -196,7 +196,7 @@ export default function EventsPage() {
             </div>
 
             <Tabs defaultValue="upcoming" className="max-w-6xl mx-auto">
-              <TabsList className="grid w-full grid-cols-2 bg-white/10 border-white/20">
+              <TabsList className="grid w-full h-auto grid-cols-2 bg-white/10 border-white/20">
                 <TabsTrigger
                   value="upcoming"
                   className="text-white data-[state=active]:bg-zoo-yellow-600 data-[state=active]:text-zoo-teal-900"

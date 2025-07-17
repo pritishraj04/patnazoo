@@ -259,7 +259,7 @@ export default function FAQsPage() {
 
             <div className="max-w-6xl mx-auto">
               <Tabs defaultValue="general" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 bg-white/10 border-white/20 mb-8">
+                <TabsList className="grid w-full h-auto grid-cols-3 lg:grid-cols-6 bg-white/10 border-white/20 mb-8">
                   {faqCategories.map((category) => (
                     <TabsTrigger
                       key={category.id}

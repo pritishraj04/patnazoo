@@ -198,7 +198,7 @@ export default function GolfCartsPage() {
                   onValueChange={setActiveTab}
                   className="max-w-6xl mx-auto"
                 >
-                  <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-white/10 border-white/20 mb-8">
+                  <TabsList className="grid w-full h-auto grid-cols-2 lg:grid-cols-4 bg-white/10 border-white/20 mb-8">
                     {cartCategories.map((category) => (
                       <TabsTrigger
                         key={category.id}
