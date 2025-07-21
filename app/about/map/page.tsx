@@ -35,9 +35,9 @@ export default function ZooMapPage() {
       animals: ["Indian Peacock", "Great Indian Hornbill", "Flamingo", "Pelican", "Stork"],
     },
     reptiles: {
-      name: "Reptile House",
-      description: "Indoor and outdoor exhibits featuring various reptile species.",
-      animals: ["King Cobra", "Indian Python", "Marsh Crocodile", "Monitor Lizard", "Indian Star Tortoise"],
+      name: "Snake House",
+      description: "Indoor Snake Enclosure featuring various snakes.",
+      animals: ["King Cobra", "Indian Python", "Marsh Crocodile", "Monitor Lizard", "and more."],
     },
     aquatic: {
       name: "Aquatic Zone",
@@ -106,7 +106,7 @@ export default function ZooMapPage() {
                       </div>
                       <div className="flex items-center gap-3">
                         <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                        <span>Reptile House</span>
+                        <span>Snake House</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <div className="w-4 h-4 bg-cyan-500 rounded-full"></div>
