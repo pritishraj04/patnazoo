@@ -234,7 +234,7 @@ export default function JalUdyanPage() {
         <HeroSection
           title="JAL UDYAN"
           subtitle="A serene water garden paradise in the heart of the zoo"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/jal-udyan.jpg"
           height="medium"
         />
 
@@ -276,7 +276,7 @@ export default function JalUdyanPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/jal-udyan.jpg"
                   alt="Jal Udyan water garden"
                   fill
                   className="object-cover"

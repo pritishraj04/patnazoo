@@ -195,7 +195,7 @@ export default function BoatingLakePage() {
         <HeroSection
           title="BOATING LAKE"
           subtitle="Peaceful boat rides on our scenic lake"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/lake.jpg"
           height="medium"
         />
 
@@ -237,7 +237,7 @@ export default function BoatingLakePage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/lake.jpg"
                   alt="Boating lake with pedal boats"
                   fill
                   className="object-cover"
