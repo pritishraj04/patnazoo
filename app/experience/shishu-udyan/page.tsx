@@ -185,7 +185,7 @@ export default function ShishuUdyanPage() {
         <HeroSection
           title="SHISHU UDYAN"
           subtitle="A magical playground where children connect with nature"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/sishu.webp"
           height="medium"
         />
 
@@ -227,7 +227,7 @@ export default function ShishuUdyanPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/shishu.webp"
                   alt="Children playing in Shishu Udyan"
                   fill
                   className="object-cover"

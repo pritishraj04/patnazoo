@@ -141,7 +141,7 @@ export default function NatureLibraryPage() {
         <HeroSection
           title="NATURE LIBRARY"
           subtitle="A treasure trove of knowledge about wildlife and conservation"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/nature.webp"
           height="medium"
         />
 
@@ -183,7 +183,7 @@ export default function NatureLibraryPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/nature.webp"
                   alt="Nature Library interior with books and reading area"
                   fill
                   className="object-cover"

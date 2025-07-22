@@ -197,7 +197,7 @@ export default function ThreeDTheaterPage() {
         <HeroSection
           title="3D THEATER"
           subtitle="Immersive wildlife experiences in stunning 3D"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/3d.webp"
           height="medium"
         />
 
@@ -239,7 +239,7 @@ export default function ThreeDTheaterPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/3d.webp"
                   alt="3D Theater interior with audience"
                   fill
                   className="object-cover"

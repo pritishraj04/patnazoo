@@ -301,7 +301,7 @@ export default function GolfCartsPage() {
         <HeroSection
           title="GOLF CARTS"
           subtitle="Comfortable and eco-friendly transportation around the zoo"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/golfcart.webp"
           height="medium"
         />
 
@@ -343,7 +343,7 @@ export default function GolfCartsPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/golfcart.webp"
                   alt="Electric golf cart at Patna Zoo"
                   fill
                   className="object-cover"
