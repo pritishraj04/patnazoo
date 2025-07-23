@@ -226,7 +226,7 @@ export default function RhinoBreedingCenterPage() {
         <HeroSection
           title="RHINO BREEDING CENTER"
           subtitle="Pioneering conservation through successful breeding programs"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/breeding.webp"
           height="medium"
         />
 
@@ -269,7 +269,7 @@ export default function RhinoBreedingCenterPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/breeding.webp"
                   alt="Rhino mother with calf in breeding center"
                   fill
                   className="object-cover"

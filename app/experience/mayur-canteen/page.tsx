@@ -99,7 +99,7 @@ export default function MayurCanteenPage() {
         <HeroSection
           title="MAYUR CANTEEN"
           subtitle="Delicious vegetarian food in the heart of the zoo"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/maurya.webp"
           height="medium"
         />
 
@@ -140,7 +140,7 @@ export default function MayurCanteenPage() {
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/maurya.webp"
                   alt="Mayur Canteen interior"
                   fill
                   className="object-cover"
