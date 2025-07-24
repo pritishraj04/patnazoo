@@ -377,7 +377,7 @@ export default function VisitPage() {
         />
 
         {/* FAQ Section */}
-        <section className="py-16 bg-zoo-teal-700">
+        <section className="py-16 bg-zoo-teal-700" id="faq">
           <div className="zoo-container">
             <div className="max-w-4xl mx-auto">
               <div

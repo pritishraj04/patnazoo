@@ -7,7 +7,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { cn } from "@/lib/utils";
 import { useApiData } from "@/hooks/index";
 import { LandingInfo } from "@/types/index";
-import Image from "next/image"
+import Image from "next/image";
 // Simplified menu structure without overview pages
 const menuItems = [
   {
@@ -18,7 +18,8 @@ const menuItems = [
         items: [
           { title: "About Patna Zoo", href: "/about" },
           { title: "History & Legacy", href: "/about/history" },
-          { title: "Director's Message", href: "/about/directors-message" },
+          { title: "Secretary's Message", href: "/about/message/secretary" },
+          { title: "Director's Message", href: "/about/message/director" },
         ],
       },
       {
@@ -26,7 +27,7 @@ const menuItems = [
         items: [
           { title: "Gallery", href: "/about/gallery" },
           { title: "Zoo Map", href: "/about/map" },
-          { title: "Contact Us", href: "/contact" }
+          { title: "Contact Us", href: "/contact" },
         ],
       },
     ],
@@ -47,6 +48,7 @@ const menuItems = [
         items: [
           { title: "Location & How to Reach", href: "/visit/location" },
           { title: "Facilities", href: "/visit/facilities" },
+          { title: "FAQs", href: "/visit#faq" },
         ],
       },
     ],
@@ -111,7 +113,7 @@ const menuItems = [
         items: [
           { title: "Adopt an Animal", href: "/programs/adopt-an-animal" },
           { title: "Breeding Programs", href: "/programs/breeding" },
-          { title: "Events", href: "/events" }
+          { title: "Events", href: "/events" },
         ],
       },
       {
@@ -126,12 +128,12 @@ const menuItems = [
 ];
 
 export function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [activeMenu, setActiveMenu] = useState<string | null>(null)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
-  const navRef = useRef<HTMLElement>(null)
-  const timeoutRef = useRef<number | null>(null)
+  const navRef = useRef<HTMLElement>(null);
+  const timeoutRef = useRef<number | null>(null);
 
   const { data: landingPageData, loading } = useApiData<LandingInfo>(
     "/landingpagedetails"
@@ -151,38 +153,42 @@ export function Navbar() {
   // Clear timeout helper
   const clearTimeout = useCallback(() => {
     if (timeoutRef.current) {
-      window.clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
+      window.clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     }
-  }, [])
+  }, []);
 
   // Handle mouse enter on menu item
   const handleMenuEnter = useCallback(
     (title: string) => {
-      clearTimeout()
-      setActiveMenu(title)
+      clearTimeout();
+      setActiveMenu(title);
     },
-    [clearTimeout],
-  )
+    [clearTimeout]
+  );
 
   // Handle mouse leave from entire menu area
   const handleMenuAreaLeave = useCallback(() => {
-    clearTimeout()
+    clearTimeout();
     timeoutRef.current = window.setTimeout(() => {
-      setActiveMenu(null)
-    }, 150)
-  }, [clearTimeout])
+      setActiveMenu(null);
+    }, 150);
+  }, [clearTimeout]);
 
   // Handle mouse enter back into menu area
   const handleMenuAreaEnter = useCallback(() => {
-    clearTimeout()
-  }, [clearTimeout])
+    clearTimeout();
+  }, [clearTimeout]);
 
   // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (activeMenu && navRef.current && !navRef.current.contains(event.target as Node)) {
-        setActiveMenu(null)
+      if (
+        activeMenu &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setActiveMenu(null);
       }
     };
 
@@ -196,24 +202,24 @@ export function Navbar() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setActiveMenu(null)
+        setActiveMenu(null);
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown)
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [])
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current)
+        window.clearTimeout(timeoutRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <>
@@ -259,15 +265,26 @@ export function Navbar() {
         </div>
       </div>
 
-      <header className={cn("fixed left-0 right-0 z-50 transition-all duration-300", isScrolled ? "top-0" : "top-10 md:top-8")}>
+      <header
+        className={cn(
+          "fixed left-0 right-0 z-50 transition-all duration-300",
+          isScrolled ? "top-0" : "top-10 md:top-8"
+        )}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav
             ref={navRef}
             className="bg-white/95 backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 shadow-lg border border-white/20"
           >
-						<Link href="/" className="flex items-center gap-2 z-10">
-                <Image src="/images/logo-large.svg" alt="Conservation work" width={180} height={50} className="ml-4" />
-						</Link>
+            <Link href="/" className="flex items-center gap-2 z-10">
+              <Image
+                src="/images/logo-large.svg"
+                alt="Conservation work"
+                width={180}
+                height={50}
+                className="ml-4"
+              />
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-1 relative">
@@ -282,7 +299,8 @@ export function Navbar() {
                   <button
                     className={cn(
                       "px-4 py-2 rounded-full flex items-center gap-1 transition-all duration-200 text-zoo-teal-700 hover:text-zoo-teal-500 hover:bg-zoo-teal-50/80 focus:outline-none focus:ring-2 focus:ring-zoo-yellow-600 focus:ring-offset-2",
-                      activeMenu === item.title && "bg-zoo-teal-50/80 text-zoo-teal-500",
+                      activeMenu === item.title &&
+                        "bg-zoo-teal-50/80 text-zoo-teal-500"
                     )}
                     aria-expanded={activeMenu === item.title}
                     aria-haspopup="true"
@@ -291,7 +309,7 @@ export function Navbar() {
                     <ChevronDown
                       className={cn(
                         "w-4 h-4 transition-transform duration-200",
-                        activeMenu === item.title && "rotate-180",
+                        activeMenu === item.title && "rotate-180"
                       )}
                     />
                   </button>
@@ -303,7 +321,7 @@ export function Navbar() {
                       activeMenu === item.title
                         ? "opacity-100 scale-100 translate-y-0 pointer-events-auto visible"
                         : "opacity-0 scale-95 -translate-y-2 pointer-events-none invisible",
-                      item.groups.length <= 2 ? "w-96" : "w-[600px]",
+                      item.groups.length <= 2 ? "w-96" : "w-[600px]"
                     )}
                     onMouseEnter={handleMenuAreaEnter}
                     onMouseLeave={handleMenuAreaLeave}
@@ -313,7 +331,9 @@ export function Navbar() {
                       <div
                         className={cn(
                           "p-6 grid gap-8 bg-white/80 rounded-xl",
-                          item.groups.length <= 2 ? "grid-cols-2" : "grid-cols-3",
+                          item.groups.length <= 2
+                            ? "grid-cols-2"
+                            : "grid-cols-3"
                         )}
                       >
                         {/* Grouped Items */}

@@ -5,4 +5,5 @@ export interface DirectorMessageInfo {
   name: string;
   vision: string;
   mission: string;
+  strategic_goals: string;
 }

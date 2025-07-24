@@ -10,12 +10,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
 import { useApiData } from "@/hooks/index";
 import { DirectorMessageInfo } from "@/types/index";
+import { useParams } from "next/navigation";
 
-export default function DirectorsMessagePage() {
+export default function MessagePage() {
+  const params = useParams();
+  const message = params.message as string;
+
+  console.log("This is the param data", message);
+
   const [isVisible, setIsVisible] = useState(false);
 
   const { data: directorMessageData, loading } =
-    useApiData<DirectorMessageInfo>("/directormessage");
+    useApiData<DirectorMessageInfo>(`/${message}`);
 
   useEffect(() => {
     setIsVisible(true);
