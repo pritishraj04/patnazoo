@@ -96,13 +96,13 @@ export default function GolfCartsPage() {
         <>
           <Navbar />
 
-          <main>
-            <HeroSection
-              title="GOLF CARTS"
-              subtitle="Comfortable and eco-friendly transportation around the zoo"
-              backgroundImage="/images/header/animal-bg.png"
-              height="medium"
-            />
+      <main>
+        <HeroSection
+          title="GOLF CARTS"
+          subtitle="Comfortable and eco-friendly transportation around the zoo"
+          backgroundImage="/images/header/golfcart.webp"
+          height="medium"
+        />
 
             {/* Introduction */}
             <section className="py-16 bg-zoo-teal-700">
@@ -151,29 +151,22 @@ export default function GolfCartsPage() {
                     </div>
                   </div>
 
-                  <div
-                    className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${
-                      isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
-                    }`}
-                  >
-                    <Image
-                      src="/placeholder.svg?height=400&width=600"
-                      alt="Electric golf cart at Patna Zoo"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
-                      <p className="text-white/90 text-sm">
-                        Eco-friendly electric carts for comfortable zoo
-                        exploration
-                      </p>
-                    </div>
-                  </div>
+              <div
+                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              >
+                <Image
+                  src="/images/golfcart.webp"
+                  alt="Electric golf cart at Patna Zoo"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
+                  <p className="text-white/90 text-sm">Eco-friendly electric carts for comfortable zoo exploration</p>
                 </div>
               </div>
-            </section>
+            </div>
+          </div>
+        </section>
 
             {/* Cart Services */}
             <section className="py-16 bg-zoo-teal-800">

@@ -347,7 +347,7 @@ export default function HistoryPage() {
         </section>
 
         {/* Directors Through History */}
-        <section className="py-16 bg-zoo-teal-800">
+        {/* <section className="py-16 bg-zoo-teal-800">
           <div className="zoo-container">
             <SectionHeading
               title="VISIONARY LEADERSHIP"
@@ -384,7 +384,7 @@ export default function HistoryPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
 
       <Footer />

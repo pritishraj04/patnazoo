@@ -87,13 +87,13 @@ export default function MayurCanteenPage() {
         <>
           <Navbar />
 
-          <main>
-            <HeroSection
-              title="MAYUR CANTEEN"
-              subtitle="Delicious vegetarian food in the heart of the zoo"
-              backgroundImage="/images/header/animal-bg.png"
-              height="medium"
-            />
+      <main>
+        <HeroSection
+          title="MAYUR CANTEEN"
+          subtitle="Delicious vegetarian food in the heart of the zoo"
+          backgroundImage="/images/header/maurya.webp"
+          height="medium"
+        />
 
             {/* Introduction */}
             <section className="py-16 bg-zoo-teal-700">
@@ -139,28 +139,22 @@ export default function MayurCanteenPage() {
                     </div>
                   </div>
 
-                  <div
-                    className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${
-                      isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
-                    }`}
-                  >
-                    <Image
-                      src="/placeholder.svg?height=400&width=600"
-                      alt="Mayur Canteen interior"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
-                      <p className="text-white/90 text-sm">
-                        Comfortable dining area with zoo views
-                      </p>
-                    </div>
-                  </div>
+              <div
+                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              >
+                <Image
+                  src="/images/maurya.webp"
+                  alt="Mayur Canteen interior"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
+                  <p className="text-white/90 text-sm">Comfortable dining area with zoo views</p>
                 </div>
               </div>
-            </section>
+            </div>
+          </div>
+        </section>
 
             {/* Menu */}
             <section className="py-16 bg-zoo-teal-800">

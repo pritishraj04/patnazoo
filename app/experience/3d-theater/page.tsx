@@ -94,13 +94,13 @@ export default function ThreeDTheaterPage() {
         <>
           <Navbar />
 
-          <main>
-            <HeroSection
-              title="3D THEATER"
-              subtitle="Immersive wildlife experiences in stunning 3D"
-              backgroundImage="/images/header/animal-bg.png"
-              height="medium"
-            />
+      <main>
+        <HeroSection
+          title="3D THEATER"
+          subtitle="Immersive wildlife experiences in stunning 3D"
+          backgroundImage="/images/header/3d.webp"
+          height="medium"
+        />
 
             {/* Introduction */}
             <section className="py-16 bg-zoo-teal-700">
@@ -149,28 +149,22 @@ export default function ThreeDTheaterPage() {
                     </div>
                   </div>
 
-                  <div
-                    className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${
-                      isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
-                    }`}
-                  >
-                    <Image
-                      src="/placeholder.svg?height=400&width=600"
-                      alt="3D Theater interior with audience"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
-                      <p className="text-white/90 text-sm">
-                        Immersive 3D wildlife experiences for all ages
-                      </p>
-                    </div>
-                  </div>
+              <div
+                className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              >
+                <Image
+                  src="/images/3d.webp"
+                  alt="3D Theater interior with audience"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent p-6">
+                  <p className="text-white/90 text-sm">Immersive 3D wildlife experiences for all ages</p>
                 </div>
               </div>
-            </section>
+            </div>
+          </div>
+        </section>
 
             {/* Show Schedule */}
             <section className="py-16 bg-zoo-teal-800">
