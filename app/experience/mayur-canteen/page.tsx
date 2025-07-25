@@ -110,7 +110,7 @@ export default function MayurCanteenPage() {
               <div
                 className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6"> FUEL YOUR DAY AT PATNAZOO</h2>
+                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6"> FUEL YOUR DAY AT PATNA ZOO</h2>
                 <p className="text-white/90 text-lg mb-4">
                   Mayur Canteen offers a delightful dining experience right in the heart of Patna Zoo. Our vegetarian
                   restaurant serves authentic Indian cuisine, snacks, and refreshing beverages to fuel your zoo
