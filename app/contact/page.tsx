@@ -301,9 +301,9 @@ export default function ContactPage() {
                     <div>
                       <h4 className="font-heading text-lg text-zoo-teal-700 mb-2">By Car</h4>
                       <p className="text-zoo-teal-600 text-sm">
-                        Free parking available at Gate No. 1 & 2. Follow Bailey Road from Patna city center. 
+                        Parking spaces available at Gate No. 1 & 2. Enter through Gate No. 1 for the main entrance.
                       </p>
-                      <Link href="https://goo.gl/maps/xyz123" target="_blank" className="text-zoo-teal-500 text-sm hover:underline">
+                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084!3e0?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
                         Get Directions
                       </Link>
                     </div>
@@ -312,7 +312,7 @@ export default function ContactPage() {
                       <p className="text-zoo-teal-600 text-sm">
                         Take any bus going towards Bailey Road and alight at Patna Zoo Bus Stop.
                       </p>
-                      <Link href="https://goo.gl/maps/xyz123" target="_blank" className="text-zoo-teal-500 text-sm hover:underline">
+                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
                         Get Directions
                       </Link>
                     </div>
@@ -321,7 +321,7 @@ export default function ContactPage() {
                       <p className="text-zoo-teal-600 text-sm">
                         Easily available from any location in Patna. Just ask for "Patna Chidiya Ghar".
                       </p>
-                      <Link href="https://goo.gl/maps/xyz123" target="_blank" className="text-zoo-teal-500 text-sm hover:underline">
+                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
                         Get Directions
                       </Link>
                     </div>

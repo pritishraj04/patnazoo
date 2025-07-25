@@ -127,6 +127,10 @@ export default function VisitPage() {
                         <span className="font-medium">Last Entry</span>
                         <span>5:00 PM</span>
                       </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium">Morning Walk</span>
+                        <span>5:30 AM - 9:00 AM</span>
+                      </div>
                       <div className="pt-4 border-t border-white/20">
                         <p className="text-sm text-white/80">
                           <strong>Note:</strong> Zoo remains open on public holidays that fall on Monday
