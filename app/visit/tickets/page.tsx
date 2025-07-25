@@ -108,6 +108,7 @@ export default function TicketsPage() {
                     <span className="font-medium">1st April - 30th September</span>
                     <span className="text-zoo-yellow-600">6:00 AM - 6:00 PM</span>
                   </div>
+                  
                 </CardContent>
               </Card>
             </div>
@@ -315,7 +316,7 @@ export default function TicketsPage() {
           </div>
         </section>
 
-        {/* Payment Methods */}
+        {/* Payment Methods
         <section className="py-16 bg-zoo-teal-700">
           <div className="zoo-container">
             <div
@@ -341,7 +342,7 @@ export default function TicketsPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Online Booking Notice */}
         <section className="py-16 bg-zoo-teal-800">

@@ -384,7 +384,7 @@ export default function RhinoBreedingCenterPage() {
             <div
               className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">WORLD-CLASS FACILITIES</h2>
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">FACILITIES</h2>
               <p className="text-xl text-white/80">Advanced infrastructure supporting successful breeding programs</p>
             </div>
 
