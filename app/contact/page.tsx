@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { MapPin, Phone, Mail, Clock, MessageSquare, Users, Calendar } from "lucide-react"
+import Link from "next/link"
 
 export default function ContactPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -300,20 +301,29 @@ export default function ContactPage() {
                     <div>
                       <h4 className="font-heading text-lg text-zoo-teal-700 mb-2">By Car</h4>
                       <p className="text-zoo-teal-600 text-sm">
-                        Free parking available at Gate No. 1 & 2. Follow Bailey Road from Patna city center.
+                        Free parking available at Gate No. 1 & 2. Follow Bailey Road from Patna city center. 
                       </p>
+                      <Link href="https://goo.gl/maps/xyz123" target="_blank" className="text-zoo-teal-500 text-sm hover:underline">
+                        Get Directions
+                      </Link>
                     </div>
                     <div>
                       <h4 className="font-heading text-lg text-zoo-teal-700 mb-2">By Bus</h4>
                       <p className="text-zoo-teal-600 text-sm">
                         Take any bus going towards Bailey Road and alight at Patna Zoo Bus Stop.
                       </p>
+                      <Link href="https://goo.gl/maps/xyz123" target="_blank" className="text-zoo-teal-500 text-sm hover:underline">
+                        Get Directions
+                      </Link>
                     </div>
                     <div>
                       <h4 className="font-heading text-lg text-zoo-teal-700 mb-2">By Auto/Taxi</h4>
                       <p className="text-zoo-teal-600 text-sm">
                         Easily available from any location in Patna. Just ask for "Patna Chidiya Ghar".
                       </p>
+                      <Link href="https://goo.gl/maps/xyz123" target="_blank" className="text-zoo-teal-500 text-sm hover:underline">
+                        Get Directions
+                      </Link>
                     </div>
                   </div>
                 </div>
