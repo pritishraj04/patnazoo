@@ -98,7 +98,7 @@ export default function VisitPage() {
         <HeroSection
           title="PLAN YOUR VISIT"
           subtitle="Everything you need to know for the perfect zoo experience"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/overview.webp"
           height="medium"
         />
 
