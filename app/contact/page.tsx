@@ -95,7 +95,7 @@ export default function ContactPage() {
         <HeroSection
           title="CONTACT US"
           subtitle="Get in touch with our team for any questions or assistance"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/contact.webp"
           height="medium"
         />
 
