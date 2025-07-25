@@ -129,32 +129,33 @@ export default function EventsPage() {
     },
   ]
 
-  const carouselEvents = [
+const carouselEvents = [
     {
       id: 1,
-      title: "Summer Camp Registration",
+      title: "A Lake Break",
       description:
-        "Register now for our exciting summer camps designed for young wildlife enthusiasts. Limited spots available!",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/events/summer-camp",
-      buttonText: "Register now",
+        "Experience a joy-full time with family boating, at the Lake.",
+      image: "/images/bottom-s1.jpg",
+      href: "/experience/boating-lake",
+      buttonText: "Learn more",
     },
     {
       id: 2,
-      title: "VIP Behind-the-Scenes Tours",
-      description: "Get exclusive access to areas normally closed to the public and meet our animal care team.",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/events/vip-tours",
-      buttonText: "Book tour",
+      title: "Animal Feeding Time",
+      description:
+        "Watch our zookeepers feed some of the zoo's most popular animals and learn about their diets and habits.",
+      image: "/images/d2.jpg",
+      href: "/events/animal-feeding",
+      buttonText: "See schedule",
     },
     {
       id: 3,
-      title: "Annual Fundraising Gala",
+      title: "Conservation Talk Series",
       description:
-        "Join us for an elegant evening supporting wildlife conservation. Dinner, auction, and entertainment included.",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/events/fundraising-gala",
-      buttonText: "Get tickets",
+        "Join our experts for an in-depth discussion about wildlife conservation efforts in Bihar and how you can make a difference.",
+      image: "/images/d3.jpg",
+      href: "/events/conservation-talks",
+      buttonText: "Learn more",
     },
   ]
 
@@ -178,12 +179,10 @@ export default function EventsPage() {
           title="EVENTS & EXPERIENCES"
           subtitle="Discover exciting programs and special events throughout the year"
           backgroundImage="/images/header/animal-bg.png"
-          primaryCta={{ text: "VIEW CALENDAR", href: "#events" }}
-          height="medium"
         />
 
         {/* Featured Events Carousel */}
-        <EventsCarousel events={carouselEvents} backgroundImage="/placeholder.svg?height=600&width=1920" />
+        <EventsCarousel events={carouselEvents} backgroundImage="/images/bg.png" />
 
         {/* Events Tabs */}
         <section id="events" className="py-16 bg-zoo-teal-700">

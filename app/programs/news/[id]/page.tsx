@@ -187,7 +187,7 @@ const newsData = {
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const news = newsData[params.id as keyof typeof newsData]
+  const news = newsData[Number(params.id) as keyof typeof newsData]
 
   if (!news) {
     return {
@@ -203,7 +203,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default function NewsDetailsPage({ params }: { params: { id: string } }) {
-  const news = newsData[params.id as keyof typeof newsData]
+  const news = newsData[Number(params.id) as keyof typeof newsData]
 
   if (!news) {
     notFound()

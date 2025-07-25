@@ -62,31 +62,33 @@ export default function VisitPage() {
     "Respect the natural environment",
   ]
 
-  const carouselEvents = [
+const carouselEvents = [
     {
       id: 1,
-      title: "Guided Zoo Tours",
+      title: "A Lake Break",
       description:
-        "Join our expert guides for an educational journey through the zoo. Learn about conservation efforts and animal behaviors.",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/experiences/guided-tours",
-      buttonText: "Book tour",
+        "Experience a joy-full time with family boating, at the Lake.",
+      image: "/images/bottom-s1.jpg",
+      href: "/experience/boating-lake",
+      buttonText: "Learn more",
     },
     {
       id: 2,
-      title: "Animal Feeding Sessions",
-      description: "Watch our keepers feed the animals and learn about their diets and feeding behaviors.",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/experiences/feeding-sessions",
-      buttonText: "View schedule",
+      title: "Animal Feeding Time",
+      description:
+        "Watch our zookeepers feed some of the zoo's most popular animals and learn about their diets and habits.",
+      image: "/images/d2.jpg",
+      href: "/events/animal-feeding",
+      buttonText: "See schedule",
     },
     {
       id: 3,
-      title: "Educational Workshops",
-      description: "Interactive workshops for children and adults about wildlife conservation and animal care.",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/experiences/workshops",
-      buttonText: "Register now",
+      title: "Conservation Talk Series",
+      description:
+        "Join our experts for an in-depth discussion about wildlife conservation efforts in Bihar and how you can make a difference.",
+      image: "/images/d3.jpg",
+      href: "/events/conservation-talks",
+      buttonText: "Learn more",
     },
   ]
 
@@ -292,7 +294,7 @@ export default function VisitPage() {
         </section>
 
         {/* Experiences Carousel */}
-        <EventsCarousel events={carouselEvents} backgroundImage="/placeholder.svg?height=600&width=1920" />
+        <EventsCarousel events={carouselEvents} backgroundImage="/images/bg.png" />
 
         {/* FAQ Section */}
         <section className="py-16 bg-zoo-teal-700">
@@ -307,7 +309,7 @@ export default function VisitPage() {
 
               <Accordion type="single" collapsible className="space-y-4">
                 <AccordionItem value="item-1" className="bg-white rounded-lg border-none">
-                  <AccordionTrigger className="px-6 py-4 text-zoo-teal-700 font-medium hover:no-underline">
+                  <AccordionTrigger className="px-6 py-4 text-lg text-zoo-teal-700 font-medium hover:no-underline">
                     Can I bring my own food and drinks?
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-4 text-zoo-teal-600">
@@ -317,7 +319,7 @@ export default function VisitPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-2" className="bg-white rounded-lg border-none">
-                  <AccordionTrigger className="px-6 py-4 text-zoo-teal-700 font-medium hover:no-underline">
+                  <AccordionTrigger className="px-6 py-4 text-lg text-zoo-teal-700 font-medium hover:no-underline">
                     Is the zoo wheelchair accessible?
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-4 text-zoo-teal-600">
@@ -327,7 +329,7 @@ export default function VisitPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-3" className="bg-white rounded-lg border-none">
-                  <AccordionTrigger className="px-6 py-4 text-zoo-teal-700 font-medium hover:no-underline">
+                  <AccordionTrigger className="px-6 py-4 text-lg text-zoo-teal-700 font-medium hover:no-underline">
                     What should I do if it rains during my visit?
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-4 text-zoo-teal-600">
@@ -337,7 +339,7 @@ export default function VisitPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-4" className="bg-white rounded-lg border-none">
-                  <AccordionTrigger className="px-6 py-4 text-zoo-teal-700 font-medium hover:no-underline">
+                  <AccordionTrigger className="px-6 py-4 text-lg text-zoo-teal-700 font-medium hover:no-underline">
                     How long does a typical visit take?
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-4 text-zoo-teal-600">
@@ -347,7 +349,7 @@ export default function VisitPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-5" className="bg-white rounded-lg border-none">
-                  <AccordionTrigger className="px-6 py-4 text-zoo-teal-700 font-medium hover:no-underline">
+                  <AccordionTrigger className="px-6 py-4 text-lg text-zoo-teal-700 font-medium hover:no-underline">
                     Are there guided tours available?
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-4 text-zoo-teal-600">
