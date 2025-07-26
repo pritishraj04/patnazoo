@@ -15,20 +15,18 @@ import { ImageCarousel } from "@/components/image-carousel";
 import { PriorityPopup } from "@/components/priority-popup";
 import { PosterPopup } from "@/components/poster-popup";
 import { useApiData } from "@/hooks/index";
-import { FunFactsInfo, CarouselImage } from "@/types/index";
+import { FunFactsInfo, CarouselImage, LandingInfo } from "@/types/index";
 
 // Poster Configuration - Set imageUrl to empty string to disable
-const posterConfig = {
-  imageUrl: "/images/adopt-an-animal.jpg", // Set to "" to disable popup
-  linkUrl: "/programs/adopt-an-animal", // Optional navigation URL
-  alt: "Adopt an Animal Poster", // Alt text for accessibility
-};
 
 export default function HomePage() {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
 
   const { data: funFactsData } = useApiData<FunFactsInfo[]>("/funfacts");
   const { data: carouselImagesData } = useApiData<CarouselImage[]>("/sliders");
+  const { data: posterImageData } = useApiData<LandingInfo>(
+    "/landingpagedetails"
+  );
 
   // Get current day of year to determine which fact to show
   useEffect(() => {
@@ -41,6 +39,12 @@ export default function HomePage() {
   }, []);
 
   const currentFact = funFactsData?.[currentFactIndex];
+
+  const posterConfig = {
+    imageUrl: posterImageData?.image, // Set to "" to disable popup
+    linkUrl: "/programs/adopt-an-animal", // Optional navigation URL
+    alt: "Adopt an Animal Poster", // Alt text for accessibility
+  };
 
   // Animation observer for scroll animations
   useEffect(() => {
