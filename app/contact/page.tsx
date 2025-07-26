@@ -28,7 +28,9 @@ import {
 } from "lucide-react";
 import { useApiData } from "@/hooks/index";
 import { FaqsItems } from "@/types/index";
-import Link from "next/link"
+import Link from "next/link";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ContactPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,15 +51,50 @@ export default function ContactPage() {
     message: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post(`${BASE_URL}/contact`, {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      });
+
+      if (response.data?.success) {
+        setIsSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+        toast.success("Your message has been sent successfully!");
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError("Failed to submit. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-  };
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -134,6 +171,8 @@ export default function ContactPage() {
           backgroundImage="/images/header/contact.webp"
           height="medium"
         />
+
+        <Toaster position="top-right" />
 
         {/* Contact Information */}
         <section className="py-16 bg-zoo-teal-700">
@@ -319,12 +358,17 @@ export default function ContactPage() {
                       />
                     </div>
 
+                    {error && (
+                      <div className="text-red-600 text-sm">{error}</div>
+                    )}
+
                     <div className="flex justify-center pt-6">
                       <Button
                         type="submit"
+                        disabled={loading}
                         className="bg-zoo-yellow-600 hover:bg-zoo-yellow-500 text-zoo-teal-900 font-bold uppercase tracking-wider rounded-full transition-all duration-300 px-10 py-6"
                       >
-                        SEND MESSAGE
+                        {loading ? "Sending..." : "SEND MESSAGE"}
                       </Button>
                     </div>
                   </form>
@@ -404,13 +448,13 @@ export default function ContactPage() {
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.0333387688593!2d85.10212109999999!3d25.603808400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed570303d1e895%3A0x9afbc441239dd40a!2sPatna%20Zoo!5e0!3m2!1sen!2sin!4v1751109448138!5m2!1sen!2sin"
                       width="100%"
                       height="100%"
-                      style={{ 
-                        position: 'absolute',
+                      style={{
+                        position: "absolute",
                         top: 0,
                         left: 0,
-                        width: '100%',
-                        height: '100%',
-                        border: 'none'
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
                       }}
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
@@ -424,9 +468,14 @@ export default function ContactPage() {
                         By Car
                       </h4>
                       <p className="text-zoo-teal-600 text-sm">
-                        Parking spaces available at Gate No. 1 & 2. Enter through Gate No. 1 for the main entrance.
+                        Parking spaces available at Gate No. 1 & 2. Enter
+                        through Gate No. 1 for the main entrance.
                       </p>
-                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084!3e0?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
+                      <Link
+                        href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084!3e0?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        className="text-zoo-teal-500 text-sm hover:underline font-semibold"
+                      >
                         Get Directions
                       </Link>
                     </div>
@@ -438,7 +487,11 @@ export default function ContactPage() {
                         Take any bus going towards Bailey Road and alight at
                         Patna Zoo Bus Stop.
                       </p>
-                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
+                      <Link
+                        href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        className="text-zoo-teal-500 text-sm hover:underline font-semibold"
+                      >
                         Get Directions
                       </Link>
                     </div>
@@ -450,7 +503,11 @@ export default function ContactPage() {
                         Easily available from any location in Patna. Just ask
                         for "Patna Chidiya Ghar".
                       </p>
-                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
+                      <Link
+                        href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        className="text-zoo-teal-500 text-sm hover:underline font-semibold"
+                      >
                         Get Directions
                       </Link>
                     </div>
