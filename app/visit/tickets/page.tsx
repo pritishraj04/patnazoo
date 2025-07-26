@@ -18,13 +18,39 @@ import {
   Camera,
 } from "lucide-react";
 import { useApiData, useActiveTab } from "@/hooks/index";
-import { PricingInfo } from "@/types/index";
+import { PricingInfo, ZooPoliciesInfo } from "@/types/index";
 import Loader from "@/components/Loader";
 
 export default function TicketsPage() {
   const [isVisible, setIsVisible] = useState(false);
 
   const { data: menuData, loading } = useApiData<PricingInfo[]>("/tickets");
+  const { data: ZooPolicies } = useApiData<ZooPoliciesInfo>("/policies");
+  const zooPolicy = ZooPolicies?.policies;
+  const zooGuidelines = ZooPolicies?.guidlines;
+
+  const [policyelements, setPolicyElements] = useState<HTMLElement[]>([]);
+  const [guidelineselements, setGuidelinesElements] = useState<HTMLElement[]>(
+    []
+  );
+
+  const parseHtmlToElements = (
+    htmlString: string | undefined
+  ): HTMLElement[] => {
+    const parser = new DOMParser();
+    const parsed = parser.parseFromString(htmlString ?? "", "text/html");
+    return Array.from(parsed.body.children).filter(
+      (el) => el.textContent?.trim() && el.innerHTML !== "&nbsp;"
+    ) as HTMLElement[];
+  };
+
+  useEffect(() => {
+    setPolicyElements(parseHtmlToElements(zooPolicy));
+  }, [zooPolicy]);
+
+  useEffect(() => {
+    setGuidelinesElements(parseHtmlToElements(zooGuidelines));
+  }, [zooGuidelines]);
 
   const menuDataTransformed = menuData?.map((item) => ({
     tab: item.id,
@@ -551,38 +577,15 @@ export default function TicketsPage() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          Tickets are valid only for the date of purchase
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          No refunds or exchanges on purchased tickets
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          Children below 3 years enter free with valid age proof
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          Group bookings must be made 24 hours in advance and
-                          are restricted on January 1st
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          On January 1st, tickets are available only at the
-                          counter
-                        </p>
-                      </div>
+                      {policyelements.map((el, index) => (
+                        <div key={index} className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0" />
+                          <div
+                            className="text-white/90"
+                            dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+                          />
+                        </div>
+                      ))}
                     </CardContent>
                   </Card>
 
@@ -600,43 +603,18 @@ export default function TicketsPage() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          Maintain safe distance from animal enclosures
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          Do not feed animals unless in designated areas
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          Photography allowed, flash prohibited near animals
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          Keep the zoo clean - use designated waste bins
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          Follow staff instructions at all times
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-white/90">
-                          A fine of ₹500 will be imposed for damaging zoo
-                          property or harming wildlife
-                        </p>
-                      </div>
+                      {guidelineselements.map((el, index) => (
+                        <div key={index} className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-zoo-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
+                          {/* <p className="text-white/90">
+                            Maintain safe distance from animal enclosures
+                          </p> */}
+                          <div
+                            className="text-white/90"
+                            dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+                          />
+                        </div>
+                      ))}
                     </CardContent>
                   </Card>
                 </div>
