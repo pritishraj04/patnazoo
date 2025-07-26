@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LoaderCircle, X } from "lucide-react";
 import { useApiData } from "@/hooks/index";
-import { GalleryItem } from "@/types/index";
+import { GalleryItem, PhotoOfMonthInfo } from "@/types/index";
 import Loader from "@/components/Loader";
 
 export default function GalleryPage() {
@@ -17,6 +17,9 @@ export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const { data: galleryItem, loading } = useApiData<GalleryItem[]>("/gallery");
+  const { data: photoOfTheMonthData } =
+    useApiData<PhotoOfMonthInfo>("/photo-of-month");
+
 
   const galleryCategories = useMemo(() => {
     return (
@@ -187,21 +190,24 @@ export default function GalleryPage() {
             <div className="max-w-4xl mx-auto">
               <div className="relative aspect-[16/9] rounded-lg overflow-hidden animate-on-scroll">
                 <Image
-                  src="/placeholder.svg?height=900&width=1600"
+                  src={
+                    photoOfTheMonthData?.image ||
+                    "/placeholder.svg?height=900&width=1600"
+                  }
                   alt="Featured photo - Tiger cooling off in water"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zoo-teal-900/80 to-transparent flex flex-col justify-end p-6">
                   <h3 className="font-heading text-2xl text-white mb-2">
-                    Summer Splash
+                    {photoOfTheMonthData?.title}
                   </h3>
                   <p className="text-white/90">
-                    A Royal Bengal Tiger cooling off in the water during a hot
-                    summer day
+                    {photoOfTheMonthData?.description}
                   </p>
                   <p className="text-zoo-yellow-600 mt-2">
-                    Photo by: Rahul Singh, June 2023
+                    Photo by: {photoOfTheMonthData?.photographer},{" "}
+                    {photoOfTheMonthData?.month_year}
                   </p>
                 </div>
               </div>

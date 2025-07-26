@@ -8,7 +8,7 @@ import { CarouselImage } from "./others/carousel";
 import { NewsItem } from "./program-updates/featurednews";
 import { HistoryInfo } from "./about/history";
 import { AboutInfo } from "./about/about";
-import { GalleryItem, GalleryImage } from "./about/gallery";
+import { GalleryItem, GalleryImage,PhotoOfMonthInfo } from "./about/gallery";
 import { TabMenuData } from "./zoo-experience/tab-menu";
 import { FaqsItems } from "./plan-visit/faqs";
 import { PricingInfo } from "./plan-visit/tickets";
@@ -33,4 +33,5 @@ export type {
   FaqsItems,
   PricingInfo,
   ZooPoliciesInfo,
+  PhotoOfMonthInfo
 };

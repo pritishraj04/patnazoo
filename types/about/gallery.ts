@@ -16,3 +16,16 @@ export interface GalleryImage {
   title: string;
   description: string;
 }
+
+
+export interface PhotoOfMonthInfo {
+  id: number;
+  title: string;
+  description: string;
+  photographer: string;
+  month_year: string;
+  image: string;
+  created_at: string;
+  updated_at: string;
+}
+
