@@ -15,7 +15,12 @@ import { ImageCarousel } from "@/components/image-carousel";
 import { PriorityPopup } from "@/components/priority-popup";
 import { PosterPopup } from "@/components/poster-popup";
 import { useApiData } from "@/hooks/index";
-import { FunFactsInfo, CarouselImage, LandingInfo } from "@/types/index";
+import {
+  FunFactsInfo,
+  CarouselImage,
+  LandingInfo,
+  AnimalInfo,
+} from "@/types/index";
 
 // Poster Configuration - Set imageUrl to empty string to disable
 
@@ -27,6 +32,8 @@ export default function HomePage() {
   const { data: posterImageData } = useApiData<LandingInfo>(
     "/landingpagedetails"
   );
+  const { data: featuredAnimalData } =
+    useApiData<AnimalInfo[]>("/zoology/featured");
 
   // Get current day of year to determine which fact to show
   useEffect(() => {
@@ -70,40 +77,15 @@ export default function HomePage() {
 
   const sliderImages = carouselImagesData?.map((item) => item.slider_img);
 
-  const featuredAnimals = [
-    {
-      id: 1,
-      name: "INDIAN HIPPOPOTAMUS",
-      species: "Panthera tigris tigris",
-      image: "/images/meet-animals/a1.jpg",
-      category: "Mammals",
-      slug: "royal-bengal-tiger",
-    },
-    {
-      id: 2,
-      name: "Indian Elephant",
-      species: "Elephas maximus indicus",
-      image: "/images/meet-animals/a2.jpg",
-      category: "Mammals",
-      slug: "indian-elephant",
-    },
-    {
-      id: 3,
-      name: "Spotted Deer",
-      species: "Axis axis",
-      image: "/images/meet-animals/a3.jpg",
-      category: "Mammals",
-      slug: "spotted-deer",
-    },
-    {
-      id: 4,
-      name: "Himalayan Black Bear",
-      species: "Ursus thibetanus laniger",
-      image: "/images/meet-animals/a4.jpg",
-      category: "Mammals",
-      slug: "himalayan-black-bear",
-    },
-  ];
+  const featuredAnimals =
+    featuredAnimalData?.map((item) => ({
+      id: item.id,
+      name: item.name,
+      species: item.species,
+      image: item.image ? item.image : "/images/meet-animals/fallback.jpg",
+      category: item.category,
+      slug: item.slug,
+    })) || [];
 
   const carouselEvents = [
     {

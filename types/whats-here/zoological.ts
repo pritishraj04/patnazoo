@@ -10,6 +10,7 @@ export interface Animal {
 export interface AnimalInfo {
   id: number;
   name: string;
+  featured: number;
   slug: string;
   species: string;
   category: string;
