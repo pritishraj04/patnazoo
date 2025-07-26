@@ -99,6 +99,7 @@ export default function ThreeDTheaterPage() {
           title="3D THEATER"
           subtitle="Immersive wildlife experiences in stunning 3D"
           backgroundImage="/images/header/3d.webp"
+          backgroundImage="/images/header/3d.webp"
           height="medium"
         />
 

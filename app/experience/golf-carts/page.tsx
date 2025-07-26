@@ -101,6 +101,7 @@ export default function GolfCartsPage() {
           title="GOLF CARTS"
           subtitle="Comfortable and eco-friendly transportation around the zoo"
           backgroundImage="/images/header/golfcart.webp"
+          backgroundImage="/images/header/golfcart.webp"
           height="medium"
         />
 

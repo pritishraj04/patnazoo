@@ -92,52 +92,42 @@ export default function MayurCanteenPage() {
           title="MAYUR CANTEEN"
           subtitle="Delicious vegetarian food in the heart of the zoo"
           backgroundImage="/images/header/maurya.webp"
+          backgroundImage="/images/header/maurya.webp"
           height="medium"
         />
 
-            {/* Introduction */}
-            <section className="py-16 bg-zoo-teal-700">
-              <div className="zoo-container">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div
-                    className={`transition-all duration-1000 ${
-                      isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
-                    }`}
-                  >
-                    <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">
-                      TASTE OF BIHAR
-                    </h2>
-                    <p className="text-white/90 text-lg mb-4">
-                      Mayur Canteen offers a delightful dining experience right
-                      in the heart of Patna Zoo. Our vegetarian restaurant
-                      serves authentic Indian cuisine, snacks, and refreshing
-                      beverages to fuel your zoo adventure.
-                    </p>
-                    <p className="text-white/90 text-lg mb-4">
-                      From traditional Bihar specialties to popular Indian
-                      street food, our menu caters to all tastes and ages. Enjoy
-                      your meal in our comfortable seating area with views of
-                      the zoo's beautiful landscapes.
-                    </p>
-                    <div className="flex flex-wrap gap-4">
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-5 h-5 text-zoo-yellow-600" />
-                        <span className="text-white">
-                          Open: 10:00 AM - 5:30 PM
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-5 h-5 text-zoo-yellow-600" />
-                        <span className="text-white">Central Location</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Leaf className="w-5 h-5 text-zoo-yellow-600" />
-                        <span className="text-white">100% Vegetarian</span>
-                      </div>
-                    </div>
+        {/* Introduction */}
+        <section className="py-16 bg-zoo-teal-700">
+          <div className="zoo-container">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div
+                className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              >
+                <h2 className="font-heading text-4xl md:text-5xl text-white mb-6"> FUEL YOUR DAY AT PATNA ZOO</h2>
+                <p className="text-white/90 text-lg mb-4">
+                  Mayur Canteen offers a delightful dining experience right in the heart of Patna Zoo. Our vegetarian
+                  restaurant serves authentic Indian cuisine, snacks, and refreshing beverages to fuel your zoo
+                  adventure.
+                </p>
+                <p className="text-white/90 text-lg mb-4">
+                  From traditional Bihar specialties to popular Indian street food, our menu caters to all tastes and
+                  ages. Enjoy your meal in our comfortable seating area with views of the zoo's beautiful landscapes.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-zoo-yellow-600" />
+                    <span className="text-white">Open: 10:00 AM - 5:30 PM</span>
                   </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-zoo-yellow-600" />
+                    <span className="text-white">Central Location</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Leaf className="w-5 h-5 text-zoo-yellow-600" />
+                    <span className="text-white">100% Vegetarian</span>
+                  </div>
+                </div>
+              </div>
 
               <div
                 className={`relative h-96 rounded-lg overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}

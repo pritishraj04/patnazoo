@@ -220,93 +220,6 @@ export default function HomePage() {
         {/* Priority Section - appears above "Explore the Wildlife of Bihar" */}
         {/* <PriorityPopup asSection={true} /> */}
 
-        {/* Featured Content Card - Heart of India with background image */}
-        <section className="py-16 bg-zoo-teal-700">
-          <FeaturedContentCard
-            title="Explore the Wildlife of Bihar"
-            subtitle="Ranked 4th by CZA, MEE-2022"
-            description="Explore strategic vision of the Bihar Government and how it is playing a pivotal role in elevating Patna Zoo and wildlife conservation across the state."
-            image="/images/bg2.png"
-            href="/about"
-            buttonText="FIND OUT MORE"
-            useBackgroundImage={true}
-          />
-        </section>
-
-        {/* Fun Fact of the Day - Positioned after Explore Wildlife section */}
-        <section className="py-16 bg-zoo-teal-600">
-          <div className="zoo-container">
-            <div className="max-w-5xl mx-auto animate-on-scroll">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-zoo-yellow-500 text-zoo-teal-800 px-4 py-2 rounded-full font-heading font-bold text-sm uppercase tracking-wider mb-6">
-                  <span>🌟</span>
-                  Fun Fact of the Day
-                </div>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-2">
-                  DID YOU KNOW?
-                </h2>
-              </div>
-
-              <div className="relative">
-                {/* Large decorative quotation mark */}
-                <div className="absolute -top-4 -left-4 md:-top-8 md:-left-8 text-zoo-yellow-400/30 text-8xl md:text-9xl lg:text-[12rem] font-serif leading-none pointer-events-none select-none">
-                  "
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 relative">
-                  <div className="relative z-10">
-                    {currentFact?.fact ? (
-                      <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light">
-                        {currentFact?.fact}
-                      </p>
-                    ) : (
-                      <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light animate-pulse">
-                        Tigers have a unique set of stripes, just like human
-                        fingerprints! No two tigers have the same stripe
-                        pattern, making each one completely unique in the wild.
-                      </p>
-                    )}
-
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-                      <div className="text-zoo-yellow-400">
-                        {currentFact?.subject ? (
-                          <span className="font-heading text-lg md:text-xl">
-                            — {currentFact?.subject}
-                          </span>
-                        ) : (
-                          <span className="font-heading text-lg md:text-xl animate-pulse">
-                            — Royal Bengal Tiger
-                          </span>
-                        )}
-                      </div>
-
-                      <Link
-                        href={currentFact?.link ?? "#"}
-                        className="zoo-button-primary inline-flex items-center gap-2 group"
-                      >
-                        KNOW MORE
-                        <svg
-                          className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Featured Animals */}
         <section className="py-16 bg-zoo-teal-700">
           <div className="zoo-container">
@@ -715,6 +628,81 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+        </section>
+
+        {/* Fun Fact of the Day - Positioned after Explore Wildlife section */}
+        <section className="py-16 bg-zoo-teal-600">
+          <div className="zoo-container">
+            <div className="max-w-5xl mx-auto animate-on-scroll">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-2 bg-zoo-yellow-500 text-zoo-teal-800 px-4 py-2 rounded-full font-heading font-bold text-sm uppercase tracking-wider mb-6">
+                  <span>🌟</span>
+                  Fun Fact of the Day
+                </div>
+                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-2">
+                  DID YOU KNOW?
+                </h2>
+              </div>
+
+              <div className="relative">
+                {/* Large decorative quotation mark */}
+                <div className="absolute -top-4 -left-4 md:-top-8 md:-left-8 text-zoo-yellow-400/30 text-8xl md:text-9xl lg:text-[12rem] font-serif leading-none pointer-events-none select-none">
+                  "
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 relative">
+                  <div className="relative z-10">
+                    <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-8 font-light">
+                      {currentFact?.fact}
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                      <div className="text-zoo-yellow-400">
+                        <span className="font-heading text-lg md:text-xl">
+                          — {currentFact?.subject}
+                        </span>
+                      </div>
+
+                      {currentFact?.link && (
+                        <Link
+                          href={currentFact?.link}
+                          className="zoo-button-primary inline-flex items-center gap-2 group"
+                        >
+                          KNOW MORE
+                          <svg
+                            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Content Card - Heart of India with background image */}
+        <section className="py-16 bg-zoo-teal-700">
+          <FeaturedContentCard
+            title="Explore the Wildlife of Bihar"
+            subtitle="Ranked 4th by CZA, MEE-2022"
+            description="Explore strategic vision of the Bihar Government and how it is playing a pivotal role in elevating Patna Zoo and wildlife conservation across the state."
+            image="/images/bg2.png"
+            href="/about"
+            buttonText="FIND OUT MORE"
+            useBackgroundImage={true}
+          />
         </section>
 
         {/* Events Carousel */}

@@ -749,7 +749,7 @@ export default function TicketsPage() {
                 <CardContent>
                   <p className="mb-2">Group discounts available</p>
                   <p className="mb-2">Student rates: School ₹10, College ₹30</p>
-                  <p className="mb-2">January 1st special pricing</p>
+                  <p className="mb-7">January 1st special pricing</p>
                   <Link
                     href="/contact"
                     className="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-8 py-3 rounded-full transition-colors duration-200"
@@ -765,12 +765,12 @@ export default function TicketsPage() {
         {/* Featured Experience */}
         <section className="py-16 bg-zoo-teal-700">
           <FeaturedContentCard
-            title="VIP Safari"
+            title="Golf Carts Safari"
             subtitle="experience"
-            description="Get up close with our amazing animals on a guided VIP safari tour. Includes behind-the-scenes access, animal feeding experiences, and exclusive photo opportunities with our conservation team."
-            image="/placeholder.svg?height=400&width=600"
-            href="/experiences/vip-safari"
-            buttonText="BOOK VIP EXPERIENCE"
+            description="Explore the zoo like never before with our exclusive cart safari. Enjoy a guided tour through the park's most popular exhibits."
+            image="/images/golfcart.webp"
+            href="/experience/golf-carts"
+            buttonText="Explore Cart Safari"
           />
         </section>
       </main>

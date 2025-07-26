@@ -286,12 +286,12 @@ export default function FAQsPage() {
                             <AccordionItem
                               key={index}
                               value={`${category.id}-${index}`}
-                              className="bg-white/10 rounded-lg border-white/20 px-6"
+                              className="bg-white rounded-lg border-none px-6"
                             >
-                              <AccordionTrigger className="text-white hover:text-zoo-yellow-600 text-left">
+                              <AccordionTrigger className="text-zoo-teal-700 text-lg text-left hover:no-underline">
                                 {faq.question}
                               </AccordionTrigger>
-                              <AccordionContent className="text-white/80 pb-4">{faq.answer}</AccordionContent>
+                              <AccordionContent className="text-zoo-teal-600 pb-4">{faq.answer}</AccordionContent>
                             </AccordionItem>
                           ))}
                         </Accordion>

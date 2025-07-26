@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { useApiData } from "@/hooks/index";
 import { FaqsItems } from "@/types/index";
+import Link from "next/link"
 
 export default function ContactPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -130,7 +131,7 @@ export default function ContactPage() {
         <HeroSection
           title="CONTACT US"
           subtitle="Get in touch with our team for any questions or assistance"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/contact.webp"
           height="medium"
         />
 
@@ -397,13 +398,23 @@ export default function ContactPage() {
 
             <Card className="bg-white border-none overflow-hidden">
               <CardContent className="p-0">
-                <div className="h-96 bg-gray-200 flex items-center justify-center">
-                  <div className="text-center text-gray-600">
-                    <MapPin className="w-16 h-16 mx-auto mb-4" />
-                    <p className="text-lg font-medium">Interactive Map</p>
-                    <p className="text-sm">
-                      Sanjay Gandhi Biological Park, Bailey Road, Patna
-                    </p>
+                <div className=" bg-gray-200 flex items-center justify-center">
+                  <div className="text-center text-gray-600 relative h-96 w-full md:h-[500px]">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.0333387688593!2d85.10212109999999!3d25.603808400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed570303d1e895%3A0x9afbc441239dd40a!2sPatna%20Zoo!5e0!3m2!1sen!2sin!4v1751109448138!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ 
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 'none'
+                      }}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
                   </div>
                 </div>
                 <div className="p-6">
@@ -413,9 +424,11 @@ export default function ContactPage() {
                         By Car
                       </h4>
                       <p className="text-zoo-teal-600 text-sm">
-                        Free parking available at Gate No. 1 & 2. Follow Bailey
-                        Road from Patna city center.
+                        Parking spaces available at Gate No. 1 & 2. Enter through Gate No. 1 for the main entrance.
                       </p>
+                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084!3e0?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
+                        Get Directions
+                      </Link>
                     </div>
                     <div>
                       <h4 className="font-heading text-lg text-zoo-teal-700 mb-2">
@@ -425,6 +438,9 @@ export default function ContactPage() {
                         Take any bus going towards Bailey Road and alight at
                         Patna Zoo Bus Stop.
                       </p>
+                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
+                        Get Directions
+                      </Link>
                     </div>
                     <div>
                       <h4 className="font-heading text-lg text-zoo-teal-700 mb-2">
@@ -434,6 +450,9 @@ export default function ContactPage() {
                         Easily available from any location in Patna. Just ask
                         for "Patna Chidiya Ghar".
                       </p>
+                      <Link href="https://www.google.com/maps/dir//Patna+Zoo+Bailey+Rd+Sheikhpura+Patna,+Bihar+800014/@25.60388,85.0609217,21878m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x39ed570303d1e895:0x9afbc441239dd40a!2m2!1d85.1021211!2d25.6038084?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="text-zoo-teal-500 text-sm hover:underline font-semibold">
+                        Get Directions
+                      </Link>
                     </div>
                   </div>
                 </div>

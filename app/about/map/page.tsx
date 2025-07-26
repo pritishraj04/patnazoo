@@ -19,13 +19,28 @@ export default function ZooMapPage() {
   }, [])
 
   const zoneInfo = {
-    entrance: {
-      name: "Main Entrance",
+    entrance1: {
+      name: "Entrance & Exit Gate Number 1",
       description: "Ticket counters, information desk, and security checkpoint.",
       facilities: ["Ticket Counter", "Information Desk", "Security", "First Aid"],
     },
-    mammals: {
-      name: "Mammal Zone",
+    entrance2: {
+      name: "Entrance & Exit Gate Number 2",
+      description: "Ticket counters, information desk, and security checkpoint.",
+      facilities: ["Ticket Counter", "Information Desk", "Security", "First Aid"],
+    },
+    mammals1: {
+      name: "Mammal Zone 1",
+      description: "Home to tigers, elephants, bears, and other mammals.",
+      animals: ["Royal Bengal Tiger", "Indian Elephant", "Sloth Bear", "Leopard", "Himalayan Black Bear"],
+    },
+    mammals2: {
+      name: "Mammal Zone 2",
+      description: "Home to tigers, elephants, bears, and other mammals.",
+      animals: ["Royal Bengal Tiger", "Indian Elephant", "Sloth Bear", "Leopard", "Himalayan Black Bear"],
+    },
+    mammals3: {
+      name: "Mammal Zone 3",
       description: "Home to tigers, elephants, bears, and other mammals.",
       animals: ["Royal Bengal Tiger", "Indian Elephant", "Sloth Bear", "Leopard", "Himalayan Black Bear"],
     },
@@ -34,8 +49,13 @@ export default function ZooMapPage() {
       description: "A diverse collection of native and exotic bird species.",
       animals: ["Indian Peacock", "Great Indian Hornbill", "Flamingo", "Pelican", "Stork"],
     },
-    reptiles: {
-      name: "Snake House",
+    reptiles1: {
+      name: "Snake House 1",
+      description: "Indoor Snake Enclosure featuring various snakes.",
+      animals: ["King Cobra", "Indian Python", "Marsh Crocodile", "Monitor Lizard", "and more."],
+    },
+    reptiles2: {
+      name: "Snake House 2",
       description: "Indoor Snake Enclosure featuring various snakes.",
       animals: ["King Cobra", "Indian Python", "Marsh Crocodile", "Monitor Lizard", "and more."],
     },
@@ -105,8 +125,8 @@ export default function ZooMapPage() {
                         <span>Aviary Zone</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                        <span>Snake House</span>
+                        <div className="w-4 h-4 bg-pink-500 rounded-full"></div>
+                        <span>Reptile Zone</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <div className="w-4 h-4 bg-cyan-500 rounded-full"></div>
@@ -189,42 +209,58 @@ export default function ZooMapPage() {
 
                     {/* Interactive Hotspots */}
                     <div
-                      className="absolute top-[15%] left-[10%] w-8 h-8 bg-red-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
-                      onClick={() => setActiveZone("entrance")}
+                      className="absolute top-[8%] left-[83%] w-6 h-6 bg-red-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      onClick={() => setActiveZone("entrance1")}
+                    ></div>
+                    <div
+                      className="absolute top-[65%] left-[85%] w-6 h-6 bg-red-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      onClick={() => setActiveZone("entrance2")}
                     ></div>
 
                     <div
-                      className="absolute top-[30%] left-[40%] w-8 h-8 bg-orange-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
-                      onClick={() => setActiveZone("mammals")}
+                      className="absolute top-[20%] left-[61%] w-6 h-6 bg-orange-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      onClick={() => setActiveZone("mammals1")}
+                    ></div>
+                    <div
+                      className="absolute top-[68%] left-[42%] w-6 h-6 bg-orange-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      onClick={() => setActiveZone("mammals2")}
+                    ></div>
+                    <div
+                      className="absolute top-[51%] left-[20%] w-6 h-6 bg-orange-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      onClick={() => setActiveZone("mammals3")}
                     ></div>
 
                     <div
-                      className="absolute top-[20%] right-[20%] w-8 h-8 bg-blue-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      className="absolute top-[45%] right-[38%] w-6 h-6 bg-blue-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
                       onClick={() => setActiveZone("birds")}
                     ></div>
 
                     <div
-                      className="absolute bottom-[30%] left-[30%] w-8 h-8 bg-green-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
-                      onClick={() => setActiveZone("reptiles")}
+                      className="absolute bottom-[63%] left-[64%] w-6 h-6 bg-pink-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      onClick={() => setActiveZone("reptiles1")}
+                    ></div>
+                    <div
+                      className="absolute bottom-[59%] left-[18%] w-6 h-6 bg-pink-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      onClick={() => setActiveZone("reptiles2")}
                     ></div>
 
                     <div
-                      className="absolute bottom-[20%] right-[30%] w-8 h-8 bg-cyan-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      className="absolute bottom-[29%] right-[33%] w-6 h-6 bg-cyan-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
                       onClick={() => setActiveZone("aquatic")}
                     ></div>
 
                     <div
-                      className="absolute top-[60%] left-[20%] w-8 h-8 bg-purple-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      className="absolute top-[44%] right-[25%] w-6 h-6 bg-purple-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
                       onClick={() => setActiveZone("children")}
                     ></div>
 
                     <div
-                      className="absolute top-[40%] right-[40%] w-8 h-8 bg-yellow-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      className="absolute top-[61%] right-[29%] w-6 h-6 bg-yellow-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
                       onClick={() => setActiveZone("food")}
                     ></div>
 
                     <div
-                      className="absolute bottom-[40%] right-[10%] w-8 h-8 bg-emerald-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
+                      className="absolute bottom-[51%] right-[21%] w-6 h-6 bg-emerald-500 rounded-full cursor-pointer hover:scale-125 transition-transform"
                       onClick={() => setActiveZone("garden")}
                     ></div>
                   </div>

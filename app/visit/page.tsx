@@ -81,33 +81,33 @@ export default function VisitPage() {
     "Respect the natural environment",
   ];
 
-  const carouselEvents = [
+const carouselEvents = [
     {
       id: 1,
-      title: "Guided Zoo Tours",
+      title: "A Lake Break",
       description:
-        "Join our expert guides for an educational journey through the zoo. Learn about conservation efforts and animal behaviors.",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/experiences/guided-tours",
-      buttonText: "Book tour",
+        "Experience a joy-full time with family boating, at the Lake.",
+      image: "/images/bottom-s1.jpg",
+      href: "/experience/boating-lake",
+      buttonText: "Learn more",
     },
     {
       id: 2,
-      title: "Animal Feeding Sessions",
+      title: "Animal Feeding Time",
       description:
-        "Watch our keepers feed the animals and learn about their diets and feeding behaviors.",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/experiences/feeding-sessions",
-      buttonText: "View schedule",
+        "Watch our zookeepers feed some of the zoo's most popular animals and learn about their diets and habits.",
+      image: "/images/d2.jpg",
+      href: "/events/animal-feeding",
+      buttonText: "See schedule",
     },
     {
       id: 3,
-      title: "Educational Workshops",
+      title: "Conservation Talk Series",
       description:
-        "Interactive workshops for children and adults about wildlife conservation and animal care.",
-      image: "/placeholder.svg?height=300&width=400",
-      href: "/experiences/workshops",
-      buttonText: "Register now",
+        "Join our experts for an in-depth discussion about wildlife conservation efforts in Bihar and how you can make a difference.",
+      image: "/images/d3.jpg",
+      href: "/events/conservation-talks",
+      buttonText: "Learn more",
     },
   ];
 
@@ -119,7 +119,7 @@ export default function VisitPage() {
         <HeroSection
           title="PLAN YOUR VISIT"
           subtitle="Everything you need to know for the perfect zoo experience"
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage="/images/header/overview.webp"
           height="medium"
         />
 
@@ -156,6 +156,10 @@ export default function VisitPage() {
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Last Entry</span>
                         <span>5:00 PM</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium">Morning Walk</span>
+                        <span>5:30 AM - 9:00 AM</span>
                       </div>
                       <div className="pt-4 border-t border-white/20">
                         <p className="text-sm text-white/80">
@@ -371,10 +375,7 @@ export default function VisitPage() {
         </section>
 
         {/* Experiences Carousel */}
-        <EventsCarousel
-          events={carouselEvents}
-          backgroundImage="/placeholder.svg?height=600&width=1920"
-        />
+        <EventsCarousel events={carouselEvents} backgroundImage="/images/bg.png" />
 
         {/* FAQ Section */}
         <section className="py-16 bg-zoo-teal-700" id="faq">

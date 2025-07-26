@@ -98,6 +98,7 @@ export default function BoatingLakePage() {
           title="BOATING LAKE"
           subtitle="Peaceful boat rides on our scenic lake"
           backgroundImage="/images/header/lake.jpg"
+          backgroundImage="/images/header/lake.jpg"
           height="medium"
         />
 

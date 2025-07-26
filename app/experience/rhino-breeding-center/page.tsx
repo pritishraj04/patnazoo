@@ -132,6 +132,7 @@ export default function RhinoBreedingCenterPage() {
           title="RHINO BREEDING CENTER"
           subtitle="Pioneering conservation through successful breeding programs"
           backgroundImage="/images/header/breeding.webp"
+          backgroundImage="/images/header/breeding.webp"
           height="medium"
         />
 
@@ -369,24 +370,15 @@ export default function RhinoBreedingCenterPage() {
               </div>
             </section>
 
-            {/* Facilities */}
-            <section className="py-16 bg-zoo-teal-800">
-              <div className="zoo-container">
-                <div
-                  className={`text-center mb-12 transition-all duration-1000 ${
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-8"
-                  }`}
-                >
-                  <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
-                    WORLD-CLASS FACILITIES
-                  </h2>
-                  <p className="text-xl text-white/80">
-                    Advanced infrastructure supporting successful breeding
-                    programs
-                  </p>
-                </div>
+        {/* Facilities */}
+        <section className="py-16 bg-zoo-teal-800">
+          <div className="zoo-container">
+            <div
+              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            >
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">FACILITIES</h2>
+              <p className="text-xl text-white/80">Advanced infrastructure supporting successful breeding programs</p>
+            </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {facilities.map((facility, index) => (

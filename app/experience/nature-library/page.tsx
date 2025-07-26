@@ -135,6 +135,7 @@ export default function NatureLibraryPage() {
           title="NATURE LIBRARY"
           subtitle="A treasure trove of knowledge about wildlife and conservation"
           backgroundImage="/images/header/nature.webp"
+          backgroundImage="/images/header/nature.webp"
           height="medium"
         />
 
@@ -453,9 +454,7 @@ export default function NatureLibraryPage() {
                 <CardContent className="space-y-4">
                   <div>
                     <p className="font-medium mb-1">Location</p>
-                    <p className="text-white/80">
-                      Education complex, adjacent to the visitor center
-                    </p>
+                    <p className="text-white/80">Near Gate No. 2 & 3D Theatre</p>
                   </div>
                   <div>
                     <p className="font-medium mb-1">Library Rules</p>

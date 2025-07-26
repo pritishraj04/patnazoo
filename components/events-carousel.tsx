@@ -122,14 +122,14 @@ export function EventsCarousel({ events, backgroundImage }: EventsCarouselProps)
             {/* Navigation Buttons - positioned outside the card area */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-black/20 hover:bg-black/30 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-black/20 hover:bg-black/30 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
             >
               <ChevronRight className="w-6 h-6 text-white" />
             </button>
