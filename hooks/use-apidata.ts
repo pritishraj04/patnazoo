@@ -11,7 +11,7 @@ export const useApiData = <T>(endpoint: string) => {
     const getData = async () => {
       try {
         const result = await fetchData<T>(endpoint);
-        console.log(`Data from ${endpoint}:`, result);
+        // console.log(`Data from ${endpoint}:`, result);
         setData(result ?? null);
       } catch (err) {
         setError(`Failed to fetch ${endpoint} data`);
