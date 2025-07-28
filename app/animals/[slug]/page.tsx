@@ -53,37 +53,43 @@ export default function AnimalDetailPage() {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Habitat",
-      value: animalDetails?.AI_habitat,
+      value: animalDetails?.AI_habitat || "Unknown habitat",
       color: "bg-green-500",
     },
     {
       icon: <Shield className="w-6 h-6" />,
       title: "Weight",
-      value: animalDetails?.AI_weight,
+      value: animalDetails?.AI_weight
+        ? `${animalDetails.AI_weight} kg`
+        : "Weight not available",
       color: "bg-blue-500",
     },
     {
       icon: <Globe className="w-6 h-6" />,
       title: "Length",
-      value: animalDetails?.AI_length,
+      value: animalDetails?.AI_length
+        ? `${animalDetails.AI_length} meters`
+        : "Length not available",
       color: "bg-purple-500",
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Lifespan",
-      value: animalDetails?.AI_lifespan,
+      value: animalDetails?.AI_lifespan
+        ? `${animalDetails.AI_lifespan} years`
+        : "Lifespan unknown",
       color: "bg-orange-500",
     },
     {
       icon: <Globe className="w-6 h-6" />,
       title: "Origin",
-      value: animalDetails?.AI_origin,
+      value: animalDetails?.AI_origin || "Origin not known",
       color: "bg-teal-500",
     },
     {
       icon: <Heart className="w-6 h-6" />,
       title: "Status",
-      value: animalDetails?.AI_status,
+      value: animalDetails?.AI_status || "Status not specified",
       color: "bg-red-500",
     },
   ];
