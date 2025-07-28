@@ -58,7 +58,7 @@ export default function MessagePage() {
 
           <main>
             <HeroSection
-              title="DIRECTOR'S MESSAGE"
+              title={`${message.toUpperCase()}'S MESSAGE`}
               subtitle="A vision for conservation and education"
               backgroundImage="/images/header/animal-bg.png"
               height="medium"
