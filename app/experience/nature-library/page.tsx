@@ -135,7 +135,6 @@ export default function NatureLibraryPage() {
           title="NATURE LIBRARY"
           subtitle="A treasure trove of knowledge about wildlife and conservation"
           backgroundImage="/images/header/nature.webp"
-          backgroundImage="/images/header/nature.webp"
           height="medium"
         />
 

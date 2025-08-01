@@ -132,7 +132,6 @@ export default function RhinoBreedingCenterPage() {
           title="RHINO BREEDING CENTER"
           subtitle="Pioneering conservation through successful breeding programs"
           backgroundImage="/images/header/breeding.webp"
-          backgroundImage="/images/header/breeding.webp"
           height="medium"
         />
 

@@ -96,7 +96,6 @@ export default function JalUdyanPage() {
           title="JAL UDYAN"
           subtitle="A serene water garden paradise in the heart of the zoo"
           backgroundImage="/images/header/jal-udyan.jpg"
-          backgroundImage="/images/header/jal-udyan.jpg"
           height="medium"
         />
 

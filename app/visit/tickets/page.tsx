@@ -470,49 +470,33 @@ export default function TicketsPage() {
               </div>
             </section>
 
-            {/* Payment Methods */}
-            <section className="py-16 bg-zoo-teal-700">
-              <div className="zoo-container">
-                <div
-                  className={`text-center mb-12 transition-all duration-1000 ${
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-8"
-                  }`}
-                >
-                  <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">
-                    PAYMENT OPTIONS
-                  </h2>
-                  <p className="text-xl text-white/80">
-                    Multiple convenient ways to pay for your tickets
-                  </p>
-                </div>
+        {/* Payment Methods
+        <section className="py-16 bg-zoo-teal-700">
+          <div className="zoo-container">
+            <div
+              className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            >
+              <h2 className="font-heading text-4xl md:text-5xl text-white mb-4">PAYMENT OPTIONS</h2>
+              <p className="text-xl text-white/80">Multiple convenient ways to pay for your tickets</p>
+            </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {paymentMethods.map((method, index) => (
-                    <Card
-                      key={index}
-                      className={`bg-white/10 border-white/20 text-white text-center transition-all duration-500 hover:scale-105 animate-on-scroll ${
-                        isVisible
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 translate-y-8"
-                      }`}
-                      style={{ transitionDelay: `${index * 100}ms` }}
-                    >
-                      <CardContent className="p-6">
-                        <div className="text-4xl mb-4">{method.icon}</div>
-                        <h3 className="font-heading text-xl mb-2">
-                          {method.name}
-                        </h3>
-                        <p className="text-white/80 text-sm">
-                          {method.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </section>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {paymentMethods.map((method, index) => (
+                <Card
+                  key={index}
+                  className={`bg-white/10 border-white/20 text-white text-center transition-all duration-500 hover:scale-105 animate-on-scroll ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <CardContent className="p-6">
+                    <div className="text-4xl mb-4">{method.icon}</div>
+                    <h3 className="font-heading text-xl mb-2">{method.name}</h3>
+                    <p className="text-white/80 text-sm">{method.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section> */}
 
             {/* Online Booking Notice */}
             <section className="py-16 bg-zoo-teal-800">

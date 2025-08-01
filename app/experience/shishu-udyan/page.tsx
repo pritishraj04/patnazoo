@@ -95,7 +95,6 @@ export default function ShishuUdyanPage() {
           title="SHISHU UDYAN"
           subtitle="A magical playground where children connect with nature"
           backgroundImage="/images/header/sishu.webp"
-          backgroundImage="/images/header/sishu.webp"
           height="medium"
         />
 

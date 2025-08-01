@@ -137,11 +137,8 @@ export default function AboutPage() {
       <section className="bg-zoo-teal-800 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <Badge
-              variant="outline"
-              className="bg-zoo-yellow-600 text-zoo-teal-900 border-zoo-yellow-600 mb-4"
-            >
-              Leadership
+            <Badge variant="outline" className="bg-zoo-yellow-600 text-zoo-teal-900 border-zoo-yellow-600 mb-4">
+              Est. 1973
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Distinguished Patronage

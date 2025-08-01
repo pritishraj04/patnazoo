@@ -92,7 +92,6 @@ export default function MayurCanteenPage() {
           title="MAYUR CANTEEN"
           subtitle="Delicious vegetarian food in the heart of the zoo"
           backgroundImage="/images/header/maurya.webp"
-          backgroundImage="/images/header/maurya.webp"
           height="medium"
         />
 

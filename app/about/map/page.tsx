@@ -7,7 +7,6 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/hero-section"
 import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Download, MapPin, Utensils, Accessibility, Baby, Info, X, Clock } from "lucide-react"
 
 export default function ZooMapPage() {
