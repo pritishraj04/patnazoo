@@ -1,9 +1,10 @@
-import type React from "react"
-import "./globals.css"
-import type { Metadata } from "next"
-import { ThemeProvider } from "@/components/theme-provider"
-import { ScrollToTop } from "@/components/scroll-to-top"
-import { ChatBot } from "@/components/chatbot"
+import type React from "react";
+import "./globals.css";
+import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ScrollToTop } from "@/components/scroll-to-top";
+import { ChatBot } from "@/components/chatbot";
+import { ReduxProvider } from "@/stores/provider";
 
 export const metadata: Metadata = {
   title: "Patna Zoo - Sanjay Gandhi Biological Garden",
@@ -51,35 +52,42 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Patna Zoo - Sanjay Gandhi Biological Garden",
-    description: "Discover wildlife conservation and amazing animals at Patna Zoo. Plan your visit today!",
+    description:
+      "Discover wildlife conservation and amazing animals at Patna Zoo. Plan your visit today!",
     images: ["/twitter-image.jpg"],
     creator: "@PatnaZoo",
   },
   category: "tourism",
-    generator: 'v0.dev'
-}
+  generator: "v0.dev",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="font-body bg-zoo-teal-700 text-white">
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          {children}
-          <ScrollToTop />
-          <ChatBot />
-        </ThemeProvider>
+        <ReduxProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            {children}
+            <ScrollToTop />
+            <ChatBot />
+          </ThemeProvider>
+        </ReduxProvider>
         <footer className="text-center text-xs text-white/60 py-2 bg-zoo-teal-900">
           <p>
             Developed By{" "}
@@ -95,5 +103,5 @@ export default function RootLayout({
         </footer>
       </body>
     </html>
-  )
+  );
 }

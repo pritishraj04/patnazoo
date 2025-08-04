@@ -8,6 +8,10 @@ import { cn } from "@/lib/utils";
 import { useApiData } from "@/hooks/index";
 import { LandingInfo } from "@/types/index";
 import Image from "next/image";
+import { useSelector, useDispatch } from "react-redux";
+import { timing } from "@/features/zootiming-slice";
+import type { RootState } from "@/stores/store";
+
 // Simplified menu structure without overview pages
 const menuItems = [
   {
@@ -139,6 +143,18 @@ export function Navbar() {
     "/landingpagedetails"
   );
 
+  const openingtiming = useSelector(
+    (state: RootState) => state.timing.zooTiming
+  );
+  
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (landingPageData?.opening_time) {
+      dispatch(timing({ zooTiming: landingPageData.opening_time }));
+    }
+  }, [landingPageData, dispatch]);
+
   // Handle scroll effect for sticky header
   useEffect(() => {
     const handleScroll = () => {
@@ -229,8 +245,8 @@ export function Navbar() {
           <div className="font-medium">Sanjay Gandhi Biological Park</div>
           <div className="hidden md:block mx-1">•</div>
           <div>
-            {landingPageData?.opening_time ? (
-              landingPageData.opening_time
+            {openingtiming ? (
+              openingtiming
             ) : (
               <span className="text-gray-400 animate-pulse">
                 Loading opening time...

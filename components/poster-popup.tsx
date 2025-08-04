@@ -8,12 +8,14 @@ interface PosterPopupProps {
   imageUrl?: string;
   linkUrl?: string;
   alt?: string;
+  onClose: any;
 }
 
 export function PosterPopup({
   imageUrl,
   linkUrl,
   alt = "Poster",
+  onClose,
 }: PosterPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -33,6 +35,7 @@ export function PosterPopup({
 
   const handleClose = () => {
     setIsVisible(false);
+    onClose();
   };
 
   const handleImageClick = () => {
@@ -148,8 +151,8 @@ export function PosterPopup({
               fontSize: "0.875rem",
               fontWeight: "500",
               pointerEvents: "none",
-              whiteSpace: "nowrap", 
-              maxWidth: "90vw", 
+              whiteSpace: "nowrap",
+              maxWidth: "90vw",
               textAlign: "center",
             }}
           >

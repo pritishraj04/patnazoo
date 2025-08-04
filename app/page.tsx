@@ -21,6 +21,9 @@ import {
   LandingInfo,
   AnimalInfo,
 } from "@/types/index";
+import { useSelector, useDispatch } from "react-redux";
+import { hidePoster } from "@/features/zootiming-slice";
+import type { RootState } from "@/stores/store";
 
 // Poster Configuration - Set imageUrl to empty string to disable
 
@@ -32,6 +35,10 @@ export default function HomePage() {
   const { data: posterImageData } = useApiData<LandingInfo>(
     "/landingpagedetails"
   );
+
+  const isStatus = useSelector((state: RootState) => state.timing.status);
+  const dispatch = useDispatch();
+
   const { data: featuredAnimalData } =
     useApiData<AnimalInfo[]>("/zoology/featured");
 
@@ -191,11 +198,14 @@ export default function HomePage() {
       {/* <PriorityPopup /> */}
 
       {/* Poster Popup - only shows if imageUrl is configured */}
-      <PosterPopup
-        imageUrl={posterConfig.imageUrl}
-        linkUrl={posterConfig.linkUrl}
-        alt={posterConfig.alt}
-      />
+      {isStatus && (
+        <PosterPopup
+          imageUrl={posterConfig.imageUrl}
+          linkUrl={posterConfig.linkUrl}
+          alt={posterConfig.alt}
+          onClose={() => dispatch(hidePoster())}
+        />
+      )}
 
       <main>
         <HeroSection images={sliderImages} height="large" />
