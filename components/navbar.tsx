@@ -125,6 +125,7 @@ const menuItems = [
         items: [
           { title: "Live Tenders", href: "/programs/tenders" },
           { title: "News Update", href: "/programs/news" },
+          { title: "Zoo Trip", href: "/programs/zoo-trip" },
         ],
       },
     ],
@@ -146,7 +147,7 @@ export function Navbar() {
   const openingtiming = useSelector(
     (state: RootState) => state.timing.zooTiming
   );
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
