@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   zooTiming: null,
   status: true,
+  zooVisit: null,
 };
 
 const zooTimingSlice = createSlice({
@@ -15,8 +16,11 @@ const zooTimingSlice = createSlice({
     hidePoster: (state) => {
       state.status = false;
     },
+    hideZooVisit: (state, action) => {
+      state.zooVisit = action.payload.zooVisit;
+    },
   },
 });
 
-export const { timing ,hidePoster} = zooTimingSlice.actions;
+export const { timing, hidePoster, hideZooVisit } = zooTimingSlice.actions;
 export default zooTimingSlice.reducer;

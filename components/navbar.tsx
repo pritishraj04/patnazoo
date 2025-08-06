@@ -137,6 +137,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
+  // const trip = true;
+
   const navRef = useRef<HTMLElement>(null);
   const timeoutRef = useRef<number | null>(null);
 
@@ -147,6 +149,9 @@ export function Navbar() {
   const openingtiming = useSelector(
     (state: RootState) => state.timing.zooTiming
   );
+
+  const showTrip = useSelector((state: RootState) => state.timing.zooVisit);
+  
 
   const dispatch = useDispatch();
 
@@ -360,33 +365,38 @@ export function Navbar() {
                               {group.title}
                             </h3>
                             <div className="space-y-1">
-                              {group.items.map((subItem) => (
-                                <Link
-                                  key={subItem.title}
-                                  href={subItem.href}
-                                  className="block px-3 py-2.5 text-zoo-teal-600 hover:text-zoo-teal-800 hover:bg-zoo-teal-50/80 rounded-lg transition-all duration-200 text-sm font-medium group border border-transparent hover:border-zoo-teal-200/50"
-                                  onClick={() => setActiveMenu(null)}
-                                >
-                                  <div className="flex items-center justify-between">
-                                    <span className="group-hover:translate-x-1 transition-transform duration-200">
-                                      {subItem.title}
-                                    </span>
-                                    <svg
-                                      className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M9 5l7 7-7 7"
-                                      />
-                                    </svg>
-                                  </div>
-                                </Link>
-                              ))}
+                              {group.items
+                                .filter(
+                                  (subItem) =>
+                                    !(subItem.title === "Zoo Trip" && !showTrip)
+                                )
+                                .map((subItem) => (
+                                  <Link
+                                    key={subItem.title}
+                                    href={subItem.href}
+                                    className="block px-3 py-2.5 text-zoo-teal-600 hover:text-zoo-teal-800 hover:bg-zoo-teal-50/80 rounded-lg transition-all duration-200 text-sm font-medium group border border-transparent hover:border-zoo-teal-200/50"
+                                    onClick={() => setActiveMenu(null)}
+                                  >
+                                    <div className="flex items-center justify-between">
+                                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                                        {subItem.title}
+                                      </span>
+                                      <svg
+                                        className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M9 5l7 7-7 7"
+                                        />
+                                      </svg>
+                                    </div>
+                                  </Link>
+                                ))}
                             </div>
                           </div>
                         ))}

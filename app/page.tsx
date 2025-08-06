@@ -20,9 +20,10 @@ import {
   CarouselImage,
   LandingInfo,
   AnimalInfo,
+  zooTrip,
 } from "@/types/index";
 import { useSelector, useDispatch } from "react-redux";
-import { hidePoster } from "@/features/zootiming-slice";
+import { hidePoster, hideZooVisit } from "@/features/zootiming-slice";
 import type { RootState } from "@/stores/store";
 
 // Poster Configuration - Set imageUrl to empty string to disable
@@ -30,14 +31,23 @@ import type { RootState } from "@/stores/store";
 export default function HomePage() {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
 
+  const isStatus = useSelector((state: RootState) => state.timing.status);
+  const dispatch = useDispatch();
+
   const { data: funFactsData } = useApiData<FunFactsInfo[]>("/funfacts");
   const { data: carouselImagesData } = useApiData<CarouselImage[]>("/sliders");
   const { data: posterImageData } = useApiData<LandingInfo>(
     "/landingpagedetails"
   );
+  const { data: zooTripData } = useApiData<zooTrip>("/dynamicContent");
 
-  const isStatus = useSelector((state: RootState) => state.timing.status);
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!zooTripData) {
+      dispatch(hideZooVisit({ zooVisit: false }));
+    } else {
+      dispatch(hideZooVisit({ zooVisit: true }));
+    }
+  }, [zooTripData, dispatch]);
 
   const { data: featuredAnimalData } =
     useApiData<AnimalInfo[]>("/zoology/featured");

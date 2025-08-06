@@ -12,6 +12,7 @@ import { useApiData } from "@/hooks/index";
 import { zooTrip } from "@/types/index";
 import Loader from "@/components/Loader";
 
+
 export default function ZooTrip() {
   const { data: zooTripData, loading } = useApiData<zooTrip>("/dynamicContent");
 
@@ -54,7 +55,7 @@ export default function ZooTrip() {
                 <div className="max-w-6xl mx-auto">
                   <div className="relative">
                     <Image
-                      src="/images/a-h-1.jpg"
+                      src={zooTripData?.image || "/images/a-h-1.jpg"}
                       width={1920}
                       height={1080}
                       alt="Visitors enjoying the zoo"
