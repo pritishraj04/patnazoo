@@ -12,15 +12,18 @@ import {
   Utensils,
   Car,
   Accessibility,
+  Trees,
   Baby,
+  UtilityPole,
   Camera,
-  ShoppingBag,
   MapPin,
   Wifi,
   Phone,
   Heart,
   Users,
   Gamepad2,
+  PawPrint,
+  Waves
 } from "lucide-react"
 
 export default function FacilitiesPage() {
@@ -32,26 +35,43 @@ export default function FacilitiesPage() {
 
   const facilityCategories = [
     {
-      id: "dining",
-      name: "Dining & Food",
+      id: "zoo-animals",
+      name: "Zoo Animals",
       facilities: [
         {
-          name: "Mayur Canteen",
-          description: "Main restaurant serving vegetarian Indian cuisine",
-          features: ["100% Vegetarian", "Air Conditioned", "80 Seating Capacity", "Hygienic Preparation"],
-          location: "Central Area",
-          hours: "10:00 AM - 5:30 PM",
-          icon: <Utensils className="w-6 h-6" />,
+          name: "Royal Bengal Tiger",
+          description: "The majestic and endangered big cat, a highlight of Patna Zoo.",
+          features: ["Endangered Species", "Carnivore", "Native to India", "Iconic Stripes"],
+          location: "Tiger Enclosure",
+          hours: "During Zoo Hours",
+          icon: <PawPrint className="w-6 h-6" />,
         },
         {
-          name: "Food Stalls",
-          description: "Quick snacks and beverages throughout the zoo",
-          features: ["Street Food", "Ice Cream", "Cold Drinks", "Fresh Juices"],
-          location: "Multiple Locations",
-          hours: "10:00 AM - 5:30 PM",
-          icon: <ShoppingBag className="w-6 h-6" />,
+          name: "Indian Rhinoceros",
+          description: "A rare and impressive herbivore, known for its single horn.",
+          features: ["Vulnerable Species", "Herbivore", "Thick Skin", "Single Horn"],
+          location: "Rhino Breeding Center",
+          hours: "During Zoo Hours",
+          icon: <UtilityPole className="w-6 h-6" />,
+        },
+        {
+          name: "Asian Elephant",
+          description: "Gentle giants and a visitor favorite.",
+          features: ["Large Mammal", "Herbivore", "Intelligent", "Social Groups"],
+          location: "Elephant Enclosure",
+          hours: "During Zoo Hours",
+          icon: <Trees className="w-6 h-6" />,
+        },
+        {
+          name: "Gharial",
+          description: "A unique crocodilian with a long, thin snout, native to Indian rivers.",
+          features: ["Critically Endangered", "Fish-Eater", "Aquatic Habitat", "Distinctive Appearance"],
+          location: "Gharial Pond",
+          hours: "During Zoo Hours",
+          icon: <Waves className="w-6 h-6" />,
         },
       ],
+      note: "Patna Zoo is home to many more fascinating animals. Explore the zoo to discover them all!",
     },
     {
       id: "accessibility",
@@ -95,6 +115,14 @@ export default function FacilitiesPage() {
           hours: "10:00 AM - 5:30 PM",
           icon: <Gamepad2 className="w-6 h-6" />,
         },
+        {
+          name: "Mayur Canteen",
+          description: "Main restaurant serving vegetarian Indian cuisine",
+          features: ["100% Vegetarian", "Air Conditioned", "80 Seating Capacity", "Hygienic Preparation"],
+          location: "Central Area",
+          hours: "10:00 AM - 5:30 PM",
+          icon: <Utensils className="w-6 h-6" />,
+        }
       ],
     },
     {
@@ -225,7 +253,7 @@ export default function FacilitiesPage() {
               <p className="text-xl text-white/80">Comprehensive amenities for every visitor's needs</p>
             </div>
 
-            <Tabs defaultValue="dining" className="max-w-6xl mx-auto">
+            <Tabs defaultValue="zoo-animals" className="max-w-6xl mx-auto">
               <TabsList className="grid w-full h-auto grid-cols-2 lg:grid-cols-4 bg-white/10 border-white/20 mb-8">
                 {facilityCategories.map((category) => (
                   <TabsTrigger
