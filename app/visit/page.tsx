@@ -111,7 +111,7 @@ const carouselEvents = [
               <div
                 className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <h2 className="font-heading text-4xl text-white mb-8">OPENING TIMES</h2>
+                <h2 className="font-heading text-4xl text-white mb-8">PATNA ZOO TIMINGS</h2>
                 <Card className="bg-white/10 border-white/20 text-white">
                   <CardContent className="p-6">
                     <div className="space-y-4">
@@ -123,7 +123,7 @@ const carouselEvents = [
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Tuesday - Sunday</span>
-                        <span>9:00 AM - 5:30 PM</span>
+                        <span>8:30 AM - 5:30 PM</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Last Entry</span>
@@ -135,7 +135,7 @@ const carouselEvents = [
                       </div>
                       <div className="pt-4 border-t border-white/20">
                         <p className="text-sm text-white/80">
-                          <strong>Note:</strong> Zoo remains open on public holidays that fall on Monday
+                          <strong>Note:</strong> Free Entry for Disabled Persons and Orphans. ID is mandatory for students.
                         </p>
                       </div>
                     </div>
@@ -151,23 +151,23 @@ const carouselEvents = [
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Adult (18-59)</span>
+                        <span className="font-medium">Adult (18 Years Onwards)</span>
                         <span className="text-zoo-yellow-600 font-bold">₹50</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Child (3-17)</span>
-                        <span className="text-zoo-yellow-600 font-bold">₹25</span>
+                        <span className="font-medium">Child (3-17 Years)</span>
+                        <span className="text-zoo-yellow-600 font-bold">₹20</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Senior (60+)</span>
-                        <span className="text-zoo-yellow-600 font-bold">₹30</span>
+                        <span className="font-medium">1st Januray Special (Adult/Children)</span>
+                        <span className="text-zoo-yellow-600 font-bold">₹150/₹60</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Foreign Visitor</span>
-                        <span className="text-zoo-yellow-600 font-bold">₹100</span>
+                        <span className="font-medium">Group Entries</span>
+                        <span className="text-zoo-yellow-600 font-bold">Check Tickets & Timings</span>
                       </div>
                       <div className="pt-4 border-t border-white/20">
-                        <p className="text-sm text-white/80">Children under 3 years enter free</p>
+                        <p className="text-sm text-white/80">Entry free for children below 3 years. Pass system available for morning walkers.</p>
                       </div>
                     </div>
                   </CardContent>

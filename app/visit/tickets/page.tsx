@@ -101,14 +101,25 @@ export default function TicketsPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="font-medium">1st Oct - 31st March</span>
-                    <span className="text-zoo-yellow-600">5:30 AM - 5:00 PM</span>
+                  <span className="font-medium">1st March - 31st October</span>
+                  <span className="text-zoo-yellow-600">5:00 AM - 6:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="font-medium">1st April - 30th September</span>
-                    <span className="text-zoo-yellow-600">6:00 AM - 6:00 PM</span>
+                  <span className="font-medium">1st November - 28th February</span>
+                  <span className="text-zoo-yellow-600">6:00 AM - 5:00 PM</span>
                   </div>
-                  
+                  <hr className="border-white/20 my-4" />
+                  <div className="flex justify-between items-center">
+                  <span className="font-medium">Morning Walk Timing</span>
+                  <span className="text-zoo-yellow-600">5:30 AM - 9:00 AM</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                  <span className="font-medium">Ticket Entry</span>
+                  <span className="text-zoo-yellow-600">8:30 AM - 5:30 PM</span>
+                  </div>
+                  <div className="pt-4 border-t border-white/20">
+                        <p className="text-sm text-white/80">Monday closed.</p>
+                      </div>
                 </CardContent>
               </Card>
             </div>
