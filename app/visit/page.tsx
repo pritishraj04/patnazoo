@@ -9,7 +9,7 @@ import { EventsCarousel } from "@/components/events-carousel"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Car, Utensils, Accessibility, Camera, Baby, Dog, Bus, Train } from "lucide-react"
+import { Car, Utensils, Accessibility, Camera, Bus, Train, Sailboat, PawPrint, Sprout, Theater, Cross, Armchair } from "lucide-react"
 
 export default function VisitPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -40,12 +40,12 @@ export default function VisitPage() {
       description: "Capture your memories (flash prohibited near animals)",
     },
     {
-      icon: <Baby className="w-6 h-6" />,
+      icon: <Armchair className="w-6 h-6" />,
       title: "Rest Areas",
       description: "Shaded rest areas for families and seniors",
     },
     {
-      icon: <Dog className="w-6 h-6" />,
+      icon: <Cross className="w-6 h-6" />,
       title: "First Aid",
       description: "First aid services available on-site",
     },
@@ -208,23 +208,23 @@ const carouselEvents = [
                     ></iframe>
                   </div>
                   <div className="p-6">
-                    <h3 className="font-heading text-2xl text-zoo-teal-700 mb-4">Interactive Map Features</h3>
+                    <h3 className="font-heading text-2xl text-zoo-teal-700 mb-4">Zoo Highlights</h3>
                     <div className="grid md:grid-cols-2 gap-4 text-zoo-teal-600">
                       <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Animal enclosures and habitats</span>
+                      <Sailboat className="w-4 h-4 text-zoo-teal-600" />
+                      <span>Boating at Zoo Lake</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Utensils className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Mayur Canteen</span>
+                      <PawPrint className="w-4 h-4 text-zoo-teal-600" />
+                      <span>Rhinoceros Breeding Center</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Accessibility className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Accessible routes</span>
+                      <Theater className="w-4 h-4 text-zoo-teal-600" />
+                      <span>3D Theater Experience</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Car className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Parking areas</span>
+                      <Sprout className="w-4 h-4 text-zoo-teal-600" />
+                      <span>Medicinal Garden</span>
                       </div>
                     </div>
                   </div>
