@@ -80,7 +80,19 @@ export default function RootLayout({
           <ScrollToTop />
           <ChatBot />
         </ThemeProvider>
-        <footer className="text-center text-xs text-white/60 py-2 bg-zoo-teal-900">
+        <footer className="text-center text-xs text-white/60 py-2 bg-zoo-teal-900 flex justify-center items-center gap-2">
+          <p>
+            Developed By{" "}
+            <a
+              href="https://filliptechnologies.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-white"
+            >
+              Fillip Technologies
+            </a>
+            {" | "}
+          </p>
           <p>
             Designed By{" "}
             <a

@@ -51,10 +51,10 @@ const menuItems = [
     ],
   },
   {
-    title: "What's Here",
+    title: "Bio-diversity",
     groups: [
       {
-        title: "Wildlife",
+        title: "Fauna",
         items: [
           { title: "Animals", href: "/animals" },
           { title: "Birds", href: "/animals?category=birds" },
@@ -62,21 +62,14 @@ const menuItems = [
         ],
       },
       {
-        title: "Nature",
-        items: [{ title: "Plants & Flora", href: "/plants" }],
+        title: "Flora",
+        items: [{ title: "Plants & Trees", href: "/plants" }],
       },
     ],
   },
   {
-    title: "Zoo Experience",
+    title: "Zoo Facilities",
     groups: [
-      {
-        title: "Dining & Shopping",
-        items: [
-          { title: "Mayur Canteen", href: "/experience/mayur-canteen" },
-          { title: "Souvenir Shop", href: "/experience/souvenir-shop" },
-        ],
-      },
       {
         title: "Attractions",
         items: [
@@ -85,6 +78,9 @@ const menuItems = [
           { title: "Toy Train", href: "/experience/toy-train" },
           { title: "Boating / Lake", href: "/experience/boating-lake" },
           { title: "3D Theater", href: "/experience/3d-theater" },
+          { title: "Aquarium", href: "/experience/aquarium" },
+          { title: "Snake House", href: "/experience/snake-house" },
+          // { title: "Climate Change Lab", href: "/experience/climate-change-lab" },
         ],
       },
       {
@@ -95,6 +91,13 @@ const menuItems = [
           { title: "Photo Services", href: "/experience/photo-services" },
           { title: "Rose Garden", href: "/experience/rose-garden" },
           { title: "Golf Carts", href: "/experience/golf-carts" },
+        ],
+      },
+      {
+        title: "Dining & Shopping",
+        items: [
+          { title: "Mayur Canteen", href: "/experience/mayur-canteen" },
+          { title: "Souvenir Shop", href: "/experience/souvenir-shop" },
         ],
       },
     ],
