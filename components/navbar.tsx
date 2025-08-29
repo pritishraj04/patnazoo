@@ -31,26 +31,6 @@ const menuItems = [
     ],
   },
   {
-    title: "Plan a Visit",
-    groups: [
-      {
-        title: "Visitor Guide",
-        items: [
-          { title: "Quick Summary", href: "/visit" },
-          { title: "Tickets & Timings", href: "/visit/tickets" },
-          { title: "Rules & Safety Guidelines", href: "/visit/rules" },
-        ],
-      },
-      {
-        title: "Trip Tools",
-        items: [
-          { title: "Location & How to Reach", href: "/visit/location" },
-          { title: "Facilities", href: "/visit/facilities" },
-        ],
-      },
-    ],
-  },
-  {
     title: "Bio-diversity",
     groups: [
       {
@@ -87,7 +67,6 @@ const menuItems = [
         title: "Zoo Features",
         items: [
           { title: "Nature Library", href: "/experience/nature-library" },
-          { title: "Rhino Breeding Center", href: "/experience/rhino-breeding-center" },
           { title: "Photo Services", href: "/experience/photo-services" },
           { title: "Rose Garden", href: "/experience/rose-garden" },
           { title: "Golf Carts", href: "/experience/golf-carts" },
@@ -103,6 +82,26 @@ const menuItems = [
     ],
   },
   {
+    title: "Plan a Visit",
+    groups: [
+      {
+        title: "Visitor Guide",
+        items: [
+          { title: "Quick Summary", href: "/visit" },
+          { title: "Tickets & Timings", href: "/visit/tickets" },
+          { title: "Rules & Safety Guidelines", href: "/visit/rules" },
+        ],
+      },
+      {
+        title: "Trip Tools",
+        items: [
+          { title: "Location & How to Reach", href: "/visit/location" },
+          { title: "Facilities", href: "/visit/facilities" },
+        ],
+      },
+    ],
+  },
+  {
     title: "Programs & Updates",
     groups: [
       {
@@ -110,7 +109,9 @@ const menuItems = [
         items: [
           { title: "Adopt an Animal", href: "/programs/adopt-an-animal" },
           { title: "Breeding Programs", href: "/programs/breeding" },
-          { title: "Events", href: "/events" }
+          { title: "Events", href: "/events" },
+          { title: "Rhino Breeding Center", href: "/experience/rhino-breeding-center" },
+
         ],
       },
       {
