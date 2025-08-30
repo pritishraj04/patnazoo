@@ -24,6 +24,12 @@ import {
   Dog,
   Bus,
   Train,
+  Armchair,
+  Cross,
+  Sailboat,
+  PawPrint,
+  Theater,
+  Sprout,
 } from "lucide-react";
 import { useApiData } from "@/hooks/index";
 import { FaqsItems } from "@/types/index";
@@ -81,7 +87,7 @@ export default function VisitPage() {
     "Respect the natural environment",
   ];
 
-const carouselEvents = [
+  const carouselEvents = [
     {
       id: 1,
       title: "A Lake Break",
@@ -134,7 +140,9 @@ const carouselEvents = [
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <h2 className="font-heading text-4xl text-white mb-8">PATNA ZOO TIMINGS</h2>
+                <h2 className="font-heading text-4xl text-white mb-8">
+                  PATNA ZOO TIMINGS
+                </h2>
                 <Card className="bg-white/10 border-white/20 text-white">
                   <CardContent className="p-6">
                     <div className="space-y-4">
@@ -161,7 +169,8 @@ const carouselEvents = [
                       </div>
                       <div className="pt-4 border-t border-white/20">
                         <p className="text-sm text-white/80">
-                          <strong>Note:</strong> Free Entry for Disabled Persons and Orphans. ID is mandatory for students.
+                          <strong>Note:</strong> Free Entry for Disabled Persons
+                          and Orphans. ID is mandatory for students.
                         </p>
                       </div>
                     </div>
@@ -183,23 +192,38 @@ const carouselEvents = [
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Adult (18 Years Onwards)</span>
-                        <span className="text-zoo-yellow-600 font-bold">₹50</span>
+                        <span className="font-medium">
+                          Adult (18 Years Onwards)
+                        </span>
+                        <span className="text-zoo-yellow-600 font-bold">
+                          ₹50
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Child (3-17 Years)</span>
-                        <span className="text-zoo-yellow-600 font-bold">₹20</span>
+                        <span className="text-zoo-yellow-600 font-bold">
+                          ₹20
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">1st Januray Special (Adult/Children)</span>
-                        <span className="text-zoo-yellow-600 font-bold">₹150/₹60</span>
+                        <span className="font-medium">
+                          1st Januray Special (Adult/Children)
+                        </span>
+                        <span className="text-zoo-yellow-600 font-bold">
+                          ₹150/₹60
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Group Entries</span>
-                        <span className="text-zoo-yellow-600 font-bold">Check Tickets & Timings</span>
+                        <span className="text-zoo-yellow-600 font-bold">
+                          Check Tickets & Timings
+                        </span>
                       </div>
                       <div className="pt-4 border-t border-white/20">
-                        <p className="text-sm text-white/80">Entry free for children below 3 years. Pass system available for morning walkers.</p>
+                        <p className="text-sm text-white/80">
+                          Entry free for children below 3 years. Pass system
+                          available for morning walkers.
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -248,23 +272,25 @@ const carouselEvents = [
                     ></iframe>
                   </div>
                   <div className="p-6">
-                    <h3 className="font-heading text-2xl text-zoo-teal-700 mb-4">Zoo Highlights</h3>
+                    <h3 className="font-heading text-2xl text-zoo-teal-700 mb-4">
+                      Zoo Highlights
+                    </h3>
                     <div className="grid md:grid-cols-2 gap-4 text-zoo-teal-600">
                       <div className="flex items-center gap-2">
-                      <Sailboat className="w-4 h-4 text-zoo-teal-600" />
-                      <span>Boating at Zoo Lake</span>
+                        <Sailboat className="w-4 h-4 text-zoo-teal-600" />
+                        <span>Boating at Zoo Lake</span>
                       </div>
                       <div className="flex items-center gap-2">
-                      <PawPrint className="w-4 h-4 text-zoo-teal-600" />
-                      <span>Rhinoceros Breeding Center</span>
+                        <PawPrint className="w-4 h-4 text-zoo-teal-600" />
+                        <span>Rhinoceros Breeding Center</span>
                       </div>
                       <div className="flex items-center gap-2">
-                      <Theater className="w-4 h-4 text-zoo-teal-600" />
-                      <span>3D Theater Experience</span>
+                        <Theater className="w-4 h-4 text-zoo-teal-600" />
+                        <span>3D Theater Experience</span>
                       </div>
                       <div className="flex items-center gap-2">
-                      <Sprout className="w-4 h-4 text-zoo-teal-600" />
-                      <span>Medicinal Garden</span>
+                        <Sprout className="w-4 h-4 text-zoo-teal-600" />
+                        <span>Medicinal Garden</span>
                       </div>
                     </div>
                   </div>
@@ -360,7 +386,10 @@ const carouselEvents = [
         </section>
 
         {/* Experiences Carousel */}
-        <EventsCarousel events={carouselEvents} backgroundImage="/images/bg.png" />
+        <EventsCarousel
+          events={carouselEvents}
+          backgroundImage="/images/bg.png"
+        />
 
         {/* FAQ Section */}
         <section className="py-16 bg-zoo-teal-700" id="faq">
