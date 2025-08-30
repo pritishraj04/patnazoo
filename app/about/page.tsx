@@ -97,7 +97,7 @@ export default function AboutPage() {
       excerpt:
         "Established in 1973, Patna Zoo has grown from a modest collection to one of India's premier zoological institutions. Our journey spans five decades of dedication to wildlife conservation, education, and research...",
       link: "/about/history",
-      color: "bg-zoo-yellow-600",
+      color: "bg-zoo-teal-600",
     },
     {
       icon: Camera,
@@ -113,7 +113,7 @@ export default function AboutPage() {
       excerpt:
         "Navigate through our 153-acre sanctuary with our comprehensive interactive map. Discover animal habitats, dining areas, rest zones, and special attractions. Plan your visit efficiently and ensure you don't miss any highlights...",
       link: "/about/map",
-      color: "bg-zoo-yellow-600",
+      color: "bg-zoo-teal-600",
     },
   ];
 
@@ -126,27 +126,23 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <HeroSection
+      {/* <HeroSection
         title="About Patna Zoo"
         subtitle="Sanjay Gandhi Biological Garden"
         backgroundImage="/images/header/about-zoo.jpg"
-        height="medium"
-      />
+        height="small"
+      /> */}
 
       {/* Key Personnel Banner */}
       <section className="bg-zoo-teal-800 py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 mt-28">
             <Badge variant="outline" className="bg-zoo-yellow-600 text-zoo-teal-900 border-zoo-yellow-600 mb-4">
               Est. 1973
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Distinguished Patronage
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">About Patna Zoo</h2>
             <p className="text-white/80 text-lg max-w-3xl mx-auto">
-              Under the esteemed guidance and support of our distinguished
-              leaders, Patna Zoo continues to excel in wildlife conservation and
-              public education.
+              Discover the legacy, diversity, and conservation efforts that make Patna Zoo a sanctuary for wildlife and a center for learning and inspiration.
             </p>
           </div>
 

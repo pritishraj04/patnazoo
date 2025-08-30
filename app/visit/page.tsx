@@ -59,12 +59,12 @@ export default function VisitPage() {
       description: "Capture your memories (flash prohibited near animals)",
     },
     {
-      icon: <Baby className="w-6 h-6" />,
+      icon: <Armchair className="w-6 h-6" />,
       title: "Rest Areas",
       description: "Shaded rest areas for families and seniors",
     },
     {
-      icon: <Dog className="w-6 h-6" />,
+      icon: <Cross className="w-6 h-6" />,
       title: "First Aid",
       description: "First aid services available on-site",
     },
@@ -134,9 +134,7 @@ const carouselEvents = [
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <h2 className="font-heading text-4xl text-white mb-8">
-                  OPENING TIMES
-                </h2>
+                <h2 className="font-heading text-4xl text-white mb-8">PATNA ZOO TIMINGS</h2>
                 <Card className="bg-white/10 border-white/20 text-white">
                   <CardContent className="p-6">
                     <div className="space-y-4">
@@ -151,7 +149,7 @@ const carouselEvents = [
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Tuesday - Sunday</span>
-                        <span>9:00 AM - 5:30 PM</span>
+                        <span>8:30 AM - 5:30 PM</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Last Entry</span>
@@ -163,8 +161,7 @@ const carouselEvents = [
                       </div>
                       <div className="pt-4 border-t border-white/20">
                         <p className="text-sm text-white/80">
-                          <strong>Note:</strong> Zoo remains open on public
-                          holidays that fall on Monday
+                          <strong>Note:</strong> Free Entry for Disabled Persons and Orphans. ID is mandatory for students.
                         </p>
                       </div>
                     </div>
@@ -186,33 +183,23 @@ const carouselEvents = [
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Adult (18-59)</span>
-                        <span className="text-zoo-yellow-600 font-bold">
-                          ₹50
-                        </span>
+                        <span className="font-medium">Adult (18 Years Onwards)</span>
+                        <span className="text-zoo-yellow-600 font-bold">₹50</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Child (3-17)</span>
-                        <span className="text-zoo-yellow-600 font-bold">
-                          ₹25
-                        </span>
+                        <span className="font-medium">Child (3-17 Years)</span>
+                        <span className="text-zoo-yellow-600 font-bold">₹20</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Senior (60+)</span>
-                        <span className="text-zoo-yellow-600 font-bold">
-                          ₹30
-                        </span>
+                        <span className="font-medium">1st Januray Special (Adult/Children)</span>
+                        <span className="text-zoo-yellow-600 font-bold">₹150/₹60</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Foreign Visitor</span>
-                        <span className="text-zoo-yellow-600 font-bold">
-                          ₹100
-                        </span>
+                        <span className="font-medium">Group Entries</span>
+                        <span className="text-zoo-yellow-600 font-bold">Check Tickets & Timings</span>
                       </div>
                       <div className="pt-4 border-t border-white/20">
-                        <p className="text-sm text-white/80">
-                          Children under 3 years enter free
-                        </p>
+                        <p className="text-sm text-white/80">Entry free for children below 3 years. Pass system available for morning walkers.</p>
                       </div>
                     </div>
                   </CardContent>
@@ -261,25 +248,23 @@ const carouselEvents = [
                     ></iframe>
                   </div>
                   <div className="p-6">
-                    <h3 className="font-heading text-2xl text-zoo-teal-700 mb-4">
-                      Interactive Map Features
-                    </h3>
+                    <h3 className="font-heading text-2xl text-zoo-teal-700 mb-4">Zoo Highlights</h3>
                     <div className="grid md:grid-cols-2 gap-4 text-zoo-teal-600">
                       <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Animal enclosures and habitats</span>
+                      <Sailboat className="w-4 h-4 text-zoo-teal-600" />
+                      <span>Boating at Zoo Lake</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Utensils className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Mayur Canteen</span>
+                      <PawPrint className="w-4 h-4 text-zoo-teal-600" />
+                      <span>Rhinoceros Breeding Center</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Accessibility className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Accessible routes</span>
+                      <Theater className="w-4 h-4 text-zoo-teal-600" />
+                      <span>3D Theater Experience</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Car className="w-4 h-4 text-zoo-yellow-600" />
-                        <span>Parking areas</span>
+                      <Sprout className="w-4 h-4 text-zoo-teal-600" />
+                      <span>Medicinal Garden</span>
                       </div>
                     </div>
                   </div>

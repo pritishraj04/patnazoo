@@ -37,6 +37,57 @@ const menuItems = [
     ],
   },
   {
+    title: "Bio-diversity",
+    groups: [
+      {
+        title: "Fauna",
+        items: [
+          { title: "Animals", href: "/animals" },
+          { title: "Birds", href: "/animals?category=birds" },
+          { title: "Reptiles", href: "/animals?category=reptiles" },
+        ],
+      },
+      {
+        title: "Flora",
+        items: [{ title: "Plants & Trees", href: "/plants" }],
+      },
+    ],
+  },
+  {
+    title: "Zoo Facilities",
+    groups: [
+      {
+        title: "Attractions",
+        items: [
+          { title: "Jal Udyan", href: "/experience/jal-udyan" },
+          { title: "Shishu Udyan", href: "/experience/shishu-udyan" },
+          { title: "Toy Train", href: "/experience/toy-train" },
+          { title: "Boating / Lake", href: "/experience/boating-lake" },
+          { title: "3D Theater", href: "/experience/3d-theater" },
+          { title: "Aquarium", href: "/experience/aquarium" },
+          { title: "Snake House", href: "/experience/snake-house" },
+          // { title: "Climate Change Lab", href: "/experience/climate-change-lab" },
+        ],
+      },
+      {
+        title: "Zoo Features",
+        items: [
+          { title: "Nature Library", href: "/experience/nature-library" },
+          { title: "Photo Services", href: "/experience/photo-services" },
+          { title: "Rose Garden", href: "/experience/rose-garden" },
+          { title: "Golf Carts", href: "/experience/golf-carts" },
+        ],
+      },
+      {
+        title: "Dining & Shopping",
+        items: [
+          { title: "Mayur Canteen", href: "/experience/mayur-canteen" },
+          { title: "Souvenir Shop", href: "/experience/souvenir-shop" },
+        ],
+      },
+    ],
+  },
+  {
     title: "Plan a Visit",
     groups: [
       {
@@ -58,58 +109,6 @@ const menuItems = [
     ],
   },
   {
-    title: "What's Here",
-    groups: [
-      {
-        title: "Wildlife",
-        items: [
-          { title: "Animals", href: "/animals" },
-          { title: "Birds", href: "/animals?category=birds" },
-          { title: "Reptiles", href: "/animals?category=reptiles" },
-        ],
-      },
-      {
-        title: "Nature",
-        items: [{ title: "Plants & Flora", href: "/plants" }],
-      },
-    ],
-  },
-  {
-    title: "Zoo Experience",
-    groups: [
-      {
-        title: "Dining & Shopping",
-        items: [
-          { title: "Mayur Canteen", href: "/experience/mayur-canteen" },
-          { title: "Souvenir Shop", href: "/experience/souvenir-shop" },
-        ],
-      },
-      {
-        title: "Attractions",
-        items: [
-          { title: "Jal Udyan", href: "/experience/jal-udyan" },
-          { title: "Shishu Udyan", href: "/experience/shishu-udyan" },
-          { title: "Toy Train", href: "/experience/toy-train" },
-          { title: "Boating / Lake", href: "/experience/boating-lake" },
-          { title: "3D Theater", href: "/experience/3d-theater" },
-        ],
-      },
-      {
-        title: "Zoo Features",
-        items: [
-          { title: "Nature Library", href: "/experience/nature-library" },
-          {
-            title: "Rhino Breeding Center",
-            href: "/experience/rhino-breeding-center",
-          },
-          { title: "Photo Services", href: "/experience/photo-services" },
-          { title: "Rose Garden", href: "/experience/rose-garden" },
-          { title: "Golf Carts", href: "/experience/golf-carts" },
-        ],
-      },
-    ],
-  },
-  {
     title: "Programs & Updates",
     groups: [
       {
@@ -118,6 +117,8 @@ const menuItems = [
           { title: "Adopt an Animal", href: "/programs/adopt-an-animal" },
           { title: "Breeding Programs", href: "/programs/breeding" },
           { title: "Events", href: "/events" },
+          { title: "Rhino Breeding Center", href: "/experience/rhino-breeding-center" },
+
         ],
       },
       {

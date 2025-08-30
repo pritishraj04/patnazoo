@@ -113,29 +113,17 @@ export default function ContactPage() {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      details: [
-        "+91 7070707070",
-        "+91 8080808080 (Education)",
-        "+91 9090909090 (Events)",
-      ],
+      details: ["0612-2217758"],
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      details: [
-        "info@patnazoo.in",
-        "education@patnazoo.in",
-        "events@patnazoo.in",
-      ],
+      details: ["patnazoobihar@gmail.com"],
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Office Hours",
-      details: [
-        "Monday - Friday: 9:00 AM - 5:00 PM",
-        "Saturday: 9:00 AM - 1:00 PM",
-        "Sunday: Closed",
-      ],
+      details: ["Monday - Saturday: 10:00AM - 5:00PM", "Sunday: Closed"],
     },
   ];
 
@@ -221,7 +209,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="grid lg:grid-cols-2 gap-12">
+            <div className="grid gap-12">
               <div
                 className={`transition-all duration-1000 ${
                   isVisible
@@ -376,12 +364,8 @@ export default function ContactPage() {
               </div>
 
               {/* Departments */}
-              <div
-                className={`transition-all duration-1000 delay-300 ${
-                  isVisible
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 translate-x-8"
-                }`}
+              {/* <div
+                className={`transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
               >
                 <h3 className="font-heading text-3xl text-white mb-6">
                   DEPARTMENTS
@@ -416,7 +400,7 @@ export default function ContactPage() {
                     </Card>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
