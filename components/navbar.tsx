@@ -36,7 +36,8 @@ const menuItems = [
       {
         title: "Fauna",
         items: [
-          { title: "Animals", href: "/animals" },
+          { title: "All Animals", href: "/animals" },
+          { title: "Mammals", href: "/animals?category=mammals" },
           { title: "Birds", href: "/animals?category=birds" },
           { title: "Reptiles", href: "/animals?category=reptiles" },
         ],

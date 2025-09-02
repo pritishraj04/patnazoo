@@ -19,14 +19,20 @@ export default function AnimalsPage() {
   // Apply filter from URL params on page load
   useEffect(() => {
     const categoryParam = searchParams.get("category")
-    if (categoryParam && ["mammals", "birds", "reptiles"].includes(categoryParam.toLowerCase())) {
-      setSelectedCategory(
-        categoryParam.toLowerCase() === "mammals"
-          ? "Mammals"
-          : categoryParam.toLowerCase() === "birds"
-            ? "Birds"
-            : "Reptiles",
-      )
+
+    const validCategories: Record<string, string> = {
+      mammals: "Mammals",
+      birds: "Birds",
+      reptiles: "Reptiles",
+    };
+
+    const normalized = categoryParam?.toLowerCase();
+
+    if (normalized && validCategories[normalized]) {
+      setSelectedCategory(validCategories[normalized]);
+    } else {
+      // when param is missing OR invalid
+      setSelectedCategory("all");
     }
   }, [searchParams])
 
@@ -208,6 +214,13 @@ export default function AnimalsPage() {
     return "Discover the amazing animals that call Patna Zoo home"
   }
 
+  const getPageBanner = () => {
+    if (selectedCategory === "Birds") return "/images/header/bird-bg.png"
+    if (selectedCategory === "Reptiles") return "/images/header/reptile-bg.png"
+    if (selectedCategory === "Mammals") return "/images/header/mammal-bg.png"
+    return "/images/header/animal-bg.png"
+  }
+
   return (
     <>
       <Navbar />
@@ -216,7 +229,7 @@ export default function AnimalsPage() {
         <HeroSection
           title={getPageTitle()}
           subtitle={getPageSubtitle()}
-          backgroundImage="/images/header/animal-bg.png"
+          backgroundImage={getPageBanner()}
           height="medium"
         />
 
