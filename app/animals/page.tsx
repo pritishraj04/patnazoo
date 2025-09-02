@@ -215,9 +215,9 @@ export default function AnimalsPage() {
   }
 
   const getPageBanner = () => {
-    if (selectedCategory === "Birds") return "/images/header/bird-bg.png"
-    if (selectedCategory === "Reptiles") return "/images/header/reptile-bg.png"
-    if (selectedCategory === "Mammals") return "/images/header/mammal-bg.png"
+    if (selectedCategory === "Birds") return "/images/header/birds-top.jpg"
+    if (selectedCategory === "Reptiles") return "/images/header/reptiles-top.jpg"
+    if (selectedCategory === "Mammals") return "/images/header/animal-top.jpg"
     return "/images/header/animal-bg.png"
   }
 

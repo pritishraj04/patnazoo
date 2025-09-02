@@ -189,7 +189,7 @@ export default function PlantsPage() {
         <HeroSection
           title="PLANTS & FLORA"
           subtitle="Explore the diverse plant life and botanical wonders at Patna Zoo"
-          backgroundImage="/images/header/plant-bg.png"
+          backgroundImage="/images/header/plants-top.jpg"
           height="medium"
         />
 
